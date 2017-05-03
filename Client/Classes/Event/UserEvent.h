@@ -14,6 +14,7 @@ using namespace std;
 class UserEvent
 {
 protected:
+	UserEvent(const string& eventName, const std::function<void(EventCustom*)> callback);
 	//事件名称
 	string eventName;
 	//事件句柄
@@ -21,8 +22,9 @@ protected:
 	//回调函数
 	std::function <void(EventCustom*)> callback;
 public:
-	UserEvent(const string& eventName, const std::function<void(EventCustom*)> callback);
 	virtual ~UserEvent();
+	//注册事件
+	static UserEvent* addEventListener(const string& eventName, const std::function<void(EventCustom*)> callback);
 	//事件注销
 	void removeEventListener();
 	//事件触发

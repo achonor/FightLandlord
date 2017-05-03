@@ -4,7 +4,6 @@
 
 #include "GGData.h"
 #include "net/Client.h"
-#include "MyScheduler.h"
 
 class game{
 public:

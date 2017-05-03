@@ -12,4 +12,7 @@
 //解析json文件
 rapidjson::Document My_getJsonData(const char* fileName);
 
+//四个字节char转int
+int My_char4ToInt(const char *data);
+
 #endif

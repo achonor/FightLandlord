@@ -3,8 +3,8 @@
 
 CCNode *GGNode;
 rapidjson::Document My_config;
-//Client My_Client;
- MyScheduler *My_Scheduler;
+Client* My_Client;
+string EVENT_RECEIVE_DATA = "EVENT_RECEIVE_DATA";
 
 
 void My_InitGGData() {
@@ -13,10 +13,8 @@ void My_InitGGData() {
 	GGNode->retain();
 	//游戏配置文件
 	My_config = My_getJsonData("config.json");
-	//全局定时器生成器
-	My_Scheduler = MyScheduler::getInstance();
-	GGNode->addChild(My_Scheduler);
-
+	//游戏客户端
+	My_Client = Client::create();
 }
 
 void My_ClearGGData() {

@@ -1,7 +1,7 @@
 #ifndef MYSCHEDULER_H
 #define MYSCHEDULER_H
 #pragma once
-
+#include "stdafx.h"
 #include "cocos2d.h"
 #include <iostream>
 

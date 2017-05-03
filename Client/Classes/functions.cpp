@@ -25,9 +25,18 @@ rapidjson::Document My_getJsonData(const char* fileName) {
 	//[4] ÅĞ¶Ï½âÎöÊÇ·ñ³ö´í
 	if (d.HasParseError()) {
 		cerr << "GetParseError " << d.GetParseError() << endl;
-		//return NULL;
+		return NULL;
 	}
 	return d;
+}
+
+int My_char4ToInt(const char *data) {
+	int ret = 0;
+	int idx = -1;
+	while (data[idx]) {
+		ret = (ret << 8) | int(data[idx]);
+	}
+	return ret;
 }
 
 //

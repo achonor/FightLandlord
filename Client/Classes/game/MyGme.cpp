@@ -17,9 +17,9 @@ void game::init() {
 	//初始化GGData
 	My_InitGGData();
 	
-	////初始化网络
-	//auto tmpAddr = My_config["loginAddr"].GetString();
-	//My_Client.initNet(string(tmpAddr), My_config["serverPort"].GetInt());
+	//初始化网络
+	auto tmpAddr = My_config["loginAddr"].GetString();
+	My_Client->initNet(string(tmpAddr), My_config["serverPort"].GetInt());
 }
 	
 void game::start() {
@@ -44,13 +44,13 @@ void game::start() {
 	// 每秒刷新次数（帧数）
 	director->setAnimationInterval(1.0 / 30);
 
-	// 设置设计分辨路
+	// 设置设计分辨率
 	glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::FIXED_WIDTH);
 
 	// 创建初始场景
 	auto scene = HelloWorld::createScene();
 	director->runWithScene(scene);
-
+	scene->addChild(My_Client);
 }
 
 game::~game()

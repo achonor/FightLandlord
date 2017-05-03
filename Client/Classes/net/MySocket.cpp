@@ -1,21 +1,21 @@
-#include "stdafx.h"
-#include "stdio.h"
+//#include "stdafx.h"
 #include "MySocket.h"
+#include "stdio.h"
 
 #ifdef WIN32
 #pragma comment(lib, "wsock32")
 #endif
 
-Socket::Socket(SOCKET sock)
+MySocket::MySocket(SOCKET sock)
 {
 	mySocket = sock;
 }
 
-Socket::~Socket()
+MySocket::~MySocket()
 {
 }
 
-int Socket::Init()
+int MySocket::Init()
 {
 	static bool isInit = false;
 	if (isInit)
@@ -32,7 +32,7 @@ int Socket::Init()
 	return 0;
 }
 
-int Socket::Clean()
+int MySocket::Clean()
 {
 #ifdef WIN32
 	return (WSACleanup());
@@ -40,18 +40,18 @@ int Socket::Clean()
 	return 0;
 }
 
-Socket& Socket::operator = (SOCKET s)
+MySocket& MySocket::operator = (SOCKET s)
 {
 	mySocket = s;
 	return (*this);
 }
 
-Socket::operator SOCKET ()
+MySocket::operator SOCKET ()
 {
 	return mySocket;
 }
 
-void Socket::setNonBlocking()
+void MySocket::setNonBlocking()
 {
 #ifdef WIN32
 	u_long mode = 1;
@@ -62,7 +62,7 @@ void Socket::setNonBlocking()
 #endif
 }
 
-void Socket::setSendTimeOut(int time)
+void MySocket::setSendTimeOut(int time)
 {
 #ifdef WIN32
 	setsockopt(mySocket, SOL_SOCKET, SO_SNDTIMEO, (char*)&time, sizeof(int));
@@ -72,7 +72,7 @@ void Socket::setSendTimeOut(int time)
 #endif
 }
 
-void Socket::setRecvTimeOut(int time)
+void MySocket::setRecvTimeOut(int time)
 {
 #ifdef WIN32
 	setsockopt(mySocket, SOL_SOCKET, SO_RCVTIMEO, (char*)&time, sizeof(int));
@@ -82,7 +82,7 @@ void Socket::setRecvTimeOut(int time)
 #endif
 }
 
-bool Socket::Create(int af, int type, int protocol)
+bool MySocket::Create(int af, int type, int protocol)
 {
 	mySocket = socket(af, type, protocol);
 	if (mySocket == INVALID_SOCKET) {
@@ -91,7 +91,7 @@ bool Socket::Create(int af, int type, int protocol)
 	return true;
 }
 
-bool Socket::Connect(const char* ip, unsigned short port)
+bool MySocket::Connect(const char* ip, unsigned short port)
 {
 	struct sockaddr_in svraddr;
 	svraddr.sin_family = AF_INET;
@@ -104,7 +104,7 @@ bool Socket::Connect(const char* ip, unsigned short port)
 	return true;
 }
 
-bool Socket::Bind(unsigned short port)
+bool MySocket::Bind(unsigned short port)
 {
 	struct sockaddr_in svraddr;
 	svraddr.sin_family = AF_INET;
@@ -123,7 +123,7 @@ bool Socket::Bind(unsigned short port)
 }
 
 
-bool Socket::Listen(int backlog)
+bool MySocket::Listen(int backlog)
 {
 	int ret = listen(mySocket, backlog);
 	if (ret == SOCKET_ERROR) {
@@ -132,7 +132,7 @@ bool Socket::Listen(int backlog)
 	return true;
 }
 
-bool Socket::Accept(Socket& s, char* fromip)
+bool MySocket::Accept(MySocket& s, char* fromip)
 {
 	struct sockaddr_in cliaddr;
 	socklen_t addrlen = sizeof(cliaddr);
@@ -148,7 +148,7 @@ bool Socket::Accept(Socket& s, char* fromip)
 	return true;
 }
 
-int Socket::Send(const char* buf, int len, int flags)
+int MySocket::Send(const char* buf, int len, int flags)
 {
 	int bytes;
 	int count = 0;
@@ -164,12 +164,12 @@ int Socket::Send(const char* buf, int len, int flags)
 	return count;
 }
 
-int Socket::Recv(char* buf, int len, int flags)
+int MySocket::Recv(char* buf, int len, int flags)
 {
 	return (recv(mySocket, buf, len, flags));
 }
 
-int Socket::Close()
+int MySocket::Close()
 {
 #ifdef WIN32
 	return (closesocket(mySocket));
@@ -178,7 +178,7 @@ int Socket::Close()
 #endif
 }
 
-int Socket::GetError()
+int MySocket::GetError()
 {
 #ifdef WIN32
 	return (WSAGetLastError());
@@ -187,7 +187,7 @@ int Socket::GetError()
 #endif
 }
 
-bool Socket::DnsParse(const char* domain, char* ip)
+bool MySocket::DnsParse(const char* domain, char* ip)
 {
 	struct hostent* p;
 	if ((p = gethostbyname(domain)) == NULL)
