@@ -1,0 +1,4 @@
+message people{
+	required int32 ID = 1;
+	optional string name = 2;
+}
