@@ -1,4 +1,23 @@
-message people{
-	required int32 ID = 1;
-	optional string name = 2;
+//repeated， required， optional
+
+//协议外壳
+message MainProto{
+	required int32 playerID = 1;
+	required int32 messageID = 2;
+	optional string messageName = 3;
+	optional string messageData = 4;
+	optional int64 serverTime = 5;
+}
+
+
+//获取信息
+message MessagePeopleReq{
+	optional int32 peopleID = 1;
+
+}
+//返回信息
+message MessagePeopleRsp{
+	optional string name = 1;
+	optional string phone = 2;
+	optional int32 age = 3;
 }
