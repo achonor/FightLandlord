@@ -14,6 +14,13 @@ class MyProtocol(Protocol):
     def connectionMade(self):
         print "connection success!!!", self.transport.getPeer()
         tmpData = self.factory.getData()
-        self.transport.write(tmpData)
+        from twisted.internet import reactor
+        reactor.callLater(1, self.sendData, tmpData)
+        reactor.callLater(2, self.sendData, tmpData)
+
     def connectionLost(self, reason=connectionDone):
         log.msg("connection lost!!!")
+
+    def sendData(self, data):
+        print "sendData: ", data
+        self.transport.write(data)

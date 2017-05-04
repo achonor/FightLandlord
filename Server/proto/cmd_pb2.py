@@ -19,31 +19,52 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='cmd.proto',
   package='',
   syntax='proto2',
-  serialized_pb=_b('\n\tcmd.proto\"\"\n\x06people\x12\n\n\x02ID\x18\x01 \x02(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t')
+  serialized_pb=_b('\n\tcmd.proto\"n\n\tMainProto\x12\x10\n\x08playerID\x18\x01 \x02(\x05\x12\x11\n\tmessageID\x18\x02 \x02(\x05\x12\x13\n\x0bmessageName\x18\x03 \x01(\t\x12\x13\n\x0bmessageData\x18\x04 \x01(\t\x12\x12\n\nserverTime\x18\x05 \x01(\x03\"$\n\x10MessagePeopleReq\x12\x10\n\x08peopleID\x18\x01 \x01(\x05\"<\n\x10MessagePeopleRsp\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05phone\x18\x02 \x01(\t\x12\x0b\n\x03\x61ge\x18\x03 \x01(\x05')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
 
-_PEOPLE = _descriptor.Descriptor(
-  name='people',
-  full_name='people',
+_MAINPROTO = _descriptor.Descriptor(
+  name='MainProto',
+  full_name='MainProto',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='ID', full_name='people.ID', index=0,
+      name='playerID', full_name='MainProto.playerID', index=0,
       number=1, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='name', full_name='people.name', index=1,
-      number=2, type=9, cpp_type=9, label=1,
+      name='messageID', full_name='MainProto.messageID', index=1,
+      number=2, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='messageName', full_name='MainProto.messageName', index=2,
+      number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='messageData', full_name='MainProto.messageData', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='serverTime', full_name='MainProto.serverTime', index=4,
+      number=5, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -60,17 +81,109 @@ _PEOPLE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=13,
-  serialized_end=47,
+  serialized_end=123,
 )
 
-DESCRIPTOR.message_types_by_name['people'] = _PEOPLE
 
-people = _reflection.GeneratedProtocolMessageType('people', (_message.Message,), dict(
-  DESCRIPTOR = _PEOPLE,
+_MESSAGEPEOPLEREQ = _descriptor.Descriptor(
+  name='MessagePeopleReq',
+  full_name='MessagePeopleReq',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='peopleID', full_name='MessagePeopleReq.peopleID', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=125,
+  serialized_end=161,
+)
+
+
+_MESSAGEPEOPLERSP = _descriptor.Descriptor(
+  name='MessagePeopleRsp',
+  full_name='MessagePeopleRsp',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='MessagePeopleRsp.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='phone', full_name='MessagePeopleRsp.phone', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='age', full_name='MessagePeopleRsp.age', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=163,
+  serialized_end=223,
+)
+
+DESCRIPTOR.message_types_by_name['MainProto'] = _MAINPROTO
+DESCRIPTOR.message_types_by_name['MessagePeopleReq'] = _MESSAGEPEOPLEREQ
+DESCRIPTOR.message_types_by_name['MessagePeopleRsp'] = _MESSAGEPEOPLERSP
+
+MainProto = _reflection.GeneratedProtocolMessageType('MainProto', (_message.Message,), dict(
+  DESCRIPTOR = _MAINPROTO,
   __module__ = 'cmd_pb2'
-  # @@protoc_insertion_point(class_scope:people)
+  # @@protoc_insertion_point(class_scope:MainProto)
   ))
-_sym_db.RegisterMessage(people)
+_sym_db.RegisterMessage(MainProto)
+
+MessagePeopleReq = _reflection.GeneratedProtocolMessageType('MessagePeopleReq', (_message.Message,), dict(
+  DESCRIPTOR = _MESSAGEPEOPLEREQ,
+  __module__ = 'cmd_pb2'
+  # @@protoc_insertion_point(class_scope:MessagePeopleReq)
+  ))
+_sym_db.RegisterMessage(MessagePeopleReq)
+
+MessagePeopleRsp = _reflection.GeneratedProtocolMessageType('MessagePeopleRsp', (_message.Message,), dict(
+  DESCRIPTOR = _MESSAGEPEOPLERSP,
+  __module__ = 'cmd_pb2'
+  # @@protoc_insertion_point(class_scope:MessagePeopleRsp)
+  ))
+_sym_db.RegisterMessage(MessagePeopleRsp)
 
 
 # @@protoc_insertion_point(module_scope)
