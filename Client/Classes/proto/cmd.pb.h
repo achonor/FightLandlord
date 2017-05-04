@@ -29,9 +29,15 @@
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
-class people;
-class peopleDefaultTypeInternal;
-extern peopleDefaultTypeInternal _people_default_instance_;
+class MainProto;
+class MainProtoDefaultTypeInternal;
+extern MainProtoDefaultTypeInternal _MainProto_default_instance_;
+class MessagePeopleReq;
+class MessagePeopleReqDefaultTypeInternal;
+extern MessagePeopleReqDefaultTypeInternal _MessagePeopleReq_default_instance_;
+class MessagePeopleRsp;
+class MessagePeopleRspDefaultTypeInternal;
+extern MessagePeopleRspDefaultTypeInternal _MessagePeopleRsp_default_instance_;
 
 namespace protobuf_cmd_2eproto {
 // Internal implementation detail -- do not call these.
@@ -46,14 +52,14 @@ void InitDefaults();
 
 // ===================================================================
 
-class people : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:people) */ {
+class MainProto : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:MainProto) */ {
  public:
-  people();
-  virtual ~people();
+  MainProto();
+  virtual ~MainProto();
 
-  people(const people& from);
+  MainProto(const MainProto& from);
 
-  inline people& operator=(const people& from) {
+  inline MainProto& operator=(const MainProto& from) {
     CopyFrom(from);
     return *this;
   }
@@ -67,24 +73,24 @@ class people : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   }
 
   static const ::google::protobuf::Descriptor* descriptor();
-  static const people& default_instance();
+  static const MainProto& default_instance();
 
-  static inline const people* internal_default_instance() {
-    return reinterpret_cast<const people*>(
-               &_people_default_instance_);
+  static inline const MainProto* internal_default_instance() {
+    return reinterpret_cast<const MainProto*>(
+               &_MainProto_default_instance_);
   }
 
-  void Swap(people* other);
+  void Swap(MainProto* other);
 
   // implements Message ----------------------------------------------
 
-  inline people* New() const PROTOBUF_FINAL { return New(NULL); }
+  inline MainProto* New() const PROTOBUF_FINAL { return New(NULL); }
 
-  people* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  MainProto* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
   void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
   void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
-  void CopyFrom(const people& from);
-  void MergeFrom(const people& from);
+  void CopyFrom(const MainProto& from);
+  void MergeFrom(const MainProto& from);
   void Clear() PROTOBUF_FINAL;
   bool IsInitialized() const PROTOBUF_FINAL;
 
@@ -105,7 +111,7 @@ class people : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const PROTOBUF_FINAL;
-  void InternalSwap(people* other);
+  void InternalSwap(MainProto* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return NULL;
@@ -121,10 +127,259 @@ class people : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
 
   // accessors -------------------------------------------------------
 
-  // optional string name = 2;
+  // optional string messageName = 3;
+  bool has_messagename() const;
+  void clear_messagename();
+  static const int kMessageNameFieldNumber = 3;
+  const ::std::string& messagename() const;
+  void set_messagename(const ::std::string& value);
+  #if LANG_CXX11
+  void set_messagename(::std::string&& value);
+  #endif
+  void set_messagename(const char* value);
+  void set_messagename(const char* value, size_t size);
+  ::std::string* mutable_messagename();
+  ::std::string* release_messagename();
+  void set_allocated_messagename(::std::string* messagename);
+
+  // optional string messageData = 4;
+  bool has_messagedata() const;
+  void clear_messagedata();
+  static const int kMessageDataFieldNumber = 4;
+  const ::std::string& messagedata() const;
+  void set_messagedata(const ::std::string& value);
+  #if LANG_CXX11
+  void set_messagedata(::std::string&& value);
+  #endif
+  void set_messagedata(const char* value);
+  void set_messagedata(const char* value, size_t size);
+  ::std::string* mutable_messagedata();
+  ::std::string* release_messagedata();
+  void set_allocated_messagedata(::std::string* messagedata);
+
+  // required int32 playerID = 1;
+  bool has_playerid() const;
+  void clear_playerid();
+  static const int kPlayerIDFieldNumber = 1;
+  ::google::protobuf::int32 playerid() const;
+  void set_playerid(::google::protobuf::int32 value);
+
+  // required int32 messageID = 2;
+  bool has_messageid() const;
+  void clear_messageid();
+  static const int kMessageIDFieldNumber = 2;
+  ::google::protobuf::int32 messageid() const;
+  void set_messageid(::google::protobuf::int32 value);
+
+  // optional int64 serverTime = 5;
+  bool has_servertime() const;
+  void clear_servertime();
+  static const int kServerTimeFieldNumber = 5;
+  ::google::protobuf::int64 servertime() const;
+  void set_servertime(::google::protobuf::int64 value);
+
+  // @@protoc_insertion_point(class_scope:MainProto)
+ private:
+  void set_has_playerid();
+  void clear_has_playerid();
+  void set_has_messageid();
+  void clear_has_messageid();
+  void set_has_messagename();
+  void clear_has_messagename();
+  void set_has_messagedata();
+  void clear_has_messagedata();
+  void set_has_servertime();
+  void clear_has_servertime();
+
+  // helper for ByteSizeLong()
+  size_t RequiredFieldsByteSizeFallback() const;
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable int _cached_size_;
+  ::google::protobuf::internal::ArenaStringPtr messagename_;
+  ::google::protobuf::internal::ArenaStringPtr messagedata_;
+  ::google::protobuf::int32 playerid_;
+  ::google::protobuf::int32 messageid_;
+  ::google::protobuf::int64 servertime_;
+  friend struct  protobuf_cmd_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class MessagePeopleReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:MessagePeopleReq) */ {
+ public:
+  MessagePeopleReq();
+  virtual ~MessagePeopleReq();
+
+  MessagePeopleReq(const MessagePeopleReq& from);
+
+  inline MessagePeopleReq& operator=(const MessagePeopleReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MessagePeopleReq& default_instance();
+
+  static inline const MessagePeopleReq* internal_default_instance() {
+    return reinterpret_cast<const MessagePeopleReq*>(
+               &_MessagePeopleReq_default_instance_);
+  }
+
+  void Swap(MessagePeopleReq* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MessagePeopleReq* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  MessagePeopleReq* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const MessagePeopleReq& from);
+  void MergeFrom(const MessagePeopleReq& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(MessagePeopleReq* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 peopleID = 1;
+  bool has_peopleid() const;
+  void clear_peopleid();
+  static const int kPeopleIDFieldNumber = 1;
+  ::google::protobuf::int32 peopleid() const;
+  void set_peopleid(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:MessagePeopleReq)
+ private:
+  void set_has_peopleid();
+  void clear_has_peopleid();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable int _cached_size_;
+  ::google::protobuf::int32 peopleid_;
+  friend struct  protobuf_cmd_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class MessagePeopleRsp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:MessagePeopleRsp) */ {
+ public:
+  MessagePeopleRsp();
+  virtual ~MessagePeopleRsp();
+
+  MessagePeopleRsp(const MessagePeopleRsp& from);
+
+  inline MessagePeopleRsp& operator=(const MessagePeopleRsp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MessagePeopleRsp& default_instance();
+
+  static inline const MessagePeopleRsp* internal_default_instance() {
+    return reinterpret_cast<const MessagePeopleRsp*>(
+               &_MessagePeopleRsp_default_instance_);
+  }
+
+  void Swap(MessagePeopleRsp* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MessagePeopleRsp* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  MessagePeopleRsp* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const MessagePeopleRsp& from);
+  void MergeFrom(const MessagePeopleRsp& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(MessagePeopleRsp* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional string name = 1;
   bool has_name() const;
   void clear_name();
-  static const int kNameFieldNumber = 2;
+  static const int kNameFieldNumber = 1;
   const ::std::string& name() const;
   void set_name(const ::std::string& value);
   #if LANG_CXX11
@@ -136,25 +391,43 @@ class people : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   ::std::string* release_name();
   void set_allocated_name(::std::string* name);
 
-  // required int32 ID = 1;
-  bool has_id() const;
-  void clear_id();
-  static const int kIDFieldNumber = 1;
-  ::google::protobuf::int32 id() const;
-  void set_id(::google::protobuf::int32 value);
+  // optional string phone = 2;
+  bool has_phone() const;
+  void clear_phone();
+  static const int kPhoneFieldNumber = 2;
+  const ::std::string& phone() const;
+  void set_phone(const ::std::string& value);
+  #if LANG_CXX11
+  void set_phone(::std::string&& value);
+  #endif
+  void set_phone(const char* value);
+  void set_phone(const char* value, size_t size);
+  ::std::string* mutable_phone();
+  ::std::string* release_phone();
+  void set_allocated_phone(::std::string* phone);
 
-  // @@protoc_insertion_point(class_scope:people)
+  // optional int32 age = 3;
+  bool has_age() const;
+  void clear_age();
+  static const int kAgeFieldNumber = 3;
+  ::google::protobuf::int32 age() const;
+  void set_age(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:MessagePeopleRsp)
  private:
-  void set_has_id();
-  void clear_has_id();
   void set_has_name();
   void clear_has_name();
+  void set_has_phone();
+  void clear_has_phone();
+  void set_has_age();
+  void clear_has_age();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
   mutable int _cached_size_;
   ::google::protobuf::internal::ArenaStringPtr name_;
-  ::google::protobuf::int32 id_;
+  ::google::protobuf::internal::ArenaStringPtr phone_;
+  ::google::protobuf::int32 age_;
   friend struct  protobuf_cmd_2eproto::TableStruct;
 };
 // ===================================================================
@@ -163,95 +436,389 @@ class people : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
 // ===================================================================
 
 #if !PROTOBUF_INLINE_NOT_IN_HEADERS
-// people
+// MainProto
 
-// required int32 ID = 1;
-inline bool people::has_id() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
+// required int32 playerID = 1;
+inline bool MainProto::has_playerid() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
 }
-inline void people::set_has_id() {
-  _has_bits_[0] |= 0x00000002u;
+inline void MainProto::set_has_playerid() {
+  _has_bits_[0] |= 0x00000004u;
 }
-inline void people::clear_has_id() {
-  _has_bits_[0] &= ~0x00000002u;
+inline void MainProto::clear_has_playerid() {
+  _has_bits_[0] &= ~0x00000004u;
 }
-inline void people::clear_id() {
-  id_ = 0;
-  clear_has_id();
+inline void MainProto::clear_playerid() {
+  playerid_ = 0;
+  clear_has_playerid();
 }
-inline ::google::protobuf::int32 people::id() const {
-  // @@protoc_insertion_point(field_get:people.ID)
-  return id_;
+inline ::google::protobuf::int32 MainProto::playerid() const {
+  // @@protoc_insertion_point(field_get:MainProto.playerID)
+  return playerid_;
 }
-inline void people::set_id(::google::protobuf::int32 value) {
-  set_has_id();
-  id_ = value;
-  // @@protoc_insertion_point(field_set:people.ID)
+inline void MainProto::set_playerid(::google::protobuf::int32 value) {
+  set_has_playerid();
+  playerid_ = value;
+  // @@protoc_insertion_point(field_set:MainProto.playerID)
 }
 
-// optional string name = 2;
-inline bool people::has_name() const {
+// required int32 messageID = 2;
+inline bool MainProto::has_messageid() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void MainProto::set_has_messageid() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void MainProto::clear_has_messageid() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void MainProto::clear_messageid() {
+  messageid_ = 0;
+  clear_has_messageid();
+}
+inline ::google::protobuf::int32 MainProto::messageid() const {
+  // @@protoc_insertion_point(field_get:MainProto.messageID)
+  return messageid_;
+}
+inline void MainProto::set_messageid(::google::protobuf::int32 value) {
+  set_has_messageid();
+  messageid_ = value;
+  // @@protoc_insertion_point(field_set:MainProto.messageID)
+}
+
+// optional string messageName = 3;
+inline bool MainProto::has_messagename() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
-inline void people::set_has_name() {
+inline void MainProto::set_has_messagename() {
   _has_bits_[0] |= 0x00000001u;
 }
-inline void people::clear_has_name() {
+inline void MainProto::clear_has_messagename() {
   _has_bits_[0] &= ~0x00000001u;
 }
-inline void people::clear_name() {
+inline void MainProto::clear_messagename() {
+  messagename_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_messagename();
+}
+inline const ::std::string& MainProto::messagename() const {
+  // @@protoc_insertion_point(field_get:MainProto.messageName)
+  return messagename_.GetNoArena();
+}
+inline void MainProto::set_messagename(const ::std::string& value) {
+  set_has_messagename();
+  messagename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:MainProto.messageName)
+}
+#if LANG_CXX11
+inline void MainProto::set_messagename(::std::string&& value) {
+  set_has_messagename();
+  messagename_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:MainProto.messageName)
+}
+#endif
+inline void MainProto::set_messagename(const char* value) {
+  set_has_messagename();
+  messagename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:MainProto.messageName)
+}
+inline void MainProto::set_messagename(const char* value, size_t size) {
+  set_has_messagename();
+  messagename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:MainProto.messageName)
+}
+inline ::std::string* MainProto::mutable_messagename() {
+  set_has_messagename();
+  // @@protoc_insertion_point(field_mutable:MainProto.messageName)
+  return messagename_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* MainProto::release_messagename() {
+  // @@protoc_insertion_point(field_release:MainProto.messageName)
+  clear_has_messagename();
+  return messagename_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void MainProto::set_allocated_messagename(::std::string* messagename) {
+  if (messagename != NULL) {
+    set_has_messagename();
+  } else {
+    clear_has_messagename();
+  }
+  messagename_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), messagename);
+  // @@protoc_insertion_point(field_set_allocated:MainProto.messageName)
+}
+
+// optional string messageData = 4;
+inline bool MainProto::has_messagedata() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void MainProto::set_has_messagedata() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void MainProto::clear_has_messagedata() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void MainProto::clear_messagedata() {
+  messagedata_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_messagedata();
+}
+inline const ::std::string& MainProto::messagedata() const {
+  // @@protoc_insertion_point(field_get:MainProto.messageData)
+  return messagedata_.GetNoArena();
+}
+inline void MainProto::set_messagedata(const ::std::string& value) {
+  set_has_messagedata();
+  messagedata_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:MainProto.messageData)
+}
+#if LANG_CXX11
+inline void MainProto::set_messagedata(::std::string&& value) {
+  set_has_messagedata();
+  messagedata_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:MainProto.messageData)
+}
+#endif
+inline void MainProto::set_messagedata(const char* value) {
+  set_has_messagedata();
+  messagedata_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:MainProto.messageData)
+}
+inline void MainProto::set_messagedata(const char* value, size_t size) {
+  set_has_messagedata();
+  messagedata_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:MainProto.messageData)
+}
+inline ::std::string* MainProto::mutable_messagedata() {
+  set_has_messagedata();
+  // @@protoc_insertion_point(field_mutable:MainProto.messageData)
+  return messagedata_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* MainProto::release_messagedata() {
+  // @@protoc_insertion_point(field_release:MainProto.messageData)
+  clear_has_messagedata();
+  return messagedata_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void MainProto::set_allocated_messagedata(::std::string* messagedata) {
+  if (messagedata != NULL) {
+    set_has_messagedata();
+  } else {
+    clear_has_messagedata();
+  }
+  messagedata_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), messagedata);
+  // @@protoc_insertion_point(field_set_allocated:MainProto.messageData)
+}
+
+// optional int64 serverTime = 5;
+inline bool MainProto::has_servertime() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void MainProto::set_has_servertime() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void MainProto::clear_has_servertime() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void MainProto::clear_servertime() {
+  servertime_ = GOOGLE_LONGLONG(0);
+  clear_has_servertime();
+}
+inline ::google::protobuf::int64 MainProto::servertime() const {
+  // @@protoc_insertion_point(field_get:MainProto.serverTime)
+  return servertime_;
+}
+inline void MainProto::set_servertime(::google::protobuf::int64 value) {
+  set_has_servertime();
+  servertime_ = value;
+  // @@protoc_insertion_point(field_set:MainProto.serverTime)
+}
+
+// -------------------------------------------------------------------
+
+// MessagePeopleReq
+
+// optional int32 peopleID = 1;
+inline bool MessagePeopleReq::has_peopleid() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void MessagePeopleReq::set_has_peopleid() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void MessagePeopleReq::clear_has_peopleid() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void MessagePeopleReq::clear_peopleid() {
+  peopleid_ = 0;
+  clear_has_peopleid();
+}
+inline ::google::protobuf::int32 MessagePeopleReq::peopleid() const {
+  // @@protoc_insertion_point(field_get:MessagePeopleReq.peopleID)
+  return peopleid_;
+}
+inline void MessagePeopleReq::set_peopleid(::google::protobuf::int32 value) {
+  set_has_peopleid();
+  peopleid_ = value;
+  // @@protoc_insertion_point(field_set:MessagePeopleReq.peopleID)
+}
+
+// -------------------------------------------------------------------
+
+// MessagePeopleRsp
+
+// optional string name = 1;
+inline bool MessagePeopleRsp::has_name() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void MessagePeopleRsp::set_has_name() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void MessagePeopleRsp::clear_has_name() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void MessagePeopleRsp::clear_name() {
   name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   clear_has_name();
 }
-inline const ::std::string& people::name() const {
-  // @@protoc_insertion_point(field_get:people.name)
+inline const ::std::string& MessagePeopleRsp::name() const {
+  // @@protoc_insertion_point(field_get:MessagePeopleRsp.name)
   return name_.GetNoArena();
 }
-inline void people::set_name(const ::std::string& value) {
+inline void MessagePeopleRsp::set_name(const ::std::string& value) {
   set_has_name();
   name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:people.name)
+  // @@protoc_insertion_point(field_set:MessagePeopleRsp.name)
 }
 #if LANG_CXX11
-inline void people::set_name(::std::string&& value) {
+inline void MessagePeopleRsp::set_name(::std::string&& value) {
   set_has_name();
   name_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:people.name)
+  // @@protoc_insertion_point(field_set_rvalue:MessagePeopleRsp.name)
 }
 #endif
-inline void people::set_name(const char* value) {
+inline void MessagePeopleRsp::set_name(const char* value) {
   set_has_name();
   name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:people.name)
+  // @@protoc_insertion_point(field_set_char:MessagePeopleRsp.name)
 }
-inline void people::set_name(const char* value, size_t size) {
+inline void MessagePeopleRsp::set_name(const char* value, size_t size) {
   set_has_name();
   name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:people.name)
+  // @@protoc_insertion_point(field_set_pointer:MessagePeopleRsp.name)
 }
-inline ::std::string* people::mutable_name() {
+inline ::std::string* MessagePeopleRsp::mutable_name() {
   set_has_name();
-  // @@protoc_insertion_point(field_mutable:people.name)
+  // @@protoc_insertion_point(field_mutable:MessagePeopleRsp.name)
   return name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline ::std::string* people::release_name() {
-  // @@protoc_insertion_point(field_release:people.name)
+inline ::std::string* MessagePeopleRsp::release_name() {
+  // @@protoc_insertion_point(field_release:MessagePeopleRsp.name)
   clear_has_name();
   return name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void people::set_allocated_name(::std::string* name) {
+inline void MessagePeopleRsp::set_allocated_name(::std::string* name) {
   if (name != NULL) {
     set_has_name();
   } else {
     clear_has_name();
   }
   name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), name);
-  // @@protoc_insertion_point(field_set_allocated:people.name)
+  // @@protoc_insertion_point(field_set_allocated:MessagePeopleRsp.name)
+}
+
+// optional string phone = 2;
+inline bool MessagePeopleRsp::has_phone() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void MessagePeopleRsp::set_has_phone() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void MessagePeopleRsp::clear_has_phone() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void MessagePeopleRsp::clear_phone() {
+  phone_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_phone();
+}
+inline const ::std::string& MessagePeopleRsp::phone() const {
+  // @@protoc_insertion_point(field_get:MessagePeopleRsp.phone)
+  return phone_.GetNoArena();
+}
+inline void MessagePeopleRsp::set_phone(const ::std::string& value) {
+  set_has_phone();
+  phone_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:MessagePeopleRsp.phone)
+}
+#if LANG_CXX11
+inline void MessagePeopleRsp::set_phone(::std::string&& value) {
+  set_has_phone();
+  phone_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:MessagePeopleRsp.phone)
+}
+#endif
+inline void MessagePeopleRsp::set_phone(const char* value) {
+  set_has_phone();
+  phone_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:MessagePeopleRsp.phone)
+}
+inline void MessagePeopleRsp::set_phone(const char* value, size_t size) {
+  set_has_phone();
+  phone_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:MessagePeopleRsp.phone)
+}
+inline ::std::string* MessagePeopleRsp::mutable_phone() {
+  set_has_phone();
+  // @@protoc_insertion_point(field_mutable:MessagePeopleRsp.phone)
+  return phone_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* MessagePeopleRsp::release_phone() {
+  // @@protoc_insertion_point(field_release:MessagePeopleRsp.phone)
+  clear_has_phone();
+  return phone_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void MessagePeopleRsp::set_allocated_phone(::std::string* phone) {
+  if (phone != NULL) {
+    set_has_phone();
+  } else {
+    clear_has_phone();
+  }
+  phone_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), phone);
+  // @@protoc_insertion_point(field_set_allocated:MessagePeopleRsp.phone)
+}
+
+// optional int32 age = 3;
+inline bool MessagePeopleRsp::has_age() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void MessagePeopleRsp::set_has_age() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void MessagePeopleRsp::clear_has_age() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void MessagePeopleRsp::clear_age() {
+  age_ = 0;
+  clear_has_age();
+}
+inline ::google::protobuf::int32 MessagePeopleRsp::age() const {
+  // @@protoc_insertion_point(field_get:MessagePeopleRsp.age)
+  return age_;
+}
+inline void MessagePeopleRsp::set_age(::google::protobuf::int32 value) {
+  set_has_age();
+  age_ = value;
+  // @@protoc_insertion_point(field_set:MessagePeopleRsp.age)
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 

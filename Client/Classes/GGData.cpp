@@ -1,9 +1,11 @@
 #include "stdafx.h"
 #include "GGData.h"
 
-CCNode *GGNode;
+//数据初始化
+int My_playerID = 0;
+CCNode *GGNode = NULL;
 rapidjson::Document My_config;
-Client* My_Client;
+Client* My_Client= NULL;
 string EVENT_RECEIVE_DATA = "EVENT_RECEIVE_DATA";
 
 

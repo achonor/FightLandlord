@@ -2,6 +2,7 @@
 #include "Client.h"
 #include "GGData.h"
 #include "cocos2d.h"
+#include <map>
 
 USING_NS_CC;
 using namespace std;
@@ -17,6 +18,15 @@ const int LENGTH_HEAD = 4;
 
 //单次接收最大长度
 const int DATA_MAX_LENGTH = 4096;
+
+//服务器时间和客户端时间的差
+int ServerTImeOffect = 0;
+
+//请求的唯一编号
+int RequestIdx = 1;
+
+//保存回调函数
+map<int, function<void(google::protobuf::Message*)> > callMap;
 
 Client::Client()
 {	
@@ -42,8 +52,14 @@ bool Client::initNet(std::string &addr, int port) {
 	}
 
 	cout << "connect success:" << addr << ": " << port << endl;
+
+	//char buffer[20];
+	//int ret = (this->clientSocket).Recv(buffer, 4);
+	//buffer[ret] = '\0';
+	//cout << My_char4ToInt(buffer) << endl;
 	//非阻塞
-	clientSocket.setRecvTimeOut(0);
+	clientSocket.setRecvTimeOut(1);
+	clientSocket.setSendTimeOut(1);
 
 	//添加监听
 	this->recvDataListener = UserEvent::addEventListener(EVENT_RECEIVE_DATA, [&](EventCustom *event) {
@@ -58,23 +74,84 @@ bool Client::initNet(std::string &addr, int port) {
 
 
 void Client::receiveData(const char *data) {
-	cout << data << endl;
+	MainProto proto;
+	proto.ParseFromString(data);
+	proto.PrintDebugString();
+	//获取真正的协议数据
+	google::protobuf::Message* message = My_CreateMessage(proto.messagename());
+	if (NULL == message) {
+		cerr << "messagename not is protobuf class!!!" << endl;
+		return;
+	}
+	message->ParseFromString(proto.messagedata());
+
+	//打印
+	cout << endl << proto.messagename() << ":" << endl;
+	message->PrintDebugString();
+
+	//校正服务器时间
+	this->setServerTime(proto.servertime());
+
+	//cout << this->getServerTime() << endl;
+
+	//激活协议事件
+	UserEvent::dispatchEvent(proto.messagename(), (void*)message);
+
+	//激活回调函数
+	auto callback = callMap[proto.messageid()];
+	if (NULL != callback) {
+		callback(message);
+	}
+
+	delete message;
 }
 
+void Client::request(google::protobuf::Message* proto, function<void(google::protobuf::Message*)> callback) {
+	string protoStr = proto->SerializeAsString();
+
+	MainProto mainProto;
+	mainProto.set_playerid(My_playerID);
+	mainProto.set_messageid(RequestIdx++);
+	mainProto.set_messagename(proto->GetTypeName());
+	mainProto.set_messagedata(protoStr);
+
+	//保存回调函数
+	callMap[mainProto.messageid()] = callback;
+
+	string mainProtoStr = My_Serialization(&mainProto);
+	this->sendData(mainProtoStr.c_str());
+	return;
+}
+
+
+//设置服务器时间
+void Client::setServerTime(int tm) {
+	int localTime = time(NULL);
+	ServerTImeOffect = tm - localTime;
+}
+//获取服务器时间
+int Client::getServerTime() {
+	int localTime = time(NULL);
+	return localTime + ServerTImeOffect;
+}
 
 void Client::onReceive() {
 
 	//接受数据的函数
-	auto receive = [&](char *buffer, int len) {
+	auto receive = [this](Client* self, char *buffer, int len) {
 		if (DATA_MAX_LENGTH < len) {
 			cerr << "receive lenght > DATA_MAX_LENGTH" << endl;
 			return 0;
 		}else {
-			int ret = clientSocket.Recv(buffer, len);
+			int ret = (self->clientSocket).Recv(buffer, len);
 			if (ret == SOCKET_ERROR) {
+				//cerr << "error: " << (self->clientSocket).GetError() << endl;
 				return 0;
 			} else {
 				buffer[ret] = '\0';
+				//if (0 < ret) {
+				//	cout << "recvData: " << buffer[ret] << endl;
+				//}
 				return ret;
 			}
 		}
@@ -89,8 +166,8 @@ void Client::onReceive() {
 		die = 3   //接收失败
 	};
 
-	RecvState status = idle;
-	int receiveLen = 0;
+	static RecvState status = idle;
+	static int receiveLen = 0;
 
 	auto switch_idle = [&]() {
 		status = idle;
@@ -113,38 +190,59 @@ void Client::onReceive() {
 		switch_head();
 	};
 	//接收包头
-	auto head_func = [&]() {
+	auto head_func = [&](Client* self) {
 		char buffer[LENGTH_HEAD + 2];
-		int ret = receive(buffer, receiveLen);
-		if (0 == ret) {
+		int ret = receive(self, buffer, receiveLen);
+		if (-1 == ret) {
 			switch_die();
+			return;
+		}
+		if (ret <= 0) {
+			return;
 		}
 		int bodyLen = My_char4ToInt(buffer);
 		switch_body(bodyLen);
 	};
 	//接受数据
-	auto body_func = [&]() {
-		char buffer[DATA_MAX_LENGTH + 2];
-		int ret = receive(buffer, receiveLen);
-		if (0 == ret) {
-			switch_die();
-		}
+	auto body_func = [&](Client* self) {
+		static char lastBuffer[DATA_MAX_LENGTH << 2];
 
-		UserEvent::dispatchEvent(EVENT_RECEIVE_DATA, (void*)buffer);
-		switch_idle();
+		char buffer[DATA_MAX_LENGTH];
+		int ret = receive(self, buffer, receiveLen);
+		if (-1 == ret) {
+			switch_die();
+			return;
+		}
+		if (ret <= 0) {
+			return;
+		}
+		if (0 < strlen(lastBuffer)) {
+			//需要拼接数据
+			strcat(lastBuffer, buffer);
+		} else {
+			strcpy(lastBuffer, buffer);
+		}
+		if (ret < receiveLen) {
+			//数据没有接收完
+			switch_body(receiveLen - ret);
+		} else {
+			//数据接收完成
+			UserEvent::dispatchEvent(EVENT_RECEIVE_DATA, (void*)lastBuffer);
+			lastBuffer[0] = '\0';
+			switch_idle();
+		}
 	};
 	auto die_func = [&]() {
 		//pass
 	};
 
-	auto __tick = [&](float t) {
-		cout << status << t << endl;
+	auto __tick = [&, this](float t) {
 		switch (status)
 		{
 		case idle: idle_func(); break;
-		case head: head_func();  break;
-		case body: body_func();  break;
-		case die: die_func();  break;
+		case head: head_func(this);  break;
+		case body: body_func(this);  break;
+		case die: head_func(this);  break;
 		default:
 			idle_func(); break;
 		}
@@ -153,7 +251,7 @@ void Client::onReceive() {
 }
 
 void Client::sendData(const char* str) {
-
+	(this->clientSocket).Send(str, strlen(str));
 }
 
 

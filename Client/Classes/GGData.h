@@ -10,6 +10,9 @@ void My_InitGGData();
 //清理游戏数据
 void My_ClearGGData();
 
+//玩家ID
+extern int My_playerID;
+
 //公共Node，游戏结束才会释放
 extern Node *GGNode;
 

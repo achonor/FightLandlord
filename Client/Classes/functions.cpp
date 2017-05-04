@@ -32,11 +32,45 @@ rapidjson::Document My_getJsonData(const char* fileName) {
 
 int My_char4ToInt(const char *data) {
 	int ret = 0;
-	int idx = -1;
-	while (data[idx]) {
-		ret = (ret << 8) | int(data[idx]);
+	for (int i = 0; i < 4; i++){
+		ret = (ret << 8) | int(data[i]);
 	}
 	return ret;
+}
+
+void My_intToChar4(char* chr, int num) {
+	for (int i = 3; i >= 0; i--) {
+		int tmpInt = ((255 << (8 * i))) & num;
+		chr[i] = tmpInt;
+	}
+	chr[4] = '\0';
+}
+
+
+google::protobuf::Message* My_CreateMessage(const std::string& messageName) {
+	google::protobuf::Message* message = NULL;
+	const google::protobuf::Descriptor* descriptor = google::protobuf::DescriptorPool::generated_pool()->FindMessageTypeByName(messageName);
+	if (NULL == descriptor) {
+		return message;
+	}
+	const google::protobuf::Message* prototype = google::protobuf::MessageFactory::generated_factory()->GetPrototype(descriptor);
+	if (NULL == prototype) {
+		return message;
+	}
+	message = prototype->New();
+	return message;
+}
+
+std::string My_Serialization(google::protobuf::Message* proto) {
+	string protoStr = proto->SerializeAsString();
+
+	//数据长度
+	int protoLen = protoStr.length();
+	char chr[5];
+	My_intToChar4(chr, protoLen);
+	//拼接
+	protoStr = string(chr) + protoStr;
+	return protoStr;
 }
 
 //
