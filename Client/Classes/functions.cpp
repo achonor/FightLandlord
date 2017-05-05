@@ -41,7 +41,7 @@ int My_char4ToInt(const char *data) {
 void My_intToChar4(char* chr, int num) {
 	for (int i = 3; i >= 0; i--) {
 		int tmpInt = ((255 << (8 * i))) & num;
-		chr[i] = tmpInt;
+		chr[3 - i] = tmpInt;
 	}
 	chr[4] = '\0';
 }
@@ -83,7 +83,7 @@ std::string My_Serialization(google::protobuf::Message* proto) {
 	char chr[5];
 	My_intToChar4(chr, protoLen);
 	//Æ´½Ó
-	protoStr = string(chr) + protoStr;
+	protoStr = string(chr, 4) + protoStr;
 	return protoStr;
 }
 
