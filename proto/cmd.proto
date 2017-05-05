@@ -21,3 +21,12 @@ message MessagePeopleRsp{
 	optional string phone = 2;
 	optional int32 age = 3;
 }
+
+
+//请求登陆
+message MessageLoginReq{
+	
+}
+message MessageLoginRsp{
+	optional int32 playerID = 1;
+}
