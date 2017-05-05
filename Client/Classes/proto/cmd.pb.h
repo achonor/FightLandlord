@@ -32,6 +32,12 @@
 class MainProto;
 class MainProtoDefaultTypeInternal;
 extern MainProtoDefaultTypeInternal _MainProto_default_instance_;
+class MessageLoginReq;
+class MessageLoginReqDefaultTypeInternal;
+extern MessageLoginReqDefaultTypeInternal _MessageLoginReq_default_instance_;
+class MessageLoginRsp;
+class MessageLoginRspDefaultTypeInternal;
+extern MessageLoginRspDefaultTypeInternal _MessageLoginRsp_default_instance_;
 class MessagePeopleReq;
 class MessagePeopleReqDefaultTypeInternal;
 extern MessagePeopleReqDefaultTypeInternal _MessagePeopleReq_default_instance_;
@@ -430,6 +436,186 @@ class MessagePeopleRsp : public ::google::protobuf::Message /* @@protoc_insertio
   ::google::protobuf::int32 age_;
   friend struct  protobuf_cmd_2eproto::TableStruct;
 };
+// -------------------------------------------------------------------
+
+class MessageLoginReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:MessageLoginReq) */ {
+ public:
+  MessageLoginReq();
+  virtual ~MessageLoginReq();
+
+  MessageLoginReq(const MessageLoginReq& from);
+
+  inline MessageLoginReq& operator=(const MessageLoginReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MessageLoginReq& default_instance();
+
+  static inline const MessageLoginReq* internal_default_instance() {
+    return reinterpret_cast<const MessageLoginReq*>(
+               &_MessageLoginReq_default_instance_);
+  }
+
+  void Swap(MessageLoginReq* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MessageLoginReq* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  MessageLoginReq* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const MessageLoginReq& from);
+  void MergeFrom(const MessageLoginReq& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(MessageLoginReq* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:MessageLoginReq)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable int _cached_size_;
+  friend struct  protobuf_cmd_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class MessageLoginRsp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:MessageLoginRsp) */ {
+ public:
+  MessageLoginRsp();
+  virtual ~MessageLoginRsp();
+
+  MessageLoginRsp(const MessageLoginRsp& from);
+
+  inline MessageLoginRsp& operator=(const MessageLoginRsp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MessageLoginRsp& default_instance();
+
+  static inline const MessageLoginRsp* internal_default_instance() {
+    return reinterpret_cast<const MessageLoginRsp*>(
+               &_MessageLoginRsp_default_instance_);
+  }
+
+  void Swap(MessageLoginRsp* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MessageLoginRsp* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  MessageLoginRsp* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const MessageLoginRsp& from);
+  void MergeFrom(const MessageLoginRsp& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(MessageLoginRsp* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 playerID = 1;
+  bool has_playerid() const;
+  void clear_playerid();
+  static const int kPlayerIDFieldNumber = 1;
+  ::google::protobuf::int32 playerid() const;
+  void set_playerid(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:MessageLoginRsp)
+ private:
+  void set_has_playerid();
+  void clear_has_playerid();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable int _cached_size_;
+  ::google::protobuf::int32 playerid_;
+  friend struct  protobuf_cmd_2eproto::TableStruct;
+};
 // ===================================================================
 
 
@@ -814,7 +1000,43 @@ inline void MessagePeopleRsp::set_age(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:MessagePeopleRsp.age)
 }
 
+// -------------------------------------------------------------------
+
+// MessageLoginReq
+
+// -------------------------------------------------------------------
+
+// MessageLoginRsp
+
+// optional int32 playerID = 1;
+inline bool MessageLoginRsp::has_playerid() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void MessageLoginRsp::set_has_playerid() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void MessageLoginRsp::clear_has_playerid() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void MessageLoginRsp::clear_playerid() {
+  playerid_ = 0;
+  clear_has_playerid();
+}
+inline ::google::protobuf::int32 MessageLoginRsp::playerid() const {
+  // @@protoc_insertion_point(field_get:MessageLoginRsp.playerID)
+  return playerid_;
+}
+inline void MessageLoginRsp::set_playerid(::google::protobuf::int32 value) {
+  set_has_playerid();
+  playerid_ = value;
+  // @@protoc_insertion_point(field_set:MessageLoginRsp.playerID)
+}
+
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

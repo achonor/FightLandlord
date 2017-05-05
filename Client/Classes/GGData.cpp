@@ -2,7 +2,7 @@
 #include "GGData.h"
 
 //数据初始化
-int My_playerID = 0;
+int My_playerID = -1;
 CCNode *GGNode = NULL;
 rapidjson::Document My_config;
 Client* My_Client= NULL;

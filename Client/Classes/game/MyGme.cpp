@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "MyGame.h"
-#include "HelloWorldScene.h"
+#include "GameScene.h"
 
 USING_NS_CC;
 using namespace std;
@@ -48,7 +48,7 @@ void game::start() {
 	glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::FIXED_WIDTH);
 
 	// 创建初始场景
-	auto scene = HelloWorld::createScene();
+	auto scene = GameLayer::createScene();
 	director->runWithScene(scene);
 	scene->addChild(My_Client);
 }

@@ -76,7 +76,7 @@ bool Client::initNet(std::string &addr, int port) {
 void Client::receiveData(const string *data) {
 	MainProto proto;
 	proto.ParseFromString(*data);
-	//proto.PrintDebugString();
+	proto.PrintDebugString();
 	//获取真正的协议数据
 	google::protobuf::Message* message = My_CreateMessage(proto.messagename());
 	if (NULL == message) {
