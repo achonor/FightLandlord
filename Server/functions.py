@@ -1,7 +1,18 @@
 #!usr/bin/env python
 #coding=utf-8
 import time
+import functools
 from proto import cmd_pb2
+
+def runtime(func):
+    @functools.wraps(func)
+    def wrapper():
+        start = time.clock()
+        func()
+        end = time.clock()
+        print "uesd time:", end - start
+    return wrapper
+
 
 def intToChar(num):
     ret = ''
@@ -9,8 +20,13 @@ def intToChar(num):
         tmpInt = ((255 << (8 * i))) & num
         ret = ret + chr(tmpInt)
     return ret
+def charToInt(str):
+    ret = 0
+    for i in range(0, 4, 1):
+        ret = (ret << 8) | ord(str[i])
+    return ret
 
-def serialization(proto, playerID, messageID):
+def serialization(proto, playerID = 0, messageID = 0):
     mainProto = cmd_pb2.MainProto()
     mainProto.playerID  = playerID
     mainProto.messageID = messageID

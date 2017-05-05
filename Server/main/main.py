@@ -2,6 +2,7 @@
 #coding=utf-8
 
 import time
+import GGData
 from proto import cmd_pb2
 import functions
 from Server.MyProtocolFactory import MyServerFactory
@@ -11,20 +12,11 @@ port = 5010
 
 
 def main():
-    tmpPe= cmd_pb2.MessagePeopleRsp()
-    tmpPe.name = 'achonor'
-    tmpPe.phone = '18075952730'
-    tmpPe.age = 20
-    tmpStr = functions.serialization(tmpPe, 1, 1)
-    '''
-    tmpPe2 = cmd_pb2.people()
-    tmpPe2.ParseFromString(tmpStr)
-    print tmpPe2.ID, tmpPe2.name
-    '''
-    factory = MyServerFactory(tmpStr)
+    #初始化公共数据
+    GGData.My_InitGGData()
 
     from twisted.internet import reactor
-    reactor.listenTCP(port, factory)
+    reactor.listenTCP(port, GGData.My_Factory)
 
     print "start!!!"
     reactor.run()
