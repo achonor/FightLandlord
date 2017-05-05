@@ -1,19 +1,17 @@
 #!usr/bin/env python
 #coding=utf-8
 
+import GGData
 import functions
 from twisted.python import log
 from twisted.internet.protocol import Protocol, connectionDone
-
-#包头长度
-LENGTH_HEAD = 4
 
 
 #协议类
 class MyProtocol(Protocol):
     def __init__(self):
-        #对应的玩家ID
-        self.playerID = 0
+        #对应的玩家ID, 工厂类buildProtocol中赋值
+        self.playerID = -1
         #工厂对象
         self.factory = None
         #当前正在接受的数据
@@ -24,16 +22,16 @@ class MyProtocol(Protocol):
             self.curData = data
         else:
             self.curData += data
-        if(len(self.curData) < LENGTH_HEAD):
+        if(len(self.curData) < GGData.LENGTH_HEAD):
             return
         dataLen = functions.charToInt(self.curData[0:4])
-        if(dataLen + LENGTH_HEAD == len(self.curData) ):
+        if(dataLen + GGData.LENGTH_HEAD == len(self.curData) ):
             #这是一个完整的数据，交给工厂处理
-            self.factory.dataReceived(self.curData[4:])
+            self.factory.dataReceived(self.playerID, self.curData[4:])
             self.curData = ''
-        elif(dataLen + LENGTH_HEAD < len(self.curData)):
+        elif(dataLen + GGData.LENGTH_HEAD < len(self.curData)):
             #数据有多余（包含下一段数据）
-            self.factory.dataReceived(self.curData[4:4 + dataLen])
+            self.factory.dataReceived(self.playerID, self.curData[4:4 + dataLen])
             tmpData = self.curData[dataLen + 4:]
             self.curData = ''
             #递归处理

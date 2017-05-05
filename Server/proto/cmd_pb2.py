@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='cmd.proto',
   package='',
   syntax='proto2',
-  serialized_pb=_b('\n\tcmd.proto\"n\n\tMainProto\x12\x10\n\x08playerID\x18\x01 \x02(\x05\x12\x11\n\tmessageID\x18\x02 \x02(\x05\x12\x13\n\x0bmessageName\x18\x03 \x01(\t\x12\x13\n\x0bmessageData\x18\x04 \x01(\t\x12\x12\n\nserverTime\x18\x05 \x01(\x03\"$\n\x10MessagePeopleReq\x12\x10\n\x08peopleID\x18\x01 \x01(\x05\"<\n\x10MessagePeopleRsp\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05phone\x18\x02 \x01(\t\x12\x0b\n\x03\x61ge\x18\x03 \x01(\x05')
+  serialized_pb=_b('\n\tcmd.proto\"n\n\tMainProto\x12\x10\n\x08playerID\x18\x01 \x02(\x05\x12\x11\n\tmessageID\x18\x02 \x02(\x05\x12\x13\n\x0bmessageName\x18\x03 \x01(\t\x12\x13\n\x0bmessageData\x18\x04 \x01(\t\x12\x12\n\nserverTime\x18\x05 \x01(\x03\"$\n\x10MessagePeopleReq\x12\x10\n\x08peopleID\x18\x01 \x01(\x05\"<\n\x10MessagePeopleRsp\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05phone\x18\x02 \x01(\t\x12\x0b\n\x03\x61ge\x18\x03 \x01(\x05\"\x11\n\x0fMessageLoginReq\"#\n\x0fMessageLoginRsp\x12\x10\n\x08playerID\x18\x01 \x01(\x05')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -160,9 +160,66 @@ _MESSAGEPEOPLERSP = _descriptor.Descriptor(
   serialized_end=223,
 )
 
+
+_MESSAGELOGINREQ = _descriptor.Descriptor(
+  name='MessageLoginReq',
+  full_name='MessageLoginReq',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=225,
+  serialized_end=242,
+)
+
+
+_MESSAGELOGINRSP = _descriptor.Descriptor(
+  name='MessageLoginRsp',
+  full_name='MessageLoginRsp',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='playerID', full_name='MessageLoginRsp.playerID', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=244,
+  serialized_end=279,
+)
+
 DESCRIPTOR.message_types_by_name['MainProto'] = _MAINPROTO
 DESCRIPTOR.message_types_by_name['MessagePeopleReq'] = _MESSAGEPEOPLEREQ
 DESCRIPTOR.message_types_by_name['MessagePeopleRsp'] = _MESSAGEPEOPLERSP
+DESCRIPTOR.message_types_by_name['MessageLoginReq'] = _MESSAGELOGINREQ
+DESCRIPTOR.message_types_by_name['MessageLoginRsp'] = _MESSAGELOGINRSP
 
 MainProto = _reflection.GeneratedProtocolMessageType('MainProto', (_message.Message,), dict(
   DESCRIPTOR = _MAINPROTO,
@@ -184,6 +241,20 @@ MessagePeopleRsp = _reflection.GeneratedProtocolMessageType('MessagePeopleRsp', 
   # @@protoc_insertion_point(class_scope:MessagePeopleRsp)
   ))
 _sym_db.RegisterMessage(MessagePeopleRsp)
+
+MessageLoginReq = _reflection.GeneratedProtocolMessageType('MessageLoginReq', (_message.Message,), dict(
+  DESCRIPTOR = _MESSAGELOGINREQ,
+  __module__ = 'cmd_pb2'
+  # @@protoc_insertion_point(class_scope:MessageLoginReq)
+  ))
+_sym_db.RegisterMessage(MessageLoginReq)
+
+MessageLoginRsp = _reflection.GeneratedProtocolMessageType('MessageLoginRsp', (_message.Message,), dict(
+  DESCRIPTOR = _MESSAGELOGINRSP,
+  __module__ = 'cmd_pb2'
+  # @@protoc_insertion_point(class_scope:MessageLoginRsp)
+  ))
+_sym_db.RegisterMessage(MessageLoginRsp)
 
 
 # @@protoc_insertion_point(module_scope)
