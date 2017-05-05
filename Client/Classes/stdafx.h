@@ -2,6 +2,8 @@
 #ifndef GGHEAD_H
 #define GGHEAD_H
 
+#include <exception>
+
 #include "winsock2.h"
 #include "stdio.h"
 #include "cocos2d.h"

@@ -46,6 +46,20 @@ void My_intToChar4(char* chr, int num) {
 	chr[4] = '\0';
 }
 
+std::string My_charToString(const char* sChr, int sLen) {
+	int cLen = 0;
+	std::string retStr;
+	while (cLen < sLen) {
+		std::string tmpStr(sChr + cLen);
+		if (cLen + tmpStr.length() < sLen) {
+			tmpStr = tmpStr + '\0';
+		}
+		cLen = cLen + tmpStr.length();
+		retStr = retStr + tmpStr;
+	}
+	retStr = retStr.substr(0, sLen);
+	return retStr;
+}
 
 google::protobuf::Message* My_CreateMessage(const std::string& messageName) {
 	google::protobuf::Message* message = NULL;
