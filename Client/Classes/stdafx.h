@@ -4,7 +4,9 @@
 
 #include <exception>
 
+#ifdef WIN32
 #include "winsock2.h"
+#endif
 #include "stdio.h"
 #include "cocos2d.h"
 #include "net/MySocket.h"
@@ -14,8 +16,8 @@
 
 
 
-#include "google\protobuf\message.h"
-#include "google\protobuf\descriptor.h"
+#include "google/protobuf/message.h"
+#include "google/protobuf/descriptor.h"
 #include "proto/cmd.pb.h"
 
 USING_NS_CC;

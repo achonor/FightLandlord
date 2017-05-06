@@ -3,7 +3,7 @@
 #pragma once
 
 #include "GGData.h"
-#include "net/Client.h"
+//#include "net/Client.h"
 
 class game{
 public:

@@ -19,7 +19,7 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(GameLayer);
 protected:
-	bool GameLayer::requestLogin();
+	bool requestLogin();
 };
 
 #endif // __HELLOWORLD_SCENE_H__

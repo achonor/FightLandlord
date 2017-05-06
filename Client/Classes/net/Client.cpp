@@ -86,8 +86,8 @@ void Client::receiveData(const string *data) {
 	message->ParseFromString(proto.messagedata());
 
 	//打印
-	cout << endl << proto.messagename() << ":" << endl;
-	message->PrintDebugString();
+	//cout << endl << proto.messagename() << ":" << endl;
+	//message->PrintDebugString();
 
 	//校正服务器时间
 	this->setServerTime(proto.servertime());
@@ -204,6 +204,9 @@ void Client::onReceive() {
 			return;
 		}
 		int bodyLen = My_char4ToInt(buffer.c_str());
+		if (DATA_MAX_LENGTH < bodyLen) {
+			cerr << "warning: " << "body data is too long!!!!!!" << endl;
+		}
 		switch_body(bodyLen);
 	};
 	//接受数据

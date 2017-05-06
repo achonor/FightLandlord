@@ -5,7 +5,7 @@
 #include <winsock.h>
 typedef int				socklen_t;
 #else
-#include <sys/MySocket.h>
+#include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
 #include <fcntl.h>
@@ -13,9 +13,9 @@ typedef int				socklen_t;
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <arpa/inet.h>
-typedef int				MySocket;
-#define INVALID_MySocket	-1
-#define MySocket_ERROR	-1
+typedef int				SOCKET;
+#define INVALID_SOCKET	-1
+#define SOCKET_ERROR	-1
 
 #endif
 

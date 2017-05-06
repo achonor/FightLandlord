@@ -42,20 +42,22 @@ bool GameLayer::init()
 
 //请求登陆
 bool GameLayer::requestLogin() {
-
+	static int counts = 1;
 	//test
-	auto testRequest = []() {
+	auto testRequest = [](float t) {
+		cout << counts++ << endl;
 		MessagePeopleReq proto;
 		proto.set_peopleid(100);
 		My_Client->request(&proto, [](google::protobuf::Message* rProto) {
 		});
 	};
 
+	/*
 	auto listener = UserEvent::addEventListener("MessagePeopleRsp", [&](EventCustom *event) {
 		this->scheduleOnce([=](float t) {
 			testRequest();
 		}, 0.1, "testRequest");
-	});
+	});*/
 	//end test
 
 
@@ -67,8 +69,8 @@ bool GameLayer::requestLogin() {
 		//保存玩家ID
 		My_playerID = sProto->playerid();
 
-		//test
-		testRequest();
+		//test,无限请求
+		this->schedule(testRequest, 0.1, 1000, 0, "testRequest");
 	});
 	return true;
 }
