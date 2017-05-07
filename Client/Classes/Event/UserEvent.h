@@ -1,4 +1,4 @@
-#ifndef USEREVENT_H
+ï»¿#ifndef USEREVENT_H
 #define USEREVENT_H
 #pragma once
 
@@ -15,19 +15,19 @@ class UserEvent
 {
 protected:
 	UserEvent(const string& eventName, const std::function<void(EventCustom*)> callback);
-	//ÊÂ¼şÃû³Æ
+	//äº‹ä»¶åç§°
 	string eventName;
-	//ÊÂ¼ş¾ä±ú
+	//äº‹ä»¶å¥æŸ„
 	EventListenerCustom *listener;
-	//»Øµ÷º¯Êı
+	//å›è°ƒå‡½æ•°
 	std::function <void(EventCustom*)> callback;
 public:
 	virtual ~UserEvent();
-	//×¢²áÊÂ¼ş
+	//æ³¨å†Œäº‹ä»¶
 	static UserEvent* addEventListener(const string& eventName, const std::function<void(EventCustom*)> callback);
-	//ÊÂ¼ş×¢Ïú
+	//äº‹ä»¶æ³¨é”€
 	void removeEventListener();
-	//ÊÂ¼ş´¥·¢
+	//äº‹ä»¶è§¦å‘
 	static void dispatchEvent(const string &eventName, void *data);
 	
 };

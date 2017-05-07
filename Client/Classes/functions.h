@@ -1,4 +1,4 @@
-#ifndef FUNCTIONS_H
+ï»¿#ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 #pragma once
 
@@ -11,22 +11,22 @@
 
 #include "google/protobuf/message.h"
 
-//½âÎöjsonÎÄ¼ş
+//è§£æjsonæ–‡ä»¶
 rapidjson::Document My_getJsonData(const char* fileName);
 
-//ËÄ¸ö×Ö½Úchar×ªint
+//å››ä¸ªå­—èŠ‚charè½¬int
 int My_char4ToInt(const char *data);
 
-//int×ª³ÉËÄ¸öchar×Ö½Ú
+//intè½¬æˆå››ä¸ªcharå­—èŠ‚
 void My_intToChar4(char* chr, int num);
 
-//char*×ªstring
+//char*è½¬string
 std::string My_charToString(const char* sChr, int sLen);
 
-//Í¨¹ıprotobufĞ­ÒéÃû´´½¨Ğ­Òé¶ÔÏó
+//é€šè¿‡protobufåè®®ååˆ›å»ºåè®®å¯¹è±¡
 google::protobuf::Message* My_CreateMessage(const std::string& messageName);
 
-//ĞòÁĞ»¯Ğ­Òé£¬²¢ÔÚÊı¾İÇ°Ãæ¼ÓÉÏÊı¾İµÄ³¤¶È
+//åºåˆ—åŒ–åè®®ï¼Œå¹¶åœ¨æ•°æ®å‰é¢åŠ ä¸Šæ•°æ®çš„é•¿åº¦
 std::string My_Serialization(google::protobuf::Message* proto);
 
 #endif

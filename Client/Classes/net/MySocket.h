@@ -1,4 +1,4 @@
-#ifndef _ODMySocket_H_
+﻿#ifndef _ODMySocket_H_
 #define _ODMySocket_H_
 
 #ifdef WIN32

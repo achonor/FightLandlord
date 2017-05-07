@@ -1,29 +1,35 @@
-#ifndef GGDATA_H
+ï»¿#ifndef GGDATA_H
 #define GGDATA_H
 #pragma once
 #include "stdafx.h"
 #include "functions.h"
 #include "net/Client.h"
 
-//³õÊ¼»¯GGData
+//åˆå§‹åŒ–GGData
 void My_InitGGData();
-//ÇåÀíÓÎÏ·Êı¾İ
+
+//æ¸…ç†æ¸¸æˆæ•°æ®
 void My_ClearGGData();
 
-//Íæ¼ÒID
+//å±å¹•å°ºå¯¸
+extern Size My_visibleSize;
+
+//ç©å®¶ID
 extern int My_playerID;
 
-//¹«¹²Node£¬ÓÎÏ·½áÊø²Å»áÊÍ·Å
+//å…¬å…±Nodeï¼Œæ¸¸æˆç»“æŸæ‰ä¼šé‡Šæ”¾
 extern Node *GGNode;
 
-//ÓÎÏ·ÅäÖÃÎÄ¼ş
+//æ¸¸æˆé…ç½®æ–‡ä»¶
 extern rapidjson::Document My_config;
 
-//¿Í»§¶ËÍøÂç
-extern Client* My_Client;
+//å®¢æˆ·ç«¯ç½‘ç»œ
+extern Client* My_client;
 
+//æ¸¸æˆåœºæ™¯(å®é™…æ˜¯Layer)
+extern GameLayer* My_gameScene;
 
-//½ÓÊÕµ½Êı¾İÊÂ¼ş
+//æ¥æ”¶åˆ°æ•°æ®äº‹ä»¶
 extern string EVENT_RECEIVE_DATA;
 
 #endif

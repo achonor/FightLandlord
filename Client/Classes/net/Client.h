@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #ifndef CLIENT_H
 #define CLIENT_H
 
@@ -8,26 +8,26 @@
 
 class Client:public Node
 {
-	//Clientµ±Ç°µÄ×´Ì¬
+	//Clientå½“å‰çš„çŠ¶æ€
 protected:
 	int state;
-	//clientµ±Ç°µÄSocket
+	//clientå½“å‰çš„Socket
 	MySocket clientSocket;
-	//½ÓÊÕÊı¾İ¼àÌı
+	//æ¥æ”¶æ•°æ®ç›‘å¬
 	UserEvent* recvDataListener;
-	//·¢ËÍÊı¾İ
+	//å‘é€æ•°æ®
 	void sendData(const char* str, int len);
-	//½ÓÊÕÊı¾İ
+	//æ¥æ”¶æ•°æ®
 	void onReceive();
-	//ÊÕµ½Êı¾İºóµÄ´¦Àí
+	//æ”¶åˆ°æ•°æ®åçš„å¤„ç†
 	void receiveData(const string *data);
-	//ÉèÖÃ·şÎñÆ÷Ê±¼ä
+	//è®¾ç½®æœåŠ¡å™¨æ—¶é—´
 	void setServerTime(int tm);
 
 public:
-	//ÇëÇó
+	//è¯·æ±‚
 	void request(google::protobuf::Message* proto, function<void(google::protobuf::Message*)> callback);
-	//»ñÈ¡·şÎñÆ÷Ê±¼ä
+	//è·å–æœåŠ¡å™¨æ—¶é—´
 	int getServerTime();
 
 

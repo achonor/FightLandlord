@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "Client.h"
 #include "GGData.h"
 #include "cocos2d.h"
@@ -6,25 +6,25 @@
 USING_NS_CC;
 using namespace std;
 
-//³¬Ê±Ê±¼ä
+//è¶…æ—¶æ—¶é—´
 const int M_Timeout = 10;
 
-//½ÓÊÕÊı¾İ¼ä¸ô
+//æ¥æ”¶æ•°æ®é—´éš”
 const float SOCKET_TICK_TIME = 0.1f;
 
-//°üÍ·³¤¶È
+//åŒ…å¤´é•¿åº¦
 const int LENGTH_HEAD = 4;
 
-//µ¥´Î½ÓÊÕ×î´ó³¤¶È
+//å•æ¬¡æ¥æ”¶æœ€å¤§é•¿åº¦
 const int DATA_MAX_LENGTH = 4096;
 
-//·şÎñÆ÷Ê±¼äºÍ¿Í»§¶ËÊ±¼äµÄ²î
+//æœåŠ¡å™¨æ—¶é—´å’Œå®¢æˆ·ç«¯æ—¶é—´çš„å·®
 int ServerTImeOffect = 0;
 
-//ÇëÇóµÄÎ¨Ò»±àºÅ
+//è¯·æ±‚çš„å”¯ä¸€ç¼–å·
 int RequestIdx = 1;
 
-//±£´æ»Øµ÷º¯Êı
+//ä¿å­˜å›è°ƒå‡½æ•°
 map<int, function<void(google::protobuf::Message*)> > callMap;
 
 Client::Client()
@@ -39,7 +39,7 @@ bool Client::init() {
 }
 
 bool Client::initNet(std::string &addr, int port) {
-	//Á¬½Ó·şÎñÆ÷
+	//è¿æ¥æœåŠ¡å™¨
 	clientSocket.Init();
 	if ((clientSocket).Create(AF_INET, SOCK_STREAM, 0) == false) {
 		cerr << "Create clientSocket fail!!!" << endl;
@@ -56,16 +56,16 @@ bool Client::initNet(std::string &addr, int port) {
 	//int ret = (this->clientSocket).Recv(buffer, 4);
 	//buffer[ret] = '\0';
 	//cout << My_char4ToInt(buffer) << endl;
-	//·Ç×èÈû
+	//éé˜»å¡
 	clientSocket.setRecvTimeOut(1);
 	clientSocket.setSendTimeOut(1);
 
-	//Ìí¼Ó¼àÌı
+	//æ·»åŠ ç›‘å¬
 	this->recvDataListener = UserEvent::addEventListener(EVENT_RECEIVE_DATA, [&](EventCustom *event) {
 		auto tmpBuffer = (std::string*)(event->getUserData());
 		this->receiveData(tmpBuffer);
 	});
-	//Á¬½Ó³É¹¦£¬Æô¶¯¶¨Ê±Æ÷½ÓÊÜÊı¾İ
+	//è¿æ¥æˆåŠŸï¼Œå¯åŠ¨å®šæ—¶å™¨æ¥å—æ•°æ®
 	this->onReceive();
 
 	return true;
@@ -76,7 +76,7 @@ void Client::receiveData(const string *data) {
 	MainProto proto;
 	proto.ParseFromString(*data);
 	proto.PrintDebugString();
-	//»ñÈ¡ÕæÕıµÄĞ­ÒéÊı¾İ
+	//è·å–çœŸæ­£çš„åè®®æ•°æ®
 	google::protobuf::Message* message = My_CreateMessage(proto.messagename());
 	if (NULL == message) {
 		cerr << "messagename not is protobuf class!!!" << endl;
@@ -84,19 +84,19 @@ void Client::receiveData(const string *data) {
 	}
 	message->ParseFromString(proto.messagedata());
 
-	//´òÓ¡
+	//æ‰“å°
 	//cout << endl << proto.messagename() << ":" << endl;
 	//message->PrintDebugString();
 
-	//Ğ£Õı·şÎñÆ÷Ê±¼ä
+	//æ ¡æ­£æœåŠ¡å™¨æ—¶é—´
 	this->setServerTime(proto.servertime());
 
 	//cout << this->getServerTime() << endl;
 
-	//¼¤»îĞ­ÒéÊÂ¼ş
+	//æ¿€æ´»åè®®äº‹ä»¶
 	UserEvent::dispatchEvent(proto.messagename(), (void*)message);
 
-	//¼¤»î»Øµ÷º¯Êı
+	//æ¿€æ´»å›è°ƒå‡½æ•°
 	try {
 		auto callback = callMap[proto.messageid()];
 		if (NULL != callback) {
@@ -120,7 +120,7 @@ void Client::request(google::protobuf::Message* proto, function<void(google::pro
 	mainProto.set_messagename(proto->GetTypeName());
 	mainProto.set_messagedata(protoStr);
 
-	//±£´æ»Øµ÷º¯Êı
+	//ä¿å­˜å›è°ƒå‡½æ•°
 	callMap[mainProto.messageid()] = callback;
 
 	string mainProtoStr = My_Serialization(&mainProto);
@@ -129,19 +129,19 @@ void Client::request(google::protobuf::Message* proto, function<void(google::pro
 }
 
 
-//ÉèÖÃ·şÎñÆ÷Ê±¼ä
+//è®¾ç½®æœåŠ¡å™¨æ—¶é—´
 void Client::setServerTime(int tm) {
 	int localTime = time(NULL);
 	ServerTImeOffect = tm - localTime;
 }
-//»ñÈ¡·şÎñÆ÷Ê±¼ä
+//è·å–æœåŠ¡å™¨æ—¶é—´
 int Client::getServerTime() {
 	int localTime = time(NULL);
 	return localTime + ServerTImeOffect;
 }
 
 void Client::onReceive() {
-	//½ÓÊÜÊı¾İµÄº¯Êı
+	//æ¥å—æ•°æ®çš„å‡½æ•°
 	auto receive = [this](Client* self, std::string &buffer, int len) {
 		if (DATA_MAX_LENGTH < len) {
 			len = DATA_MAX_LENGTH;
@@ -161,13 +161,13 @@ void Client::onReceive() {
 		}
 	};
 
-	//µ±Ç°½ÓÊÕµÄ×´Ì¬
+	//å½“å‰æ¥æ”¶çš„çŠ¶æ€
 	enum RecvState
 	{
-		idle = 0, //¿ÕÏĞ×´Ì¬
-		head = 1, //½ÓÊÕ°üÍ·
-		body = 2, //½ÓÊÕÊı¾İÌå
-		die = 3   //½ÓÊÕÊ§°Ü
+		idle = 0, //ç©ºé—²çŠ¶æ€
+		head = 1, //æ¥æ”¶åŒ…å¤´
+		body = 2, //æ¥æ”¶æ•°æ®ä½“
+		die = 3   //æ¥æ”¶å¤±è´¥
 	};
 
 	static RecvState status = idle;
@@ -193,7 +193,7 @@ void Client::onReceive() {
 	auto idle_func = [&]() {
 		switch_head();
 	};
-	//½ÓÊÕ°üÍ·
+	//æ¥æ”¶åŒ…å¤´
 	auto head_func = [&](Client* self) {
 		std::string buffer;
 		int ret = receive(self, buffer, receiveLen);
@@ -210,7 +210,7 @@ void Client::onReceive() {
 		}
 		switch_body(bodyLen);
 	};
-	//½ÓÊÜÊı¾İ
+	//æ¥å—æ•°æ®
 	auto body_func = [&](Client* self) {
 		static string lastBuffer;
 		std::string buffer;
@@ -223,16 +223,16 @@ void Client::onReceive() {
 			return;
 		}
 		if (0 < lastBuffer.length()) {
-			//ĞèÒªÆ´½ÓÊı¾İ
+			//éœ€è¦æ‹¼æ¥æ•°æ®
 			lastBuffer = lastBuffer + buffer;
 		} else {
 			lastBuffer = buffer;
 		}
 		if (ret < receiveLen) {
-			//Êı¾İÃ»ÓĞ½ÓÊÕÍê
+			//æ•°æ®æ²¡æœ‰æ¥æ”¶å®Œ
 			switch_body(receiveLen - ret);
 		} else {
-			//Êı¾İ½ÓÊÕÍê³É
+			//æ•°æ®æ¥æ”¶å®Œæˆ
 			UserEvent::dispatchEvent(EVENT_RECEIVE_DATA, (void*)&lastBuffer);
 			lastBuffer.clear();
 			switch_idle();
@@ -266,7 +266,12 @@ void Client::sendData(const char* str, int len) {
 
 Client::~Client()
 {
-	//¹Ø±ÕÌ×½Ó×Ö
+	//å…³é—­å¥—æ¥å­—
 	clientSocket.Close();
 	clientSocket.Clean();
+	/*/ç§»é™¤äº‹ä»¶
+	if (NULL != this->recvDataListener) {
+		this->recvDataListener->removeEventListener();
+		this->recvDataListener = NULL;
+	}*/
 }

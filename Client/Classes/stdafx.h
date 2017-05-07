@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #ifndef GGHEAD_H
 #define GGHEAD_H
 
@@ -12,7 +12,7 @@
 #include "net/MySocket.h"
 #include "functions.h"
 #include "Event/UserEvent.h"
-
+#include "GameScene.h"
 
 
 

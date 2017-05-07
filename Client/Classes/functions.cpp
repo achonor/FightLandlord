@@ -1,28 +1,28 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "functions.h"
 
 using namespace std;
 USING_NS_CC;
 
 
-//½âÎöjsonÎÄ¼ş
+//è§£æjsonæ–‡ä»¶
 rapidjson::Document My_getJsonData(const char* fileName) {
-	//[1] ¶ÁÈ¡jsonÎÄ¼şÄÚÈİ
+	//[1] è¯»å–jsonæ–‡ä»¶å†…å®¹
 	Data tmpData = FileUtils::getInstance()->getDataFromFile(fileName);
 	char tStr[2048];
 	strcpy(tStr, (char *)tmpData.getBytes());
 	tStr[tmpData.getSize()] = '\0';
 
-	//[2] ´´½¨ÓÃÓÚ´¦Àíjson´úÂëµÄÀà
-	// ´´½¨rapidjson::DocumentÀà£ºÓÃÓÚ²Ù×÷json´úÂë
+	//[2] åˆ›å»ºç”¨äºå¤„ç†jsonä»£ç çš„ç±»
+	// åˆ›å»ºrapidjson::Documentç±»ï¼šç”¨äºæ“ä½œjsonä»£ç 
 	rapidjson::Document d;
 
-	//[3] ½âÎöjsonÎÄ¼şÄÚÈİ
-	// ÆäÖĞ rapidjson::kParseDefaultFlags = 0£¬Ä¬ÈÏ·½Ê½
+	//[3] è§£æjsonæ–‡ä»¶å†…å®¹
+	// å…¶ä¸­ rapidjson::kParseDefaultFlags = 0ï¼Œé»˜è®¤æ–¹å¼
 	d.Parse<rapidjson::kParseDefaultFlags>(tStr);
-	// d.Parse<0>(str.c_str());  // Ò²¿ÉÒÔÖ±½ÓĞ´<0>
+	// d.Parse<0>(str.c_str());  // ä¹Ÿå¯ä»¥ç›´æ¥å†™<0>
 
-	//[4] ÅĞ¶Ï½âÎöÊÇ·ñ³ö´í
+	//[4] åˆ¤æ–­è§£ææ˜¯å¦å‡ºé”™
 	if (d.HasParseError()) {
 		cerr << "GetParseError " << d.GetParseError() << endl;
 		return NULL;
@@ -78,11 +78,11 @@ google::protobuf::Message* My_CreateMessage(const std::string& messageName) {
 std::string My_Serialization(google::protobuf::Message* proto) {
 	string protoStr = proto->SerializeAsString();
 
-	//Êı¾İ³¤¶È
+	//æ•°æ®é•¿åº¦
 	int protoLen = protoStr.length();
 	char chr[5];
 	My_intToChar4(chr, protoLen);
-	//Æ´½Ó
+	//æ‹¼æ¥
 	protoStr = string(chr, 4) + protoStr;
 	return protoStr;
 }

@@ -1,19 +1,19 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "UserEvent.h"
 
 
 
 UserEvent::UserEvent(const string &name, const std::function<void(EventCustom*)> callback)
 {
-	//×¢²áÊÂ¼þ
+	//æ³¨å†Œäº‹ä»¶
 	this->listener = EventListenerCustom::create(name, callback);
-	//Ìí¼Óµ½ÊÂ¼þ·Ö·¢Æ÷
+	//æ·»åŠ åˆ°äº‹ä»¶åˆ†å‘å™¨
 	Director::getInstance()->getEventDispatcher()
 		->addEventListenerWithFixedPriority(this->listener, 1);
 }
 
 UserEvent::~UserEvent()
-{	//ÒÆ³ýÊÂ¼þ
+{	//ç§»é™¤äº‹ä»¶
 	this->removeEventListener();
 }
 
@@ -30,8 +30,8 @@ void UserEvent::removeEventListener() {
 
 void UserEvent::dispatchEvent(const string &name, void *data) {
 	EventCustom event(name);
-	//ÉèÖÃÊý¾Ý
+	//è®¾ç½®æ•°æ®
 	event.setUserData(data);
-	//´¥·¢ÊÂ¼þ
+	//è§¦å‘äº‹ä»¶
 	Director::getInstance()->getEventDispatcher()->dispatchEvent(&event);
 }

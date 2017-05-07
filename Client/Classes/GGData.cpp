@@ -1,22 +1,31 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "GGData.h"
 
-//Êı¾İ³õÊ¼»¯
+//æ•°æ®åˆå§‹åŒ–
+Size My_visibleSize = Size(0, 0);
+
 int My_playerID = -1;
+
 CCNode *GGNode = NULL;
+
 rapidjson::Document My_config;
-Client* My_Client= NULL;
+
+Client* My_client= NULL;
+
+GameLayer* My_gameScene = NULL;
+
+
 string EVENT_RECEIVE_DATA = "EVENT_RECEIVE_DATA";
 
 
 void My_InitGGData() {
-	//¹«¹²Node
+	//å…¬å…±Node
 	GGNode = Node::create();
 	GGNode->retain();
-	//ÓÎÏ·ÅäÖÃÎÄ¼ş
+	//æ¸¸æˆé…ç½®æ–‡ä»¶
 	My_config = My_getJsonData("config.json");
-	//ÓÎÏ·¿Í»§¶Ë
-	My_Client = Client::create();
+	//æ¸¸æˆå®¢æˆ·ç«¯
+	My_client = Client::create();
 }
 
 void My_ClearGGData() {

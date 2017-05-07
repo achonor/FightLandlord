@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "AppDelegate.h"
 #include "game/MyGame.h"
 

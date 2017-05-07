@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "MyGame.h"
 #include "GameScene.h"
 
@@ -11,22 +11,22 @@ game::game()
 
 
 void game::init() {
-	//Ìí¼ÓËÑË÷Â·¾¶
+	//æ·»åŠ æœç´¢è·¯å¾„
 	CCFileUtils::getInstance()->addSearchPath("../../config");
 
-	//³õÊ¼»¯GGData
+	//åˆå§‹åŒ–GGData
 	My_InitGGData();
 	
-	//³õÊ¼»¯ÍøÂç
+	//åˆå§‹åŒ–ç½‘ç»œ
     std::string tmpAddr = My_config["loginAddr"].GetString();
-    My_Client->initNet(tmpAddr, My_config["serverPort"].GetInt());
+    My_client->initNet(tmpAddr, My_config["serverPort"].GetInt());
 }
 	
 void game::start() {
-	//Éè¼Æ·Ö±æÂÊ
+	//è®¾è®¡åˆ†è¾¨çŽ‡
 	auto designResolutionSize = cocos2d::Size(My_config["resWidth"].GetInt(), My_config["resHeight"].GetInt());
 
-	// µ¼ÑÝ
+	// å¯¼æ¼”
 	auto director = Director::getInstance();
 	auto glview = director->getOpenGLView();
 	if (!glview) {
@@ -38,19 +38,25 @@ void game::start() {
 		director->setOpenGLView(glview);
 	}
 
-	// ×óÏÂ½ÇÏÔÊ¾fps
-	director->setDisplayStats(true);
+	// å·¦ä¸‹è§’æ˜¾ç¤ºfps
+	director->setDisplayStats(false);
 
-	// Ã¿ÃëË¢ÐÂ´ÎÊý£¨Ö¡Êý£©
+	// æ¯ç§’åˆ·æ–°æ¬¡æ•°ï¼ˆå¸§æ•°ï¼‰
 	director->setAnimationInterval(1.0 / 30);
 
-	// ÉèÖÃÉè¼Æ·Ö±æÂÊ
+	// è®¾ç½®è®¾è®¡åˆ†è¾¨çŽ‡
 	glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::FIXED_WIDTH);
 
-	// ´´½¨³õÊ¼³¡¾°
-	auto scene = GameLayer::createScene();
+	//ä¿å­˜å±å¹•å°ºå¯¸
+	My_visibleSize = Director::getInstance()->getVisibleSize();
+
+	// åˆ›å»ºåˆå§‹åœºæ™¯
+	auto scene = Scene::create();
+	My_gameScene = GameLayer::create();
+	scene->addChild(My_gameScene);
+	//åˆ‡æ¢åˆ°åœºæ™¯
 	director->runWithScene(scene);
-	scene->addChild(My_Client);
+	scene->addChild(My_client);
 }
 
 game::~game()
