@@ -1,5 +1,7 @@
 //repeated， required， optional
 
+syntax = "proto2";
+
 //协议外壳
 message MainProto{
 	required int32 playerID = 1;
@@ -13,7 +15,7 @@ message MainProto{
 //获取信息
 message MessagePeopleReq{
 	optional int32 peopleID = 1;
-
+	optional bool isChina = 2;
 }
 //返回信息
 message MessagePeopleRsp{
