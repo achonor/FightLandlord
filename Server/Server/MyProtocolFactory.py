@@ -30,13 +30,9 @@ class MyServerFactory(ServerFactory):
         mainProto.ParseFromString(data)
         mainProto.playerID = playerID
 
-        proto = eval('cmd_pb2.' + mainProto.messageName + '()')
-        proto.ParseFromString(mainProto.messageData.encode('utf-8'))
-        #打印协议内容
-        print proto.__class__,": "
-        print proto
+
         #交给服务类处理
-        GGData.My_Server.requestServer(mainProto.playerID, mainProto.messageID, proto)
+        GGData.My_Server.requestServer(mainProto)
 
     #返回数据给客户端
     def returnData(self, playerID, messageID, proto):

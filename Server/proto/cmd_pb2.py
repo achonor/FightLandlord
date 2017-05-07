@@ -19,9 +19,8 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='cmd.proto',
   package='',
   syntax='proto2',
-  serialized_pb=_b('\n\tcmd.proto\"n\n\tMainProto\x12\x10\n\x08playerID\x18\x01 \x02(\x05\x12\x11\n\tmessageID\x18\x02 \x02(\x05\x12\x13\n\x0bmessageName\x18\x03 \x01(\t\x12\x13\n\x0bmessageData\x18\x04 \x01(\t\x12\x12\n\nserverTime\x18\x05 \x01(\x03\"$\n\x10MessagePeopleReq\x12\x10\n\x08peopleID\x18\x01 \x01(\x05\"<\n\x10MessagePeopleRsp\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05phone\x18\x02 \x01(\t\x12\x0b\n\x03\x61ge\x18\x03 \x01(\x05\"\x11\n\x0fMessageLoginReq\"#\n\x0fMessageLoginRsp\x12\x10\n\x08playerID\x18\x01 \x01(\x05')
+  serialized_pb=_b('\n\tcmd.proto\"n\n\tMainProto\x12\x10\n\x08playerID\x18\x01 \x02(\x05\x12\x11\n\tmessageID\x18\x02 \x02(\x05\x12\x13\n\x0bmessageName\x18\x03 \x01(\t\x12\x13\n\x0bmessageData\x18\x04 \x01(\t\x12\x12\n\nserverTime\x18\x05 \x01(\x03\"5\n\x10MessagePeopleReq\x12\x10\n\x08peopleID\x18\x01 \x01(\x05\x12\x0f\n\x07isChina\x18\x02 \x01(\x08\"<\n\x10MessagePeopleRsp\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05phone\x18\x02 \x01(\t\x12\x0b\n\x03\x61ge\x18\x03 \x01(\x05\"\x11\n\x0fMessageLoginReq\"#\n\x0fMessageLoginRsp\x12\x10\n\x08playerID\x18\x01 \x01(\x05')
 )
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -99,6 +98,13 @@ _MESSAGEPEOPLEREQ = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='isChina', full_name='MessagePeopleReq.isChina', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -112,7 +118,7 @@ _MESSAGEPEOPLEREQ = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=125,
-  serialized_end=161,
+  serialized_end=178,
 )
 
 
@@ -156,8 +162,8 @@ _MESSAGEPEOPLERSP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=163,
-  serialized_end=223,
+  serialized_start=180,
+  serialized_end=240,
 )
 
 
@@ -180,8 +186,8 @@ _MESSAGELOGINREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=225,
-  serialized_end=242,
+  serialized_start=242,
+  serialized_end=259,
 )
 
 
@@ -211,8 +217,8 @@ _MESSAGELOGINRSP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=244,
-  serialized_end=279,
+  serialized_start=261,
+  serialized_end=296,
 )
 
 DESCRIPTOR.message_types_by_name['MainProto'] = _MAINPROTO
@@ -220,6 +226,7 @@ DESCRIPTOR.message_types_by_name['MessagePeopleReq'] = _MESSAGEPEOPLEREQ
 DESCRIPTOR.message_types_by_name['MessagePeopleRsp'] = _MESSAGEPEOPLERSP
 DESCRIPTOR.message_types_by_name['MessageLoginReq'] = _MESSAGELOGINREQ
 DESCRIPTOR.message_types_by_name['MessageLoginRsp'] = _MESSAGELOGINRSP
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 MainProto = _reflection.GeneratedProtocolMessageType('MainProto', (_message.Message,), dict(
   DESCRIPTOR = _MAINPROTO,
