@@ -87,4 +87,30 @@ std::string My_Serialization(google::protobuf::Message* proto) {
 	return protoStr;
 }
 
+
+cocos2d::Node* My_getSpriteNumber(const std::string path, int number){
+	Node* retNode = Node::create();
+	Texture2D *texture = Director::getInstance()->getTextureCache()->addImage(path);
+	auto textureSize = texture->getContentSizeInPixels();
+	//每个数字的宽度
+	auto tmpWidth = textureSize.width / 10;
+
+	int len = 0;
+	Node* numSp[15];
+	while (number) {
+		auto num = number % 10;
+		number /= 10;
+		auto tmpRect = Rect(num * tmpWidth, 0, tmpWidth, textureSize.height);
+		numSp[len++] = Sprite::createWithTexture(texture, tmpRect);
+		retNode->addChild(numSp[len - 1]);
+	}
+	int tmpLen = len;
+	auto sumWidth = (len * tmpWidth) * 0.5;
+	while (-1 < (--tmpLen)) {
+		numSp[tmpLen]->setPosition(Vec2(tmpWidth * (len - tmpLen - 0.5) - sumWidth, textureSize.height* 0.5));
+	}
+	return retNode;
+}
+
+
 //

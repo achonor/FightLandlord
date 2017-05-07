@@ -12,5 +12,6 @@ public:
 	CREATE_FUNC(UIPlayGame);
 private:
 	virtual bool init();
+	void onEnter();
 };
 

@@ -18,6 +18,7 @@ bool UIStartGame::init() {
 	backSprite->setAnchorPoint(Vec2(0.5, 0.5));
 	this->addChild(backSprite);
 
+
 	//开始游戏按钮
 	auto startButton = ui::Button::create("start_button_n.png", "start_button_h.png");
 	startButton->setPosition(Vec2(My_visibleSize.width * 0.5, 100));

@@ -29,4 +29,7 @@ google::protobuf::Message* My_CreateMessage(const std::string& messageName);
 //序列化协议，并在数据前面加上数据的长度
 std::string My_Serialization(google::protobuf::Message* proto);
 
+//返回一个图片数字
+cocos2d::Node* My_getSpriteNumber(std::string path, int number);
+
 #endif
