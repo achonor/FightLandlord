@@ -3,7 +3,6 @@
 #include "GGData.h"
 #include "cocos2d.h"
 #include <map>
-
 USING_NS_CC;
 using namespace std;
 
@@ -104,10 +103,12 @@ void Client::receiveData(const string *data) {
 			callback(message);
 		}
 		callMap.erase(proto.messageid());
+		delete message;
 	} catch(std::exception e){
 		cerr << "Error: " << e.what() << endl;
+	} catch (...) {
+		delete message;
 	}
-	delete message;
 }
 
 void Client::request(google::protobuf::Message* proto, function<void(google::protobuf::Message*)> callback) {
@@ -258,8 +259,6 @@ void Client::onReceive() {
 void Client::sendData(const char* str, int len) {
 	(this->clientSocket).Send(str, len);
 }
-
-
 
 
 

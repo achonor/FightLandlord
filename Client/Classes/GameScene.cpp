@@ -48,6 +48,7 @@ bool GameLayer::requestLogin() {
 		cout << counts++ << endl;
 		MessagePeopleReq proto;
 		proto.set_peopleid(100);
+		proto.set_ischina(true);
 		My_Client->request(&proto, [](google::protobuf::Message* rProto) {
 		});
 	};

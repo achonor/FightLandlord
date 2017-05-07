@@ -6,7 +6,7 @@
 #include <functional>
 
 #include "cocos2d.h"
-#include "base\CCEventCustom.h"
+#include "base/CCEventCustom.h"
 
 USING_NS_CC;
 using namespace std;

@@ -36,11 +36,30 @@ namespace {
 
 }  // namespace
 
+PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTableField
+    const TableStruct::entries[] = {
+  {0, 0, 0, ::google::protobuf::internal::kInvalidMask, 0, 0},
+};
+
+PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::AuxillaryParseTableField
+    const TableStruct::aux[] = {
+  ::google::protobuf::internal::AuxillaryParseTableField(),
+};
+PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTable const
+    TableStruct::schema[] = {
+  { NULL, NULL, 0, -1, -1, false },
+  { NULL, NULL, 0, -1, -1, false },
+  { NULL, NULL, 0, -1, -1, false },
+  { NULL, NULL, 0, -1, -1, false },
+  { NULL, NULL, 0, -1, -1, false },
+};
+
 const ::google::protobuf::uint32 TableStruct::offsets[] = {
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MainProto, _has_bits_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MainProto, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MainProto, playerid_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MainProto, messageid_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MainProto, messagename_),
@@ -55,12 +74,16 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessagePeopleReq, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessagePeopleReq, peopleid_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessagePeopleReq, ischina_),
   0,
+  1,
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessagePeopleRsp, _has_bits_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessagePeopleRsp, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessagePeopleRsp, name_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessagePeopleRsp, phone_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessagePeopleRsp, age_),
@@ -71,20 +94,22 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageLoginReq, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageLoginRsp, _has_bits_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageLoginRsp, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageLoginRsp, playerid_),
   0,
 };
 
 static const ::google::protobuf::internal::MigrationSchema schemas[] = {
-  { 0, 9, sizeof(MainProto)},
-  { 14, 19, sizeof(MessagePeopleReq)},
-  { 20, 27, sizeof(MessagePeopleRsp)},
-  { 30, 34, sizeof(MessageLoginReq)},
-  { 34, 39, sizeof(MessageLoginRsp)},
+  { 0, 10, sizeof(MainProto)},
+  { 15, 22, sizeof(MessagePeopleReq)},
+  { 24, 32, sizeof(MessagePeopleRsp)},
+  { 35, 40, sizeof(MessageLoginReq)},
+  { 40, 46, sizeof(MessageLoginRsp)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -152,13 +177,14 @@ void AddDescriptorsImpl() {
       "\n\tcmd.proto\"n\n\tMainProto\022\020\n\010playerID\030\001 \002"
       "(\005\022\021\n\tmessageID\030\002 \002(\005\022\023\n\013messageName\030\003 \001"
       "(\t\022\023\n\013messageData\030\004 \001(\t\022\022\n\nserverTime\030\005 "
-      "\001(\003\"$\n\020MessagePeopleReq\022\020\n\010peopleID\030\001 \001("
-      "\005\"<\n\020MessagePeopleRsp\022\014\n\004name\030\001 \001(\t\022\r\n\005p"
-      "hone\030\002 \001(\t\022\013\n\003age\030\003 \001(\005\"\021\n\017MessageLoginR"
-      "eq\"#\n\017MessageLoginRsp\022\020\n\010playerID\030\001 \001(\005"
+      "\001(\003\"5\n\020MessagePeopleReq\022\020\n\010peopleID\030\001 \001("
+      "\005\022\017\n\007isChina\030\002 \001(\010\"<\n\020MessagePeopleRsp\022\014"
+      "\n\004name\030\001 \001(\t\022\r\n\005phone\030\002 \001(\t\022\013\n\003age\030\003 \001(\005"
+      "\"\021\n\017MessageLoginReq\"#\n\017MessageLoginRsp\022\020"
+      "\n\010playerID\030\001 \001(\005"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 279);
+      descriptor, 296);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "cmd.proto", &protobuf_RegisterTypes);
   ::google::protobuf::internal::OnShutdown(&TableStruct::Shutdown);
@@ -241,7 +267,7 @@ void MainProto::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* MainProto::descriptor() {
   protobuf_cmd_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_cmd_2eproto::file_level_metadata[0].descriptor;
+  return protobuf_cmd_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
 const MainProto& MainProto::default_instance() {
@@ -289,7 +315,8 @@ bool MainProto::MergePartialFromCodedStream(
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
       // required int32 playerID = 1;
       case 1: {
-        if (tag == 8u) {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u)) {
           set_has_playerid();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
@@ -302,7 +329,8 @@ bool MainProto::MergePartialFromCodedStream(
 
       // required int32 messageID = 2;
       case 2: {
-        if (tag == 16u) {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(16u)) {
           set_has_messageid();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
@@ -315,7 +343,8 @@ bool MainProto::MergePartialFromCodedStream(
 
       // optional string messageName = 3;
       case 3: {
-        if (tag == 26u) {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(26u)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_messagename()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
@@ -330,7 +359,8 @@ bool MainProto::MergePartialFromCodedStream(
 
       // optional string messageData = 4;
       case 4: {
-        if (tag == 34u) {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(34u)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_messagedata()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
@@ -345,7 +375,8 @@ bool MainProto::MergePartialFromCodedStream(
 
       // optional int64 serverTime = 5;
       case 5: {
-        if (tag == 40u) {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(40u)) {
           set_has_servertime();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
@@ -381,18 +412,22 @@ failure:
 void MainProto::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:MainProto)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
   // required int32 playerID = 1;
-  if (has_playerid()) {
+  if (cached_has_bits & 0x00000004u) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->playerid(), output);
   }
 
   // required int32 messageID = 2;
-  if (has_messageid()) {
+  if (cached_has_bits & 0x00000008u) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->messageid(), output);
   }
 
   // optional string messageName = 3;
-  if (has_messagename()) {
+  if (cached_has_bits & 0x00000001u) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->messagename().data(), this->messagename().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
@@ -402,7 +437,7 @@ void MainProto::SerializeWithCachedSizes(
   }
 
   // optional string messageData = 4;
-  if (has_messagedata()) {
+  if (cached_has_bits & 0x00000002u) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->messagedata().data(), this->messagedata().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
@@ -412,7 +447,7 @@ void MainProto::SerializeWithCachedSizes(
   }
 
   // optional int64 serverTime = 5;
-  if (has_servertime()) {
+  if (cached_has_bits & 0x00000010u) {
     ::google::protobuf::internal::WireFormatLite::WriteInt64(5, this->servertime(), output);
   }
 
@@ -425,20 +460,23 @@ void MainProto::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* MainProto::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:MainProto)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
   // required int32 playerID = 1;
-  if (has_playerid()) {
+  if (cached_has_bits & 0x00000004u) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->playerid(), target);
   }
 
   // required int32 messageID = 2;
-  if (has_messageid()) {
+  if (cached_has_bits & 0x00000008u) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->messageid(), target);
   }
 
   // optional string messageName = 3;
-  if (has_messagename()) {
+  if (cached_has_bits & 0x00000001u) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->messagename().data(), this->messagename().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
@@ -449,7 +487,7 @@ void MainProto::SerializeWithCachedSizes(
   }
 
   // optional string messageData = 4;
-  if (has_messagedata()) {
+  if (cached_has_bits & 0x00000002u) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->messagedata().data(), this->messagedata().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
@@ -460,7 +498,7 @@ void MainProto::SerializeWithCachedSizes(
   }
 
   // optional int64 serverTime = 5;
-  if (has_servertime()) {
+  if (cached_has_bits & 0x00000010u) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(5, this->servertime(), target);
   }
 
@@ -564,24 +602,29 @@ void MainProto::MergeFrom(const MainProto& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:MainProto)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  if (from._has_bits_[0 / 32] & 31u) {
-    if (from.has_messagename()) {
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._has_bits_[0];
+  if (cached_has_bits & 31u) {
+    if (cached_has_bits & 0x00000001u) {
       set_has_messagename();
       messagename_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.messagename_);
     }
-    if (from.has_messagedata()) {
+    if (cached_has_bits & 0x00000002u) {
       set_has_messagedata();
       messagedata_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.messagedata_);
     }
-    if (from.has_playerid()) {
-      set_playerid(from.playerid());
+    if (cached_has_bits & 0x00000004u) {
+      playerid_ = from.playerid_;
     }
-    if (from.has_messageid()) {
-      set_messageid(from.messageid());
+    if (cached_has_bits & 0x00000008u) {
+      messageid_ = from.messageid_;
     }
-    if (from.has_servertime()) {
-      set_servertime(from.servertime());
+    if (cached_has_bits & 0x00000010u) {
+      servertime_ = from.servertime_;
     }
+    _has_bits_[0] |= cached_has_bits;
   }
 }
 
@@ -621,7 +664,7 @@ void MainProto::InternalSwap(MainProto* other) {
 
 ::google::protobuf::Metadata MainProto::GetMetadata() const {
   protobuf_cmd_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_cmd_2eproto::file_level_metadata[0];
+  return protobuf_cmd_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -702,11 +745,12 @@ void MainProto::set_messagename(const ::std::string& value) {
 void MainProto::set_messagename(::std::string&& value) {
   set_has_messagename();
   messagename_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:MainProto.messageName)
 }
 #endif
 void MainProto::set_messagename(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
   set_has_messagename();
   messagename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:MainProto.messageName)
@@ -764,11 +808,12 @@ void MainProto::set_messagedata(const ::std::string& value) {
 void MainProto::set_messagedata(::std::string&& value) {
   set_has_messagedata();
   messagedata_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:MainProto.messageData)
 }
 #endif
 void MainProto::set_messagedata(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
   set_has_messagedata();
   messagedata_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:MainProto.messageData)
@@ -829,6 +874,7 @@ void MainProto::set_servertime(::google::protobuf::int64 value) {
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int MessagePeopleReq::kPeopleIDFieldNumber;
+const int MessagePeopleReq::kIsChinaFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 MessagePeopleReq::MessagePeopleReq()
@@ -845,13 +891,16 @@ MessagePeopleReq::MessagePeopleReq(const MessagePeopleReq& from)
       _has_bits_(from._has_bits_),
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  peopleid_ = from.peopleid_;
+  ::memcpy(&peopleid_, &from.peopleid_,
+    reinterpret_cast<char*>(&ischina_) -
+    reinterpret_cast<char*>(&peopleid_) + sizeof(ischina_));
   // @@protoc_insertion_point(copy_constructor:MessagePeopleReq)
 }
 
 void MessagePeopleReq::SharedCtor() {
   _cached_size_ = 0;
-  peopleid_ = 0;
+  ::memset(&peopleid_, 0, reinterpret_cast<char*>(&ischina_) -
+    reinterpret_cast<char*>(&peopleid_) + sizeof(ischina_));
 }
 
 MessagePeopleReq::~MessagePeopleReq() {
@@ -869,7 +918,7 @@ void MessagePeopleReq::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* MessagePeopleReq::descriptor() {
   protobuf_cmd_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_cmd_2eproto::file_level_metadata[1].descriptor;
+  return protobuf_cmd_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
 const MessagePeopleReq& MessagePeopleReq::default_instance() {
@@ -887,7 +936,10 @@ MessagePeopleReq* MessagePeopleReq::New(::google::protobuf::Arena* arena) const 
 
 void MessagePeopleReq::Clear() {
 // @@protoc_insertion_point(message_clear_start:MessagePeopleReq)
-  peopleid_ = 0;
+  if (_has_bits_[0 / 32] & 3u) {
+    ::memset(&peopleid_, 0, reinterpret_cast<char*>(&ischina_) -
+      reinterpret_cast<char*>(&peopleid_) + sizeof(ischina_));
+  }
   _has_bits_.Clear();
   _internal_metadata_.Clear();
 }
@@ -904,11 +956,26 @@ bool MessagePeopleReq::MergePartialFromCodedStream(
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
       // optional int32 peopleID = 1;
       case 1: {
-        if (tag == 8u) {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u)) {
           set_has_peopleid();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &peopleid_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // optional bool isChina = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(16u)) {
+          set_has_ischina();
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &ischina_)));
         } else {
           goto handle_unusual;
         }
@@ -940,9 +1007,18 @@ failure:
 void MessagePeopleReq::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:MessagePeopleReq)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
   // optional int32 peopleID = 1;
-  if (has_peopleid()) {
+  if (cached_has_bits & 0x00000001u) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->peopleid(), output);
+  }
+
+  // optional bool isChina = 2;
+  if (cached_has_bits & 0x00000002u) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(2, this->ischina(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -954,11 +1030,19 @@ void MessagePeopleReq::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* MessagePeopleReq::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:MessagePeopleReq)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
   // optional int32 peopleID = 1;
-  if (has_peopleid()) {
+  if (cached_has_bits & 0x00000001u) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->peopleid(), target);
+  }
+
+  // optional bool isChina = 2;
+  if (cached_has_bits & 0x00000002u) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(2, this->ischina(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -978,13 +1062,20 @@ size_t MessagePeopleReq::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         unknown_fields());
   }
-  // optional int32 peopleID = 1;
-  if (has_peopleid()) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->peopleid());
-  }
+  if (_has_bits_[0 / 32] & 3u) {
+    // optional int32 peopleID = 1;
+    if (has_peopleid()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->peopleid());
+    }
 
+    // optional bool isChina = 2;
+    if (has_ischina()) {
+      total_size += 1 + 1;
+    }
+
+  }
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = cached_size;
@@ -1011,8 +1102,18 @@ void MessagePeopleReq::MergeFrom(const MessagePeopleReq& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:MessagePeopleReq)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  if (from.has_peopleid()) {
-    set_peopleid(from.peopleid());
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._has_bits_[0];
+  if (cached_has_bits & 3u) {
+    if (cached_has_bits & 0x00000001u) {
+      peopleid_ = from.peopleid_;
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ischina_ = from.ischina_;
+    }
+    _has_bits_[0] |= cached_has_bits;
   }
 }
 
@@ -1040,6 +1141,7 @@ void MessagePeopleReq::Swap(MessagePeopleReq* other) {
 }
 void MessagePeopleReq::InternalSwap(MessagePeopleReq* other) {
   std::swap(peopleid_, other->peopleid_);
+  std::swap(ischina_, other->ischina_);
   std::swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
@@ -1047,7 +1149,7 @@ void MessagePeopleReq::InternalSwap(MessagePeopleReq* other) {
 
 ::google::protobuf::Metadata MessagePeopleReq::GetMetadata() const {
   protobuf_cmd_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_cmd_2eproto::file_level_metadata[1];
+  return protobuf_cmd_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -1075,6 +1177,30 @@ void MessagePeopleReq::set_peopleid(::google::protobuf::int32 value) {
   set_has_peopleid();
   peopleid_ = value;
   // @@protoc_insertion_point(field_set:MessagePeopleReq.peopleID)
+}
+
+// optional bool isChina = 2;
+bool MessagePeopleReq::has_ischina() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+void MessagePeopleReq::set_has_ischina() {
+  _has_bits_[0] |= 0x00000002u;
+}
+void MessagePeopleReq::clear_has_ischina() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+void MessagePeopleReq::clear_ischina() {
+  ischina_ = false;
+  clear_has_ischina();
+}
+bool MessagePeopleReq::ischina() const {
+  // @@protoc_insertion_point(field_get:MessagePeopleReq.isChina)
+  return ischina_;
+}
+void MessagePeopleReq::set_ischina(bool value) {
+  set_has_ischina();
+  ischina_ = value;
+  // @@protoc_insertion_point(field_set:MessagePeopleReq.isChina)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -1137,7 +1263,7 @@ void MessagePeopleRsp::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* MessagePeopleRsp::descriptor() {
   protobuf_cmd_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_cmd_2eproto::file_level_metadata[2].descriptor;
+  return protobuf_cmd_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
 const MessagePeopleRsp& MessagePeopleRsp::default_instance() {
@@ -1182,7 +1308,8 @@ bool MessagePeopleRsp::MergePartialFromCodedStream(
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
       // optional string name = 1;
       case 1: {
-        if (tag == 10u) {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(10u)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_name()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
@@ -1197,7 +1324,8 @@ bool MessagePeopleRsp::MergePartialFromCodedStream(
 
       // optional string phone = 2;
       case 2: {
-        if (tag == 18u) {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(18u)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_phone()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
@@ -1212,7 +1340,8 @@ bool MessagePeopleRsp::MergePartialFromCodedStream(
 
       // optional int32 age = 3;
       case 3: {
-        if (tag == 24u) {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(24u)) {
           set_has_age();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
@@ -1248,8 +1377,12 @@ failure:
 void MessagePeopleRsp::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:MessagePeopleRsp)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
   // optional string name = 1;
-  if (has_name()) {
+  if (cached_has_bits & 0x00000001u) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->name().data(), this->name().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
@@ -1259,7 +1392,7 @@ void MessagePeopleRsp::SerializeWithCachedSizes(
   }
 
   // optional string phone = 2;
-  if (has_phone()) {
+  if (cached_has_bits & 0x00000002u) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->phone().data(), this->phone().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
@@ -1269,7 +1402,7 @@ void MessagePeopleRsp::SerializeWithCachedSizes(
   }
 
   // optional int32 age = 3;
-  if (has_age()) {
+  if (cached_has_bits & 0x00000004u) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->age(), output);
   }
 
@@ -1282,10 +1415,13 @@ void MessagePeopleRsp::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* MessagePeopleRsp::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:MessagePeopleRsp)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
   // optional string name = 1;
-  if (has_name()) {
+  if (cached_has_bits & 0x00000001u) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->name().data(), this->name().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
@@ -1296,7 +1432,7 @@ void MessagePeopleRsp::SerializeWithCachedSizes(
   }
 
   // optional string phone = 2;
-  if (has_phone()) {
+  if (cached_has_bits & 0x00000002u) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->phone().data(), this->phone().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
@@ -1307,7 +1443,7 @@ void MessagePeopleRsp::SerializeWithCachedSizes(
   }
 
   // optional int32 age = 3;
-  if (has_age()) {
+  if (cached_has_bits & 0x00000004u) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->age(), target);
   }
 
@@ -1377,18 +1513,23 @@ void MessagePeopleRsp::MergeFrom(const MessagePeopleRsp& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:MessagePeopleRsp)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  if (from._has_bits_[0 / 32] & 7u) {
-    if (from.has_name()) {
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._has_bits_[0];
+  if (cached_has_bits & 7u) {
+    if (cached_has_bits & 0x00000001u) {
       set_has_name();
       name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
     }
-    if (from.has_phone()) {
+    if (cached_has_bits & 0x00000002u) {
       set_has_phone();
       phone_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.phone_);
     }
-    if (from.has_age()) {
-      set_age(from.age());
+    if (cached_has_bits & 0x00000004u) {
+      age_ = from.age_;
     }
+    _has_bits_[0] |= cached_has_bits;
   }
 }
 
@@ -1425,7 +1566,7 @@ void MessagePeopleRsp::InternalSwap(MessagePeopleRsp* other) {
 
 ::google::protobuf::Metadata MessagePeopleRsp::GetMetadata() const {
   protobuf_cmd_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_cmd_2eproto::file_level_metadata[2];
+  return protobuf_cmd_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -1458,11 +1599,12 @@ void MessagePeopleRsp::set_name(const ::std::string& value) {
 void MessagePeopleRsp::set_name(::std::string&& value) {
   set_has_name();
   name_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:MessagePeopleRsp.name)
 }
 #endif
 void MessagePeopleRsp::set_name(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
   set_has_name();
   name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:MessagePeopleRsp.name)
@@ -1520,11 +1662,12 @@ void MessagePeopleRsp::set_phone(const ::std::string& value) {
 void MessagePeopleRsp::set_phone(::std::string&& value) {
   set_has_phone();
   phone_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:MessagePeopleRsp.phone)
 }
 #endif
 void MessagePeopleRsp::set_phone(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
   set_has_phone();
   phone_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:MessagePeopleRsp.phone)
@@ -1622,7 +1765,7 @@ void MessageLoginReq::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* MessageLoginReq::descriptor() {
   protobuf_cmd_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_cmd_2eproto::file_level_metadata[3].descriptor;
+  return protobuf_cmd_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
 const MessageLoginReq& MessageLoginReq::default_instance() {
@@ -1674,6 +1817,9 @@ failure:
 void MessageLoginReq::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:MessageLoginReq)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   if (_internal_metadata_.have_unknown_fields()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -1683,8 +1829,10 @@ void MessageLoginReq::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* MessageLoginReq::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:MessageLoginReq)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   if (_internal_metadata_.have_unknown_fields()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -1728,6 +1876,9 @@ void MessageLoginReq::MergeFrom(const MessageLoginReq& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:MessageLoginReq)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
 }
 
 void MessageLoginReq::CopyFrom(const ::google::protobuf::Message& from) {
@@ -1760,7 +1911,7 @@ void MessageLoginReq::InternalSwap(MessageLoginReq* other) {
 
 ::google::protobuf::Metadata MessageLoginReq::GetMetadata() const {
   protobuf_cmd_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_cmd_2eproto::file_level_metadata[3];
+  return protobuf_cmd_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -1812,7 +1963,7 @@ void MessageLoginRsp::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* MessageLoginRsp::descriptor() {
   protobuf_cmd_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_cmd_2eproto::file_level_metadata[4].descriptor;
+  return protobuf_cmd_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
 const MessageLoginRsp& MessageLoginRsp::default_instance() {
@@ -1847,7 +1998,8 @@ bool MessageLoginRsp::MergePartialFromCodedStream(
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
       // optional int32 playerID = 1;
       case 1: {
-        if (tag == 8u) {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u)) {
           set_has_playerid();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
@@ -1883,8 +2035,12 @@ failure:
 void MessageLoginRsp::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:MessageLoginRsp)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
   // optional int32 playerID = 1;
-  if (has_playerid()) {
+  if (cached_has_bits & 0x00000001u) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->playerid(), output);
   }
 
@@ -1897,10 +2053,13 @@ void MessageLoginRsp::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* MessageLoginRsp::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:MessageLoginRsp)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
   // optional int32 playerID = 1;
-  if (has_playerid()) {
+  if (cached_has_bits & 0x00000001u) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->playerid(), target);
   }
 
@@ -1954,6 +2113,9 @@ void MessageLoginRsp::MergeFrom(const MessageLoginRsp& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:MessageLoginRsp)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   if (from.has_playerid()) {
     set_playerid(from.playerid());
   }
@@ -1990,7 +2152,7 @@ void MessageLoginRsp::InternalSwap(MessageLoginRsp* other) {
 
 ::google::protobuf::Metadata MessageLoginRsp::GetMetadata() const {
   protobuf_cmd_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_cmd_2eproto::file_level_metadata[4];
+  return protobuf_cmd_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS

@@ -18,8 +18,8 @@ void game::init() {
 	My_InitGGData();
 	
 	//³õÊ¼»¯ÍøÂç
-	auto tmpAddr = My_config["loginAddr"].GetString();
-	My_Client->initNet(string(tmpAddr), My_config["serverPort"].GetInt());
+    std::string tmpAddr = My_config["loginAddr"].GetString();
+    My_Client->initNet(tmpAddr, My_config["serverPort"].GetInt());
 }
 	
 void game::start() {
