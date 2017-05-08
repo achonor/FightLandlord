@@ -9,7 +9,7 @@ from proto import cmd_pb2
 
 class Server(object):
     def __init__(self):
-        pass
+        self.waitQueue = []
 
     def readProto(func):
         @functools.wraps(func)
@@ -35,6 +35,9 @@ class Server(object):
         elif('MessagePeopleReq' == messageName):
             className = cmd_pb2.MessagePeopleReq
             requestFunc = self.requestPeople
+        elif('MessageStartGameReq' == messageName):
+            className = cmd_pb2.MessageStartGameReq
+            requestFunc = self.requestStartGame
         if(None == requestFunc):
             return
         #处理数据
@@ -55,4 +58,12 @@ class Server(object):
         rProto.name = 'achonor'
         rProto.phone = '18075952730'
         rProto.age = 20
+        return rProto
+
+    @readProto
+    def requestStartGame(self, playerID, proto):
+        #玩家加入等待队列
+
+
+        rProto = cmd_pb2.MessageStartGameRsp()
         return rProto

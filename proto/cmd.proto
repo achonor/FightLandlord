@@ -32,3 +32,25 @@ message MessageLoginReq{
 message MessageLoginRsp{
 	optional int32 playerID = 1;
 }
+
+//请求开始游戏
+message MessageStartGameReq{
+}
+message MessageStartGameRsp{
+	
+}
+//请求发牌
+message MessageDealReq{
+	
+}
+message MessageDealRsp{
+	repeated MessageDataPoker pokerList = 1;
+}
+
+
+
+//////////////////////////////////////
+message MessageDataPoker{
+	optional int32 color = 1;		//颜色(1:黑,2:红,3:梅,4.方,5.大王,6.小王)
+	optional int32 number = 2;	//数字(0:王, 1:A, 2:2...j:11, Q:12, K:13)
+}
