@@ -30,15 +30,19 @@ rapidjson::Document My_getJsonData(const char* fileName) {
 	return d;
 }
 
-int My_char4ToInt(const char *data) {
-	int ret = 0;
+unsigned int My_char4ToInt(const char *data) {
+	unsigned int ret = 0;
 	for (int i = 0; i < 4; i++){
-		ret = (ret << 8) | int(data[i]);
+		int tmpInt = int(data[i]);
+		if (tmpInt < 0) {
+			tmpInt = tmpInt + 256;
+		}
+		ret = (ret << 8) | tmpInt;
 	}
 	return ret;
 }
 
-void My_intToChar4(char* chr, int num) {
+void My_intToChar4(char* chr, unsigned int num) {
 	for (int i = 3; i >= 0; i--) {
 		int tmpInt = ((255 << (8 * i))) & num;
 		chr[3 - i] = tmpInt;

@@ -137,7 +137,11 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageDealRsp, upnum_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageDealRsp, downnum_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageDealRsp, pokerlist_),
+  0,
+  1,
   ~0u,
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageDataPoker, _has_bits_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageDataPoker, _internal_metadata_),
@@ -159,8 +163,8 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] = {
   { 47, 52, sizeof(MessageStartGameReq)},
   { 52, 57, sizeof(MessageStartGameRsp)},
   { 57, 62, sizeof(MessageDealReq)},
-  { 62, 68, sizeof(MessageDealRsp)},
-  { 69, 76, sizeof(MessageDataPoker)},
+  { 62, 70, sizeof(MessageDealRsp)},
+  { 73, 80, sizeof(MessageDataPoker)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -254,12 +258,13 @@ void AddDescriptorsImpl() {
       "\"\021\n\017MessageLoginReq\"#\n\017MessageLoginRsp\022\020"
       "\n\010playerID\030\001 \001(\005\"\025\n\023MessageStartGameReq\""
       "\025\n\023MessageStartGameRsp\"\020\n\016MessageDealReq"
-      "\"6\n\016MessageDealRsp\022$\n\tpokerList\030\001 \003(\0132\021."
-      "MessageDataPoker\"1\n\020MessageDataPoker\022\r\n\005"
-      "color\030\001 \001(\005\022\016\n\006number\030\002 \001(\005"
+      "\"V\n\016MessageDealRsp\022\r\n\005upNum\030\001 \001(\005\022\017\n\007dow"
+      "nNum\030\002 \001(\005\022$\n\tpokerList\030\003 \003(\0132\021.MessageD"
+      "ataPoker\"1\n\020MessageDataPoker\022\r\n\005color\030\001 "
+      "\001(\005\022\016\n\006number\030\002 \001(\005"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 467);
+      descriptor, 499);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "cmd.proto", &protobuf_RegisterTypes);
   ::google::protobuf::internal::OnShutdown(&TableStruct::Shutdown);
@@ -2847,6 +2852,8 @@ void MessageDealReq::InternalSwap(MessageDealReq* other) {
 // ===================================================================
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int MessageDealRsp::kUpNumFieldNumber;
+const int MessageDealRsp::kDownNumFieldNumber;
 const int MessageDealRsp::kPokerListFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
@@ -2865,11 +2872,16 @@ MessageDealRsp::MessageDealRsp(const MessageDealRsp& from)
       _cached_size_(0),
       pokerlist_(from.pokerlist_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&upnum_, &from.upnum_,
+    reinterpret_cast<char*>(&downnum_) -
+    reinterpret_cast<char*>(&upnum_) + sizeof(downnum_));
   // @@protoc_insertion_point(copy_constructor:MessageDealRsp)
 }
 
 void MessageDealRsp::SharedCtor() {
   _cached_size_ = 0;
+  ::memset(&upnum_, 0, reinterpret_cast<char*>(&downnum_) -
+    reinterpret_cast<char*>(&upnum_) + sizeof(downnum_));
 }
 
 MessageDealRsp::~MessageDealRsp() {
@@ -2906,6 +2918,10 @@ MessageDealRsp* MessageDealRsp::New(::google::protobuf::Arena* arena) const {
 void MessageDealRsp::Clear() {
 // @@protoc_insertion_point(message_clear_start:MessageDealRsp)
   pokerlist_.Clear();
+  if (_has_bits_[0 / 32] & 3u) {
+    ::memset(&upnum_, 0, reinterpret_cast<char*>(&downnum_) -
+      reinterpret_cast<char*>(&upnum_) + sizeof(downnum_));
+  }
   _has_bits_.Clear();
   _internal_metadata_.Clear();
 }
@@ -2920,10 +2936,38 @@ bool MessageDealRsp::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .MessageDataPoker pokerList = 1;
+      // optional int32 upNum = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u)) {
+            static_cast< ::google::protobuf::uint8>(8u)) {
+          set_has_upnum();
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &upnum_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // optional int32 downNum = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(16u)) {
+          set_has_downnum();
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &downnum_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // repeated .MessageDataPoker pokerList = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(26u)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                 input, add_pokerlist()));
         } else {
@@ -2960,10 +3004,21 @@ void MessageDealRsp::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .MessageDataPoker pokerList = 1;
+  cached_has_bits = _has_bits_[0];
+  // optional int32 upNum = 1;
+  if (cached_has_bits & 0x00000001u) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->upnum(), output);
+  }
+
+  // optional int32 downNum = 2;
+  if (cached_has_bits & 0x00000002u) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->downnum(), output);
+  }
+
+  // repeated .MessageDataPoker pokerList = 3;
   for (unsigned int i = 0, n = this->pokerlist_size(); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      1, this->pokerlist(i), output);
+      3, this->pokerlist(i), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -2979,11 +3034,22 @@ void MessageDealRsp::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .MessageDataPoker pokerList = 1;
+  cached_has_bits = _has_bits_[0];
+  // optional int32 upNum = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->upnum(), target);
+  }
+
+  // optional int32 downNum = 2;
+  if (cached_has_bits & 0x00000002u) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->downnum(), target);
+  }
+
+  // repeated .MessageDataPoker pokerList = 3;
   for (unsigned int i = 0, n = this->pokerlist_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        1, this->pokerlist(i), deterministic, target);
+        3, this->pokerlist(i), deterministic, target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -3003,7 +3069,7 @@ size_t MessageDealRsp::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         unknown_fields());
   }
-  // repeated .MessageDataPoker pokerList = 1;
+  // repeated .MessageDataPoker pokerList = 3;
   {
     unsigned int count = this->pokerlist_size();
     total_size += 1UL * count;
@@ -3014,6 +3080,22 @@ size_t MessageDealRsp::ByteSizeLong() const {
     }
   }
 
+  if (_has_bits_[0 / 32] & 3u) {
+    // optional int32 upNum = 1;
+    if (has_upnum()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->upnum());
+    }
+
+    // optional int32 downNum = 2;
+    if (has_downnum()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->downnum());
+    }
+
+  }
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = cached_size;
@@ -3044,6 +3126,16 @@ void MessageDealRsp::MergeFrom(const MessageDealRsp& from) {
   (void) cached_has_bits;
 
   pokerlist_.MergeFrom(from.pokerlist_);
+  cached_has_bits = from._has_bits_[0];
+  if (cached_has_bits & 3u) {
+    if (cached_has_bits & 0x00000001u) {
+      upnum_ = from.upnum_;
+    }
+    if (cached_has_bits & 0x00000002u) {
+      downnum_ = from.downnum_;
+    }
+    _has_bits_[0] |= cached_has_bits;
+  }
 }
 
 void MessageDealRsp::CopyFrom(const ::google::protobuf::Message& from) {
@@ -3070,6 +3162,8 @@ void MessageDealRsp::Swap(MessageDealRsp* other) {
 }
 void MessageDealRsp::InternalSwap(MessageDealRsp* other) {
   pokerlist_.InternalSwap(&other->pokerlist_);
+  std::swap(upnum_, other->upnum_);
+  std::swap(downnum_, other->downnum_);
   std::swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
@@ -3083,7 +3177,55 @@ void MessageDealRsp::InternalSwap(MessageDealRsp* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // MessageDealRsp
 
-// repeated .MessageDataPoker pokerList = 1;
+// optional int32 upNum = 1;
+bool MessageDealRsp::has_upnum() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+void MessageDealRsp::set_has_upnum() {
+  _has_bits_[0] |= 0x00000001u;
+}
+void MessageDealRsp::clear_has_upnum() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+void MessageDealRsp::clear_upnum() {
+  upnum_ = 0;
+  clear_has_upnum();
+}
+::google::protobuf::int32 MessageDealRsp::upnum() const {
+  // @@protoc_insertion_point(field_get:MessageDealRsp.upNum)
+  return upnum_;
+}
+void MessageDealRsp::set_upnum(::google::protobuf::int32 value) {
+  set_has_upnum();
+  upnum_ = value;
+  // @@protoc_insertion_point(field_set:MessageDealRsp.upNum)
+}
+
+// optional int32 downNum = 2;
+bool MessageDealRsp::has_downnum() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+void MessageDealRsp::set_has_downnum() {
+  _has_bits_[0] |= 0x00000002u;
+}
+void MessageDealRsp::clear_has_downnum() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+void MessageDealRsp::clear_downnum() {
+  downnum_ = 0;
+  clear_has_downnum();
+}
+::google::protobuf::int32 MessageDealRsp::downnum() const {
+  // @@protoc_insertion_point(field_get:MessageDealRsp.downNum)
+  return downnum_;
+}
+void MessageDealRsp::set_downnum(::google::protobuf::int32 value) {
+  set_has_downnum();
+  downnum_ = value;
+  // @@protoc_insertion_point(field_set:MessageDealRsp.downNum)
+}
+
+// repeated .MessageDataPoker pokerList = 3;
 int MessageDealRsp::pokerlist_size() const {
   return pokerlist_.size();
 }

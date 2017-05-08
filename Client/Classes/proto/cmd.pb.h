@@ -950,10 +950,10 @@ class MessageDealRsp : public ::google::protobuf::Message /* @@protoc_insertion_
 
   // accessors -------------------------------------------------------
 
-  // repeated .MessageDataPoker pokerList = 1;
+  // repeated .MessageDataPoker pokerList = 3;
   int pokerlist_size() const;
   void clear_pokerlist();
-  static const int kPokerListFieldNumber = 1;
+  static const int kPokerListFieldNumber = 3;
   const ::MessageDataPoker& pokerlist(int index) const;
   ::MessageDataPoker* mutable_pokerlist(int index);
   ::MessageDataPoker* add_pokerlist();
@@ -962,13 +962,33 @@ class MessageDealRsp : public ::google::protobuf::Message /* @@protoc_insertion_
   const ::google::protobuf::RepeatedPtrField< ::MessageDataPoker >&
       pokerlist() const;
 
+  // optional int32 upNum = 1;
+  bool has_upnum() const;
+  void clear_upnum();
+  static const int kUpNumFieldNumber = 1;
+  ::google::protobuf::int32 upnum() const;
+  void set_upnum(::google::protobuf::int32 value);
+
+  // optional int32 downNum = 2;
+  bool has_downnum() const;
+  void clear_downnum();
+  static const int kDownNumFieldNumber = 2;
+  ::google::protobuf::int32 downnum() const;
+  void set_downnum(::google::protobuf::int32 value);
+
   // @@protoc_insertion_point(class_scope:MessageDealRsp)
  private:
+  void set_has_upnum();
+  void clear_has_upnum();
+  void set_has_downnum();
+  void clear_has_downnum();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
   mutable int _cached_size_;
   ::google::protobuf::RepeatedPtrField< ::MessageDataPoker > pokerlist_;
+  ::google::protobuf::int32 upnum_;
+  ::google::protobuf::int32 downnum_;
   friend struct protobuf_cmd_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
@@ -1533,7 +1553,55 @@ inline void MessageLoginRsp::set_playerid(::google::protobuf::int32 value) {
 
 // MessageDealRsp
 
-// repeated .MessageDataPoker pokerList = 1;
+// optional int32 upNum = 1;
+inline bool MessageDealRsp::has_upnum() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void MessageDealRsp::set_has_upnum() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void MessageDealRsp::clear_has_upnum() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void MessageDealRsp::clear_upnum() {
+  upnum_ = 0;
+  clear_has_upnum();
+}
+inline ::google::protobuf::int32 MessageDealRsp::upnum() const {
+  // @@protoc_insertion_point(field_get:MessageDealRsp.upNum)
+  return upnum_;
+}
+inline void MessageDealRsp::set_upnum(::google::protobuf::int32 value) {
+  set_has_upnum();
+  upnum_ = value;
+  // @@protoc_insertion_point(field_set:MessageDealRsp.upNum)
+}
+
+// optional int32 downNum = 2;
+inline bool MessageDealRsp::has_downnum() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void MessageDealRsp::set_has_downnum() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void MessageDealRsp::clear_has_downnum() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void MessageDealRsp::clear_downnum() {
+  downnum_ = 0;
+  clear_has_downnum();
+}
+inline ::google::protobuf::int32 MessageDealRsp::downnum() const {
+  // @@protoc_insertion_point(field_get:MessageDealRsp.downNum)
+  return downnum_;
+}
+inline void MessageDealRsp::set_downnum(::google::protobuf::int32 value) {
+  set_has_downnum();
+  downnum_ = value;
+  // @@protoc_insertion_point(field_set:MessageDealRsp.downNum)
+}
+
+// repeated .MessageDataPoker pokerList = 3;
 inline int MessageDealRsp::pokerlist_size() const {
   return pokerlist_.size();
 }

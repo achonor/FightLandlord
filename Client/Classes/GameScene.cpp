@@ -58,10 +58,15 @@ bool GameLayer::init()
 	auto listener = EventListenerKeyboard::create();
 	listener->onKeyReleased = [](EventKeyboard::KeyCode code, Event* event) {
 		if(code == EventKeyboard::KeyCode::KEY_BACK){
-			auto tmpMessageBox = My_MessageBox::create(GGText_tuichuyouxi, [](My_MessageBox::CLICKTYPE cType) {
+			static My_MessageBox* tmpMessageBox = NULL;
+			if (tmpMessageBox) {
+				return;
+			}
+			tmpMessageBox = My_MessageBox::create(GGText_tuichuyouxi, [](My_MessageBox::CLICKTYPE cType) {
 				if (cType == My_MessageBox::CLICKTYPE::YES) {
 					Director::getInstance()->end();
 				}
+				tmpMessageBox = NULL;
 			});
 			My_gameScene->pushPanel(tmpMessageBox, true);
 		}

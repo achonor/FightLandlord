@@ -15,10 +15,10 @@
 rapidjson::Document My_getJsonData(const char* fileName);
 
 //四个字节char转int
-int My_char4ToInt(const char *data);
+unsigned int My_char4ToInt(const char *data);
 
 //int转成四个char字节
-void My_intToChar4(char* chr, int num);
+void My_intToChar4(char* chr, unsigned int num);
 
 //char*转string
 std::string My_charToString(const char* sChr, int sLen);
