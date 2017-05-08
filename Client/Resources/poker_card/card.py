@@ -13,11 +13,11 @@ def main():
         fileName = fileName.replace("J", "11")
         fileName = fileName.replace("Q", "12")
         fileName = fileName.replace("K", "13")
-        fileName = fileName.replace("\xba\xda\xcc\xd2", "0")
-        fileName = fileName.replace("\xba\xec\xd0\xc4", "1")
-        fileName = fileName.replace("\xc3\xb7\xbb\xa8", "2")
-        fileName = fileName.replace("\xb7\xbd\xbf\xe9", "3")
+        fileName = fileName.replace("\xba\xda\xcc\xd2", "_1_")
+        fileName = fileName.replace("\xba\xec\xd0\xc4", "_2_")
+        fileName = fileName.replace("\xc3\xb7\xbb\xa8", "_3_")
+        fileName = fileName.replace("\xb7\xbd\xbf\xe9", "_4_")
         print oldFileName,'->',fileName
-        os.rename(oldFileName, fileName)
+        os.rename(oldFileName, 'poker' + fileName)
 if('__main__' == __name__):
     main()
