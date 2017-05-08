@@ -4,12 +4,14 @@
 #服务类
 
 import GGData
+import gameDesk
 import functools
 from proto import cmd_pb2
 
 class Server(object):
     def __init__(self):
         self.waitQueue = []
+        self.deskList = []
 
     def readProto(func):
         @functools.wraps(func)
@@ -63,7 +65,24 @@ class Server(object):
     @readProto
     def requestStartGame(self, playerID, proto):
         #玩家加入等待队列
-
+        from twisted.internet import reactor
+        reactor.callLater(0.1, self.addPlayer, playerID)
 
         rProto = cmd_pb2.MessageStartGameRsp()
         return rProto
+
+
+
+    def addPlayer(self, playerID):
+        self.waitQueue.append(playerID)
+        if(3 <= len(self.waitQueue)):
+            #可以凑一桌了
+            tmpDesk = gameDesk.desk(self.waitQueue[0:3])
+            self.deskList.append(tmpDesk)
+            self.waitQueue = self.waitQueue[3:]
+
+
+    #从等待队列移除
+    def removePlayer(self, playerID):
+        if playerID in self.waitQueue:
+            self.waitQueue.remove(playerID)

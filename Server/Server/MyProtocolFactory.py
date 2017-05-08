@@ -47,4 +47,11 @@ class MyServerFactory(ServerFactory):
         return self.linkProto.get(playerID)
 
     def connectionLost(self, playerID):
+        #移除
+        self.removePlayer(playerID)
+
+    def removePlayer(self, playerID):
+        #移除连接
         self.linkProto.pop(playerID)
+        #从等待队列移除
+        GGData.My_Server.removePlayer(playerID)

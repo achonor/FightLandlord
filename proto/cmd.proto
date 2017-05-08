@@ -39,12 +39,15 @@ message MessageStartGameReq{
 message MessageStartGameRsp{
 	
 }
+
 //请求发牌
 message MessageDealReq{
 	
 }
 message MessageDealRsp{
-	repeated MessageDataPoker pokerList = 1;
+	optional int32 upNum = 1; //上家牌的数量
+	optional int32 downNum = 2; //下家牌的数量
+	repeated MessageDataPoker pokerList = 3;
 }
 
 
@@ -52,5 +55,5 @@ message MessageDealRsp{
 //////////////////////////////////////
 message MessageDataPoker{
 	optional int32 color = 1;		//颜色(1:黑,2:红,3:梅,4.方,5.大王,6.小王)
-	optional int32 number = 2;	//数字(0:王, 1:A, 2:2...j:11, Q:12, K:13)
+	optional int32 number = 2;	//数字(16:王, 14:A, 15:2, 3:3, 4:4...j:11, Q:12, K:13)
 }

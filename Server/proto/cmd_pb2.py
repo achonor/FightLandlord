@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='cmd.proto',
   package='',
   syntax='proto2',
-  serialized_pb=_b('\n\tcmd.proto\"n\n\tMainProto\x12\x10\n\x08playerID\x18\x01 \x02(\x05\x12\x11\n\tmessageID\x18\x02 \x02(\x05\x12\x13\n\x0bmessageName\x18\x03 \x01(\t\x12\x13\n\x0bmessageData\x18\x04 \x01(\t\x12\x12\n\nserverTime\x18\x05 \x01(\x03\"5\n\x10MessagePeopleReq\x12\x10\n\x08peopleID\x18\x01 \x01(\x05\x12\x0f\n\x07isChina\x18\x02 \x01(\x08\"<\n\x10MessagePeopleRsp\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05phone\x18\x02 \x01(\t\x12\x0b\n\x03\x61ge\x18\x03 \x01(\x05\"\x11\n\x0fMessageLoginReq\"#\n\x0fMessageLoginRsp\x12\x10\n\x08playerID\x18\x01 \x01(\x05\"\x15\n\x13MessageStartGameReq\"\x15\n\x13MessageStartGameRsp\"\x10\n\x0eMessageDealReq\"6\n\x0eMessageDealRsp\x12$\n\tpokerList\x18\x01 \x03(\x0b\x32\x11.MessageDataPoker\"1\n\x10MessageDataPoker\x12\r\n\x05\x63olor\x18\x01 \x01(\x05\x12\x0e\n\x06number\x18\x02 \x01(\x05')
+  serialized_pb=_b('\n\tcmd.proto\"n\n\tMainProto\x12\x10\n\x08playerID\x18\x01 \x02(\x05\x12\x11\n\tmessageID\x18\x02 \x02(\x05\x12\x13\n\x0bmessageName\x18\x03 \x01(\t\x12\x13\n\x0bmessageData\x18\x04 \x01(\t\x12\x12\n\nserverTime\x18\x05 \x01(\x03\"5\n\x10MessagePeopleReq\x12\x10\n\x08peopleID\x18\x01 \x01(\x05\x12\x0f\n\x07isChina\x18\x02 \x01(\x08\"<\n\x10MessagePeopleRsp\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05phone\x18\x02 \x01(\t\x12\x0b\n\x03\x61ge\x18\x03 \x01(\x05\"\x11\n\x0fMessageLoginReq\"#\n\x0fMessageLoginRsp\x12\x10\n\x08playerID\x18\x01 \x01(\x05\"\x15\n\x13MessageStartGameReq\"\x15\n\x13MessageStartGameRsp\"\x10\n\x0eMessageDealReq\"V\n\x0eMessageDealRsp\x12\r\n\x05upNum\x18\x01 \x01(\x05\x12\x0f\n\x07\x64ownNum\x18\x02 \x01(\x05\x12$\n\tpokerList\x18\x03 \x03(\x0b\x32\x11.MessageDataPoker\"1\n\x10MessageDataPoker\x12\r\n\x05\x63olor\x18\x01 \x01(\x05\x12\x0e\n\x06number\x18\x02 \x01(\x05')
 )
 
 
@@ -302,8 +302,22 @@ _MESSAGEDEALRSP = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='pokerList', full_name='MessageDealRsp.pokerList', index=0,
-      number=1, type=11, cpp_type=10, label=3,
+      name='upNum', full_name='MessageDealRsp.upNum', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='downNum', full_name='MessageDealRsp.downNum', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='pokerList', full_name='MessageDealRsp.pokerList', index=2,
+      number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -321,7 +335,7 @@ _MESSAGEDEALRSP = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=362,
-  serialized_end=416,
+  serialized_end=448,
 )
 
 
@@ -358,8 +372,8 @@ _MESSAGEDATAPOKER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=418,
-  serialized_end=467,
+  serialized_start=450,
+  serialized_end=499,
 )
 
 _MESSAGEDEALRSP.fields_by_name['pokerList'].message_type = _MESSAGEDATAPOKER
