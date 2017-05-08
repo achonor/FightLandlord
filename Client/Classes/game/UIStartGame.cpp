@@ -1,8 +1,11 @@
-﻿#include "stdafx.h"
+#include "stdafx.h"
 #include "GGData.h"
 #include "UIStartGame.h"
 #include "ui/UIButton.h"
 #include "UIPlayGame.h"
+#include "controls/UIMessageBox.h"
+
+#include "GGText.h"
 
 USING_NS_CC;
 using namespace ui;
@@ -48,7 +51,7 @@ bool UIStartGame::init() {
 }
 
 void UIStartGame::startGame() {
-	cout << "开始游戏" << endl;
+	cout << "startGame...." << endl;
 	auto uiPlayGame = UIPlayGame::create();
 	My_gameScene->pushPanel(uiPlayGame);
 }

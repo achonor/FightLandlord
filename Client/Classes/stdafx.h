@@ -13,7 +13,7 @@
 #include "functions.h"
 #include "Event/UserEvent.h"
 #include "GameScene.h"
-
+#include "GGText.h"
 
 
 #include "google/protobuf/message.h"

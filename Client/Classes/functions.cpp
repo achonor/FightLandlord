@@ -90,6 +90,9 @@ std::string My_Serialization(google::protobuf::Message* proto) {
 
 cocos2d::Node* My_getSpriteNumber(const std::string path, int number){
 	Node* retNode = Node::create();
+	if (number < 0) {
+		return retNode;
+	}
 	Texture2D *texture = Director::getInstance()->getTextureCache()->addImage(path);
 	auto textureSize = texture->getContentSizeInPixels();
 	//每个数字的宽度

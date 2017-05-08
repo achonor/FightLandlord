@@ -1,3 +1,5 @@
+#ifndef UIPANEL_H
+#define UIPANEL_H
 #pragma once
 #include "cocos2d.h"
 
@@ -13,3 +15,4 @@ protected:
 	CREATE_FUNC(UIPanel);
 };
 
+#endif

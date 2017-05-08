@@ -2,6 +2,7 @@
 #include "Client.h"
 #include "GGData.h"
 #include "cocos2d.h"
+
 #include <map>
 USING_NS_CC;
 using namespace std;
@@ -27,9 +28,10 @@ int RequestIdx = 1;
 //保存回调函数
 map<int, function<void(google::protobuf::Message*)> > callMap;
 
-Client::Client()
+Client::Client():
+	recvDataListener(NULL),
+	requestNumber(0)
 {	
-
 }
 
 
@@ -101,6 +103,10 @@ void Client::receiveData(const string *data) {
 		auto callback = callMap[proto.messageid()];
 		if (NULL != callback) {
 			callback(message);
+			requestNumber--;
+			if (NULL != My_gameScene) {
+				My_gameScene->setSrceenVisible(0 < requestNumber);
+			}
 		}
 		callMap.erase(proto.messageid());
 		delete message;
@@ -125,6 +131,12 @@ void Client::request(google::protobuf::Message* proto, function<void(google::pro
 
 	string mainProtoStr = My_Serialization(&mainProto);
 	this->sendData(mainProtoStr.c_str(), mainProtoStr.length());
+	//请求数增加
+	requestNumber++;
+	//显示菊花
+	if (NULL != My_gameScene) {
+		My_gameScene->setSrceenVisible(true);
+	}
 	return;
 }
 

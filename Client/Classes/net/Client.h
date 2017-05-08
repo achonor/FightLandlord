@@ -15,6 +15,8 @@ protected:
 	MySocket clientSocket;
 	//接收数据监听
 	UserEvent* recvDataListener;
+	//正在请求的数量
+	int requestNumber;
 	//发送数据
 	void sendData(const char* str, int len);
 	//接收数据

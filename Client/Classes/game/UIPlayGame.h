@@ -10,8 +10,14 @@ public:
 	UIPlayGame();
 	virtual ~UIPlayGame();
 	CREATE_FUNC(UIPlayGame);
-private:
+protected:
 	virtual bool init();
 	void onEnter();
+
+public:
+	//请求开始游戏
+	void requestStartGame();
+	//请求获取牌
+	void requestGetPoker();
 };
 
