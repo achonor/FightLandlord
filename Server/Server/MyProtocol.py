@@ -41,6 +41,7 @@ class MyProtocol(Protocol):
             pass
     def connectionMade(self):
         print "connection success!!!", self.transport.getPeer()
+
     def connectionLost(self, reason=connectionDone):
         print "connection lost!!!", self.transport.getPeer()
         #通知工厂 断开连接

@@ -22,6 +22,8 @@ class MyServerFactory(ServerFactory):
         self.playerIDIdx += 1
         #保存连接
         self.linkProto[tmpProto.playerID] = tmpProto
+        #添加玩家
+        GGData.My_Server.addPlayer(tmpProto.playerID, tmpProto)
         return tmpProto
 
     def dataReceived(self, playerID, data):
@@ -29,22 +31,15 @@ class MyServerFactory(ServerFactory):
         mainProto = cmd_pb2.MainProto()
         mainProto.ParseFromString(data)
         mainProto.playerID = playerID
-
-
         #交给服务类处理
         GGData.My_Server.requestServer(mainProto)
 
     #返回数据给客户端
-    def returnData(self, playerID, messageID, proto):
-        #获取连接
-        linkProto = self.getLinkProto(playerID)
+    def returnData(self, cPlayer, messageID, proto):
         #序列化协议
-        rspData = functions.serialization(proto, playerID, messageID)
+        rspData = functions.serialization(proto, cPlayer.playerID, messageID)
         #发送数据
-        linkProto.sendData(rspData)
-
-    def getLinkProto(self, playerID):
-        return self.linkProto.get(playerID)
+        cPlayer.linkProto.sendData(rspData)
 
     def connectionLost(self, playerID):
         #移除
@@ -53,5 +48,5 @@ class MyServerFactory(ServerFactory):
     def removePlayer(self, playerID):
         #移除连接
         self.linkProto.pop(playerID)
-        #从等待队列移除
+        #移除玩家
         GGData.My_Server.removePlayer(playerID)
