@@ -32,4 +32,7 @@ std::string My_Serialization(google::protobuf::Message* proto);
 //返回一个图片数字
 cocos2d::Node* My_getSpriteNumber(std::string path, int number);
 
+//计算两点间距离
+double My_calcPostionDis(cocos2d::Vec2 &pos1, cocos2d::Vec2 &pos2);
+
 #endif

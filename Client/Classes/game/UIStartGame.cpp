@@ -4,6 +4,7 @@
 #include "ui/UIButton.h"
 #include "UIPlayGame.h"
 #include "controls/UIMessageBox.h"
+#include "UIPoker.h"
 
 #include "GGText.h"
 
@@ -47,6 +48,8 @@ bool UIStartGame::init() {
 			break;
 		}
 	});
+
+
 	return true;
 }
 

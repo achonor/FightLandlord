@@ -60,6 +60,12 @@ extern MessageStartGameReqDefaultTypeInternal _MessageStartGameReq_default_insta
 class MessageStartGameRsp;
 class MessageStartGameRspDefaultTypeInternal;
 extern MessageStartGameRspDefaultTypeInternal _MessageStartGameRsp_default_instance_;
+class MessageUpdateStateReq;
+class MessageUpdateStateReqDefaultTypeInternal;
+extern MessageUpdateStateReqDefaultTypeInternal _MessageUpdateStateReq_default_instance_;
+class MessageUpdateStateRsp;
+class MessageUpdateStateRspDefaultTypeInternal;
+extern MessageUpdateStateRspDefaultTypeInternal _MessageUpdateStateRsp_default_instance_;
 
 namespace protobuf_cmd_2eproto {
 // Internal implementation detail -- do not call these.
@@ -993,6 +999,200 @@ class MessageDealRsp : public ::google::protobuf::Message /* @@protoc_insertion_
 };
 // -------------------------------------------------------------------
 
+class MessageUpdateStateReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:MessageUpdateStateReq) */ {
+ public:
+  MessageUpdateStateReq();
+  virtual ~MessageUpdateStateReq();
+
+  MessageUpdateStateReq(const MessageUpdateStateReq& from);
+
+  inline MessageUpdateStateReq& operator=(const MessageUpdateStateReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MessageUpdateStateReq& default_instance();
+
+  static inline const MessageUpdateStateReq* internal_default_instance() {
+    return reinterpret_cast<const MessageUpdateStateReq*>(
+               &_MessageUpdateStateReq_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    9;
+
+  void Swap(MessageUpdateStateReq* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MessageUpdateStateReq* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  MessageUpdateStateReq* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const MessageUpdateStateReq& from);
+  void MergeFrom(const MessageUpdateStateReq& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(MessageUpdateStateReq* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:MessageUpdateStateReq)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable int _cached_size_;
+  friend struct protobuf_cmd_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class MessageUpdateStateRsp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:MessageUpdateStateRsp) */ {
+ public:
+  MessageUpdateStateRsp();
+  virtual ~MessageUpdateStateRsp();
+
+  MessageUpdateStateRsp(const MessageUpdateStateRsp& from);
+
+  inline MessageUpdateStateRsp& operator=(const MessageUpdateStateRsp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MessageUpdateStateRsp& default_instance();
+
+  static inline const MessageUpdateStateRsp* internal_default_instance() {
+    return reinterpret_cast<const MessageUpdateStateRsp*>(
+               &_MessageUpdateStateRsp_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    10;
+
+  void Swap(MessageUpdateStateRsp* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MessageUpdateStateRsp* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  MessageUpdateStateRsp* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const MessageUpdateStateRsp& from);
+  void MergeFrom(const MessageUpdateStateRsp& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(MessageUpdateStateRsp* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 playerID = 1;
+  bool has_playerid() const;
+  void clear_playerid();
+  static const int kPlayerIDFieldNumber = 1;
+  ::google::protobuf::int32 playerid() const;
+  void set_playerid(::google::protobuf::int32 value);
+
+  // optional int32 stateType = 2;
+  bool has_statetype() const;
+  void clear_statetype();
+  static const int kStateTypeFieldNumber = 2;
+  ::google::protobuf::int32 statetype() const;
+  void set_statetype(::google::protobuf::int32 value);
+
+  // optional int32 endTime = 3;
+  bool has_endtime() const;
+  void clear_endtime();
+  static const int kEndTimeFieldNumber = 3;
+  ::google::protobuf::int32 endtime() const;
+  void set_endtime(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:MessageUpdateStateRsp)
+ private:
+  void set_has_playerid();
+  void clear_has_playerid();
+  void set_has_statetype();
+  void clear_has_statetype();
+  void set_has_endtime();
+  void clear_has_endtime();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable int _cached_size_;
+  ::google::protobuf::int32 playerid_;
+  ::google::protobuf::int32 statetype_;
+  ::google::protobuf::int32 endtime_;
+  friend struct protobuf_cmd_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class MessageDataPoker : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:MessageDataPoker) */ {
  public:
   MessageDataPoker();
@@ -1021,7 +1221,7 @@ class MessageDataPoker : public ::google::protobuf::Message /* @@protoc_insertio
                &_MessageDataPoker_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    9;
+    11;
 
   void Swap(MessageDataPoker* other);
 
@@ -1633,6 +1833,86 @@ MessageDealRsp::pokerlist() const {
 
 // -------------------------------------------------------------------
 
+// MessageUpdateStateReq
+
+// -------------------------------------------------------------------
+
+// MessageUpdateStateRsp
+
+// optional int32 playerID = 1;
+inline bool MessageUpdateStateRsp::has_playerid() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void MessageUpdateStateRsp::set_has_playerid() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void MessageUpdateStateRsp::clear_has_playerid() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void MessageUpdateStateRsp::clear_playerid() {
+  playerid_ = 0;
+  clear_has_playerid();
+}
+inline ::google::protobuf::int32 MessageUpdateStateRsp::playerid() const {
+  // @@protoc_insertion_point(field_get:MessageUpdateStateRsp.playerID)
+  return playerid_;
+}
+inline void MessageUpdateStateRsp::set_playerid(::google::protobuf::int32 value) {
+  set_has_playerid();
+  playerid_ = value;
+  // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.playerID)
+}
+
+// optional int32 stateType = 2;
+inline bool MessageUpdateStateRsp::has_statetype() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void MessageUpdateStateRsp::set_has_statetype() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void MessageUpdateStateRsp::clear_has_statetype() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void MessageUpdateStateRsp::clear_statetype() {
+  statetype_ = 0;
+  clear_has_statetype();
+}
+inline ::google::protobuf::int32 MessageUpdateStateRsp::statetype() const {
+  // @@protoc_insertion_point(field_get:MessageUpdateStateRsp.stateType)
+  return statetype_;
+}
+inline void MessageUpdateStateRsp::set_statetype(::google::protobuf::int32 value) {
+  set_has_statetype();
+  statetype_ = value;
+  // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.stateType)
+}
+
+// optional int32 endTime = 3;
+inline bool MessageUpdateStateRsp::has_endtime() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void MessageUpdateStateRsp::set_has_endtime() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void MessageUpdateStateRsp::clear_has_endtime() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void MessageUpdateStateRsp::clear_endtime() {
+  endtime_ = 0;
+  clear_has_endtime();
+}
+inline ::google::protobuf::int32 MessageUpdateStateRsp::endtime() const {
+  // @@protoc_insertion_point(field_get:MessageUpdateStateRsp.endTime)
+  return endtime_;
+}
+inline void MessageUpdateStateRsp::set_endtime(::google::protobuf::int32 value) {
+  set_has_endtime();
+  endtime_ = value;
+  // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.endTime)
+}
+
+// -------------------------------------------------------------------
+
 // MessageDataPoker
 
 // optional int32 color = 1;
@@ -1684,6 +1964,10 @@ inline void MessageDataPoker::set_number(::google::protobuf::int32 value) {
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

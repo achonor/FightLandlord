@@ -1,6 +1,8 @@
 ﻿#include "stdafx.h"
 #include "functions.h"
 
+#include <cmath>
+
 using namespace std;
 USING_NS_CC;
 
@@ -119,5 +121,8 @@ cocos2d::Node* My_getSpriteNumber(const std::string path, int number){
 	return retNode;
 }
 
+double My_calcPostionDis(Vec2 &pos1, Vec2 &pos2) {
+	return sqrt(pow(pos1.x - pos2.x, 2) + pow(pos1.y - pos2.y, 2));
+}
 
 //
