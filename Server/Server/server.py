@@ -81,6 +81,8 @@ class Server(object):
     #讲玩家加入队列
     def addWaitQueue(self, playerID):
         self.__waitQueue.append(playerID)
+        self.__waitQueue.append(playerID)
+        self.__waitQueue.append(playerID)
         if (3 <= len(self.__waitQueue)):
             # 可以凑一桌了
             tmpDesk = gameDesk.desk(self.__waitQueue[0:3])

@@ -16,13 +16,14 @@ class desk:
         #发牌
         tmpList = functions.randPoker()
         for i in range(0, 3, 1):
-            self.playerList[i].poker = tmpList[i] + tmpList[3]
+            self.playerList[i].poker = tmpList[i]
         #地主牌
         self.landlordPoker = tmpList[3]
 
         #把牌发给客户端
         for cPlayer in self.playerList:
             self.sendPoker(cPlayer)
+            break
 
     def sendPoker(self, cPlayer, messageID = -1):
         proto = cmd_pb2.MessageDealRsp()

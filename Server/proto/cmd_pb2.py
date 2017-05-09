@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='cmd.proto',
   package='',
   syntax='proto2',
-  serialized_pb=_b('\n\tcmd.proto\"n\n\tMainProto\x12\x10\n\x08playerID\x18\x01 \x02(\x05\x12\x11\n\tmessageID\x18\x02 \x02(\x05\x12\x13\n\x0bmessageName\x18\x03 \x01(\t\x12\x13\n\x0bmessageData\x18\x04 \x01(\t\x12\x12\n\nserverTime\x18\x05 \x01(\x03\"5\n\x10MessagePeopleReq\x12\x10\n\x08peopleID\x18\x01 \x01(\x05\x12\x0f\n\x07isChina\x18\x02 \x01(\x08\"<\n\x10MessagePeopleRsp\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05phone\x18\x02 \x01(\t\x12\x0b\n\x03\x61ge\x18\x03 \x01(\x05\"\x11\n\x0fMessageLoginReq\"#\n\x0fMessageLoginRsp\x12\x10\n\x08playerID\x18\x01 \x01(\x05\"\x15\n\x13MessageStartGameReq\"\x15\n\x13MessageStartGameRsp\"\x10\n\x0eMessageDealReq\"V\n\x0eMessageDealRsp\x12\r\n\x05upNum\x18\x01 \x01(\x05\x12\x0f\n\x07\x64ownNum\x18\x02 \x01(\x05\x12$\n\tpokerList\x18\x03 \x03(\x0b\x32\x11.MessageDataPoker\"1\n\x10MessageDataPoker\x12\r\n\x05\x63olor\x18\x01 \x01(\x05\x12\x0e\n\x06number\x18\x02 \x01(\x05')
+  serialized_pb=_b('\n\tcmd.proto\"n\n\tMainProto\x12\x10\n\x08playerID\x18\x01 \x02(\x05\x12\x11\n\tmessageID\x18\x02 \x02(\x05\x12\x13\n\x0bmessageName\x18\x03 \x01(\t\x12\x13\n\x0bmessageData\x18\x04 \x01(\t\x12\x12\n\nserverTime\x18\x05 \x01(\x03\"5\n\x10MessagePeopleReq\x12\x10\n\x08peopleID\x18\x01 \x01(\x05\x12\x0f\n\x07isChina\x18\x02 \x01(\x08\"<\n\x10MessagePeopleRsp\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05phone\x18\x02 \x01(\t\x12\x0b\n\x03\x61ge\x18\x03 \x01(\x05\"\x11\n\x0fMessageLoginReq\"#\n\x0fMessageLoginRsp\x12\x10\n\x08playerID\x18\x01 \x01(\x05\"\x15\n\x13MessageStartGameReq\"\x15\n\x13MessageStartGameRsp\"\x10\n\x0eMessageDealReq\"V\n\x0eMessageDealRsp\x12\r\n\x05upNum\x18\x01 \x01(\x05\x12\x0f\n\x07\x64ownNum\x18\x02 \x01(\x05\x12$\n\tpokerList\x18\x03 \x03(\x0b\x32\x11.MessageDataPoker\"\x17\n\x15MessageUpdateStateReq\"M\n\x15MessageUpdateStateRsp\x12\x10\n\x08playerID\x18\x01 \x01(\x05\x12\x11\n\tstateType\x18\x02 \x01(\x05\x12\x0f\n\x07\x65ndTime\x18\x03 \x01(\x05\"1\n\x10MessageDataPoker\x12\r\n\x05\x63olor\x18\x01 \x01(\x05\x12\x0e\n\x06number\x18\x02 \x01(\x05')
 )
 
 
@@ -339,6 +339,75 @@ _MESSAGEDEALRSP = _descriptor.Descriptor(
 )
 
 
+_MESSAGEUPDATESTATEREQ = _descriptor.Descriptor(
+  name='MessageUpdateStateReq',
+  full_name='MessageUpdateStateReq',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=450,
+  serialized_end=473,
+)
+
+
+_MESSAGEUPDATESTATERSP = _descriptor.Descriptor(
+  name='MessageUpdateStateRsp',
+  full_name='MessageUpdateStateRsp',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='playerID', full_name='MessageUpdateStateRsp.playerID', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='stateType', full_name='MessageUpdateStateRsp.stateType', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='endTime', full_name='MessageUpdateStateRsp.endTime', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=475,
+  serialized_end=552,
+)
+
+
 _MESSAGEDATAPOKER = _descriptor.Descriptor(
   name='MessageDataPoker',
   full_name='MessageDataPoker',
@@ -372,8 +441,8 @@ _MESSAGEDATAPOKER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=450,
-  serialized_end=499,
+  serialized_start=554,
+  serialized_end=603,
 )
 
 _MESSAGEDEALRSP.fields_by_name['pokerList'].message_type = _MESSAGEDATAPOKER
@@ -386,6 +455,8 @@ DESCRIPTOR.message_types_by_name['MessageStartGameReq'] = _MESSAGESTARTGAMEREQ
 DESCRIPTOR.message_types_by_name['MessageStartGameRsp'] = _MESSAGESTARTGAMERSP
 DESCRIPTOR.message_types_by_name['MessageDealReq'] = _MESSAGEDEALREQ
 DESCRIPTOR.message_types_by_name['MessageDealRsp'] = _MESSAGEDEALRSP
+DESCRIPTOR.message_types_by_name['MessageUpdateStateReq'] = _MESSAGEUPDATESTATEREQ
+DESCRIPTOR.message_types_by_name['MessageUpdateStateRsp'] = _MESSAGEUPDATESTATERSP
 DESCRIPTOR.message_types_by_name['MessageDataPoker'] = _MESSAGEDATAPOKER
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -451,6 +522,20 @@ MessageDealRsp = _reflection.GeneratedProtocolMessageType('MessageDealRsp', (_me
   # @@protoc_insertion_point(class_scope:MessageDealRsp)
   ))
 _sym_db.RegisterMessage(MessageDealRsp)
+
+MessageUpdateStateReq = _reflection.GeneratedProtocolMessageType('MessageUpdateStateReq', (_message.Message,), dict(
+  DESCRIPTOR = _MESSAGEUPDATESTATEREQ,
+  __module__ = 'cmd_pb2'
+  # @@protoc_insertion_point(class_scope:MessageUpdateStateReq)
+  ))
+_sym_db.RegisterMessage(MessageUpdateStateReq)
+
+MessageUpdateStateRsp = _reflection.GeneratedProtocolMessageType('MessageUpdateStateRsp', (_message.Message,), dict(
+  DESCRIPTOR = _MESSAGEUPDATESTATERSP,
+  __module__ = 'cmd_pb2'
+  # @@protoc_insertion_point(class_scope:MessageUpdateStateRsp)
+  ))
+_sym_db.RegisterMessage(MessageUpdateStateRsp)
 
 MessageDataPoker = _reflection.GeneratedProtocolMessageType('MessageDataPoker', (_message.Message,), dict(
   DESCRIPTOR = _MESSAGEDATAPOKER,
