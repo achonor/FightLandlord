@@ -19,17 +19,23 @@ const int UPPLAYERPOKERNUMTAG = 140;
 //下家牌数字的TAG
 const int DOWNPLAYERPOKERNUMTAG = 150;
 
+//自己牌的TAG(发牌时候有效）
+const int SELFPOKERTAG = 160;
+
+//执行动画的牌的TAG
+const int ACTIONPOKERTAG = 170;
+
 //背面卡牌显示比例
-const float BACKPOKERSCALE = 0.6;
+const float BACKPOKERSCALE = 0.5;
 
 //自己卡牌显示比例
-const float SELFPOKERSCALE = 0.8;
+const float SELFPOKERSCALE = 0.68;
 
 //发牌定时器的key
 const std::string DEALSCHEDULERKEY = "DEALSCHEDULERKEY";
 
 //两张牌之间的间距
-const float POKERDIS = 50.0f;
+const float POKERDIS = 35.0f;
 
 
 UIPlayGame::UIPlayGame():
@@ -53,7 +59,7 @@ bool UIPlayGame::init() {
 
 	//放牌的Node
 	this->pokerNode = Node::create();
-	this->pokerNode->setPosition(Vec2(My_visibleSize.width * 0.5, 100));
+	this->pokerNode->setPosition(Vec2(My_visibleSize.width * 0.5 + 60, 170 * 0.5 * SELFPOKERSCALE + 10));
 	this->addChild(this->pokerNode);
 
 	this->recvPokerlistener = UserEvent::addEventListener("MessageDealRsp", [&](EventCustom* event) {
@@ -151,12 +157,25 @@ void UIPlayGame::showDealAction() {
 		char tmpName[35];
 		sprintf(tmpName, "poker_card/poker_%d_%d.png", this->poker[pokerIdx].color(), this->poker[pokerIdx].number());
 		auto tmpPokerSp = Sprite::create(std::string(tmpName));
-		tmpPokerSp->setPosition(Vec2(0, My_visibleSize.height * 0.5));
+		tmpPokerSp->setPosition(Vec2((pokerIdx + 0.5 - 0.5 * pokerSum) * POKERDIS, 0));
 		tmpPokerSp->setScale(SELFPOKERSCALE);
-		this->pokerNode->addChild(tmpPokerSp, pokerIdx);
+		tmpPokerSp->setVisible(false);
+		this->pokerNode->addChild(tmpPokerSp, pokerIdx, SELFPOKERTAG);
+		//动作卡牌
+		auto actionPoker = Sprite::create("poker_card/pokerpoker_back_1.png");
+		actionPoker->setPosition(Vec2(My_visibleSize.width * 0.5, My_visibleSize.height * 0.5));
+		actionPoker->setScale(BACKPOKERSCALE);
+		this->addChild(actionPoker, 1, ACTIONPOKERTAG);
 		//动画
-		auto tmpMove = MoveTo::create(0.2, Vec2((pokerIdx + 0.5 - 0.5 * pokerSum) * POKERDIS, 0));
-		tmpPokerSp->runAction(Sequence::create(tmpMove, CallFunc::create([&]() {
+		auto tmpPos = this->pokerNode->convertToWorldSpace(tmpPokerSp->getPosition());
+		auto tmpMove = MoveTo::create(0.2, tmpPos);
+		actionPoker->runAction(Sequence::create(tmpMove, CallFunc::create([&]() {
+			this->removeChildByTag(ACTIONPOKERTAG);
+			auto tmpSelfPokerSp = this->pokerNode->getChildByTag(SELFPOKERTAG);
+			if (NULL != tmpSelfPokerSp) {
+				tmpSelfPokerSp->setVisible(true);
+				tmpSelfPokerSp->setTag(-1);
+			}
 			if (1 < pokerNum) {
 				return;
 			}
@@ -171,7 +190,7 @@ void UIPlayGame::showDealAction() {
 		auto tmpUpSp = this->getChildByTag(UPPLAYERPOKERTAG);
 		if (NULL != tmpUpSp) {
 			tmpUpSp->removeChildByTag(UPPLAYERPOKERNUMTAG);
-			auto tmpUpNumSp = My_getSpriteNumber("number/number_white.png", pokerSum - pokerNum);
+			auto tmpUpNumSp = My_getSpriteNumber("number/number_blue.png", pokerSum - pokerNum);
 			Size tmpSize = tmpUpSp->getContentSize();
 			tmpUpNumSp->setPosition(Vec2(tmpSize.width * 0.5, tmpSize.height * 0.5));
 			tmpUpNumSp->setScale(3.0);
@@ -180,7 +199,7 @@ void UIPlayGame::showDealAction() {
 		auto tmpDownSp = this->getChildByTag(DOWNPLAYERPOKERTAG);
 		if (NULL != tmpDownSp) {
 			tmpDownSp->removeChildByTag(DOWNPLAYERPOKERNUMTAG);
-			auto tmpDownNumSp = My_getSpriteNumber("number/number_white.png", pokerSum - pokerNum);
+			auto tmpDownNumSp = My_getSpriteNumber("number/number_blue.png", pokerSum - pokerNum);
 			Size tmpSize = tmpDownSp->getContentSize();
 			tmpDownNumSp->setPosition(Vec2(tmpSize.width * 0.5, tmpSize.height * 0.5));
 			tmpDownNumSp->setScale(3.0);

@@ -114,7 +114,7 @@ cocos2d::Node* My_getSpriteNumber(const std::string path, int number){
 	int tmpLen = len;
 	auto sumWidth = (len * tmpWidth) * 0.5;
 	while (-1 < (--tmpLen)) {
-		numSp[tmpLen]->setPosition(Vec2(tmpWidth * (len - tmpLen - 0.5) - sumWidth, textureSize.height* 0.5));
+		numSp[tmpLen]->setPosition(Vec2(tmpWidth * (len - tmpLen - 0.5) - sumWidth, 0));
 	}
 	return retNode;
 }
