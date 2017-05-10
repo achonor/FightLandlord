@@ -7,6 +7,7 @@ import player
 import GGData
 import gameDesk
 import functools
+import functions
 from proto import cmd_pb2
 
 class Server(object):
@@ -45,6 +46,12 @@ class Server(object):
         elif('MessageStartGameReq' == messageName):
             className = cmd_pb2.MessageStartGameReq
             requestFunc = self.requestStartGame
+        elif('MessageDealReq' == messageName):
+            className = cmd_pb2.MessageDealReq
+            requestFunc = self.requestDeal
+        elif('MessageUpdateStateReq' == messageName):
+            className = cmd_pb2.MessageUpdateStateReq
+            requestFunc = self.requestGetState()
         if(None == requestFunc):
             return
         #玩家
@@ -77,8 +84,25 @@ class Server(object):
 
         rProto = cmd_pb2.MessageStartGameRsp()
         return rProto
+    @readProto
+    def requestDeal(self, cPlayer, proto):
+        rProto = cmd_pb2.MessageDealRsp()
+        for tmpPoker in cPlayer.poker:
+            tmpProto = rProto.pokerList.add()
+            colorNumber = functions.tearPoker(tmpPoker)
+            tmpProto.color = colorNumber[0]
+            tmpProto.number = colorNumber[1]
+        return rProto
+    @readProto
+    def requestGetState(self, cPlayer, proto):
+        rProto = cmd_pb2.MessageUpdateStateRsp()
+        if(None == cPlayer.desk ):
+            rProto.gameing = False
+            return rProto
+        rProto = cPlayer.desk.getPlayerState(cPlayer)
+        return rProto
 
-    #讲玩家加入队列
+    #将玩家加入队列
     def addWaitQueue(self, playerID):
         self.__waitQueue.append(playerID)
         self.__waitQueue.append(playerID)
