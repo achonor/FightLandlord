@@ -1165,10 +1165,10 @@ class MessageUpdateStateRsp : public ::google::protobuf::Message /* @@protoc_ins
 
   // accessors -------------------------------------------------------
 
-  // repeated .MessageDataPoker midPoker = 4;
+  // repeated .MessageDataPoker midPoker = 3;
   int midpoker_size() const;
   void clear_midpoker();
-  static const int kMidPokerFieldNumber = 4;
+  static const int kMidPokerFieldNumber = 3;
   const ::MessageDataPoker& midpoker(int index) const;
   ::MessageDataPoker* mutable_midpoker(int index);
   ::MessageDataPoker* add_midpoker();
@@ -1177,10 +1177,10 @@ class MessageUpdateStateRsp : public ::google::protobuf::Message /* @@protoc_ins
   const ::google::protobuf::RepeatedPtrField< ::MessageDataPoker >&
       midpoker() const;
 
-  // repeated .MessageDataPoker landlordPoker = 5;
+  // repeated .MessageDataPoker landlordPoker = 4;
   int landlordpoker_size() const;
   void clear_landlordpoker();
-  static const int kLandlordPokerFieldNumber = 5;
+  static const int kLandlordPokerFieldNumber = 4;
   const ::MessageDataPoker& landlordpoker(int index) const;
   ::MessageDataPoker* mutable_landlordpoker(int index);
   ::MessageDataPoker* add_landlordpoker();
@@ -1189,10 +1189,10 @@ class MessageUpdateStateRsp : public ::google::protobuf::Message /* @@protoc_ins
   const ::google::protobuf::RepeatedPtrField< ::MessageDataPoker >&
       landlordpoker() const;
 
-  // repeated .MessageDataPoker selfPoker = 6;
+  // repeated .MessageDataPoker selfPoker = 5;
   int selfpoker_size() const;
   void clear_selfpoker();
-  static const int kSelfPokerFieldNumber = 6;
+  static const int kSelfPokerFieldNumber = 5;
   const ::MessageDataPoker& selfpoker(int index) const;
   ::MessageDataPoker* mutable_selfpoker(int index);
   ::MessageDataPoker* add_selfpoker();
@@ -1215,12 +1215,26 @@ class MessageUpdateStateRsp : public ::google::protobuf::Message /* @@protoc_ins
   ::google::protobuf::int32 statetype() const;
   void set_statetype(::google::protobuf::int32 value);
 
-  // optional double endTime = 3;
-  bool has_endtime() const;
-  void clear_endtime();
-  static const int kEndTimeFieldNumber = 3;
-  double endtime() const;
-  void set_endtime(double value);
+  // optional int32 upPokerNum = 6;
+  bool has_uppokernum() const;
+  void clear_uppokernum();
+  static const int kUpPokerNumFieldNumber = 6;
+  ::google::protobuf::int32 uppokernum() const;
+  void set_uppokernum(::google::protobuf::int32 value);
+
+  // optional int32 downPokerNum = 7;
+  bool has_downpokernum() const;
+  void clear_downpokernum();
+  static const int kDownPokerNumFieldNumber = 7;
+  ::google::protobuf::int32 downpokernum() const;
+  void set_downpokernum(::google::protobuf::int32 value);
+
+  // optional int32 laveTime = 8;
+  bool has_lavetime() const;
+  void clear_lavetime();
+  static const int kLaveTimeFieldNumber = 8;
+  ::google::protobuf::int32 lavetime() const;
+  void set_lavetime(::google::protobuf::int32 value);
 
   // @@protoc_insertion_point(class_scope:MessageUpdateStateRsp)
  private:
@@ -1228,8 +1242,12 @@ class MessageUpdateStateRsp : public ::google::protobuf::Message /* @@protoc_ins
   void clear_has_playeridx();
   void set_has_statetype();
   void clear_has_statetype();
-  void set_has_endtime();
-  void clear_has_endtime();
+  void set_has_uppokernum();
+  void clear_has_uppokernum();
+  void set_has_downpokernum();
+  void clear_has_downpokernum();
+  void set_has_lavetime();
+  void clear_has_lavetime();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
@@ -1239,7 +1257,9 @@ class MessageUpdateStateRsp : public ::google::protobuf::Message /* @@protoc_ins
   ::google::protobuf::RepeatedPtrField< ::MessageDataPoker > selfpoker_;
   ::google::protobuf::int32 playeridx_;
   ::google::protobuf::int32 statetype_;
-  double endtime_;
+  ::google::protobuf::int32 uppokernum_;
+  ::google::protobuf::int32 downpokernum_;
+  ::google::protobuf::int32 lavetime_;
   friend struct protobuf_cmd_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
@@ -2289,31 +2309,7 @@ inline void MessageUpdateStateRsp::set_statetype(::google::protobuf::int32 value
   // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.stateType)
 }
 
-// optional double endTime = 3;
-inline bool MessageUpdateStateRsp::has_endtime() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
-}
-inline void MessageUpdateStateRsp::set_has_endtime() {
-  _has_bits_[0] |= 0x00000004u;
-}
-inline void MessageUpdateStateRsp::clear_has_endtime() {
-  _has_bits_[0] &= ~0x00000004u;
-}
-inline void MessageUpdateStateRsp::clear_endtime() {
-  endtime_ = 0;
-  clear_has_endtime();
-}
-inline double MessageUpdateStateRsp::endtime() const {
-  // @@protoc_insertion_point(field_get:MessageUpdateStateRsp.endTime)
-  return endtime_;
-}
-inline void MessageUpdateStateRsp::set_endtime(double value) {
-  set_has_endtime();
-  endtime_ = value;
-  // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.endTime)
-}
-
-// repeated .MessageDataPoker midPoker = 4;
+// repeated .MessageDataPoker midPoker = 3;
 inline int MessageUpdateStateRsp::midpoker_size() const {
   return midpoker_.size();
 }
@@ -2343,7 +2339,7 @@ MessageUpdateStateRsp::midpoker() const {
   return midpoker_;
 }
 
-// repeated .MessageDataPoker landlordPoker = 5;
+// repeated .MessageDataPoker landlordPoker = 4;
 inline int MessageUpdateStateRsp::landlordpoker_size() const {
   return landlordpoker_.size();
 }
@@ -2373,7 +2369,7 @@ MessageUpdateStateRsp::landlordpoker() const {
   return landlordpoker_;
 }
 
-// repeated .MessageDataPoker selfPoker = 6;
+// repeated .MessageDataPoker selfPoker = 5;
 inline int MessageUpdateStateRsp::selfpoker_size() const {
   return selfpoker_.size();
 }
@@ -2401,6 +2397,78 @@ inline const ::google::protobuf::RepeatedPtrField< ::MessageDataPoker >&
 MessageUpdateStateRsp::selfpoker() const {
   // @@protoc_insertion_point(field_list:MessageUpdateStateRsp.selfPoker)
   return selfpoker_;
+}
+
+// optional int32 upPokerNum = 6;
+inline bool MessageUpdateStateRsp::has_uppokernum() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void MessageUpdateStateRsp::set_has_uppokernum() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void MessageUpdateStateRsp::clear_has_uppokernum() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void MessageUpdateStateRsp::clear_uppokernum() {
+  uppokernum_ = 0;
+  clear_has_uppokernum();
+}
+inline ::google::protobuf::int32 MessageUpdateStateRsp::uppokernum() const {
+  // @@protoc_insertion_point(field_get:MessageUpdateStateRsp.upPokerNum)
+  return uppokernum_;
+}
+inline void MessageUpdateStateRsp::set_uppokernum(::google::protobuf::int32 value) {
+  set_has_uppokernum();
+  uppokernum_ = value;
+  // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.upPokerNum)
+}
+
+// optional int32 downPokerNum = 7;
+inline bool MessageUpdateStateRsp::has_downpokernum() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void MessageUpdateStateRsp::set_has_downpokernum() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void MessageUpdateStateRsp::clear_has_downpokernum() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void MessageUpdateStateRsp::clear_downpokernum() {
+  downpokernum_ = 0;
+  clear_has_downpokernum();
+}
+inline ::google::protobuf::int32 MessageUpdateStateRsp::downpokernum() const {
+  // @@protoc_insertion_point(field_get:MessageUpdateStateRsp.downPokerNum)
+  return downpokernum_;
+}
+inline void MessageUpdateStateRsp::set_downpokernum(::google::protobuf::int32 value) {
+  set_has_downpokernum();
+  downpokernum_ = value;
+  // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.downPokerNum)
+}
+
+// optional int32 laveTime = 8;
+inline bool MessageUpdateStateRsp::has_lavetime() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void MessageUpdateStateRsp::set_has_lavetime() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void MessageUpdateStateRsp::clear_has_lavetime() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void MessageUpdateStateRsp::clear_lavetime() {
+  lavetime_ = 0;
+  clear_has_lavetime();
+}
+inline ::google::protobuf::int32 MessageUpdateStateRsp::lavetime() const {
+  // @@protoc_insertion_point(field_get:MessageUpdateStateRsp.laveTime)
+  return lavetime_;
+}
+inline void MessageUpdateStateRsp::set_lavetime(::google::protobuf::int32 value) {
+  set_has_lavetime();
+  lavetime_ = value;
+  // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.laveTime)
 }
 
 // -------------------------------------------------------------------

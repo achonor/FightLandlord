@@ -50,6 +50,8 @@ protected:
 	void gradButtonCallback(bool state);
 	//出牌按钮，不出按钮回调函数(state 是否出牌）
 	void outButtonCallback(bool state);
+	//设置玩家牌的数量(上家和下家）
+	void setPlayerPokerNumber(int up, int down);
 
 public:
 	//请求开始游戏

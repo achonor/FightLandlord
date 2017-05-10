@@ -49,12 +49,19 @@ bool UIStartGame::init() {
 		}
 	});
 
-
 	return true;
+}
+
+void UIStartGame::onEnter() {
+	this->startGame();
 }
 
 void UIStartGame::startGame() {
 	cout << "startGame...." << endl;
-	auto uiPlayGame = UIPlayGame::create();
+	static UIPlayGame* uiPlayGame = NULL;
+	if (NULL != uiPlayGame) {
+		uiPlayGame->removeFromParent();
+	}
+	uiPlayGame = UIPlayGame::create();
 	My_gameScene->pushPanel(uiPlayGame);
 }

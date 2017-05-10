@@ -15,6 +15,8 @@ private:
 	//开始游戏
 	void startGame();
 
+	virtual void onEnter();
+
 public:
 	CREATE_FUNC(UIStartGame);
 };
