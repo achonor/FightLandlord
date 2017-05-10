@@ -51,7 +51,13 @@ class Server(object):
             requestFunc = self.requestDeal
         elif('MessageUpdateStateReq' == messageName):
             className = cmd_pb2.MessageUpdateStateReq
-            requestFunc = self.requestGetState()
+            requestFunc = self.requestGetState
+        elif('MessageGradLandlordReq' == messageName):
+            className = cmd_pb2.MessageGradLandlordReq
+            requestFunc = self.requestGradLandlord
+        elif('MessageOutPokerReq' == messageName):
+            className = cmd_pb2.MessageOutPokerReq
+            requestFunc = self.requestOutPoker
         if(None == requestFunc):
             return
         #玩家
@@ -97,21 +103,31 @@ class Server(object):
     def requestGetState(self, cPlayer, proto):
         rProto = cmd_pb2.MessageUpdateStateRsp()
         if(None == cPlayer.desk ):
-            rProto.gameing = False
             return rProto
         rProto = cPlayer.desk.getPlayerState(cPlayer)
         return rProto
 
+    @readProto
+    def requestGradLandlord(self, cPlayer, proto):
+        rProto = cmd_pb2.MessageGradLandlordRsp()
+        cPlayer.desk.handleGradLandlord(cPlayer.playerID, proto)
+        return rProto
+
+    @readProto
+    def requestOutPoker(self, cPlayer, proto):
+        rProto = cmd_pb2.MessageOutPokerRsp()
+
+        return rProto
     #将玩家加入队列
     def addWaitQueue(self, playerID):
-        self.__waitQueue.append(playerID)
-        self.__waitQueue.append(playerID)
         self.__waitQueue.append(playerID)
         if (3 <= len(self.__waitQueue)):
             # 可以凑一桌了
             tmpDesk = gameDesk.desk(self.__waitQueue[0:3])
             self.deskList.append(tmpDesk)
             self.__waitQueue = self.__waitQueue[3:]
+            #游戏开始
+            tmpDesk.startGame()
 
     #获取玩家
     def getPlayer(self, playerID):

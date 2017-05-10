@@ -6,6 +6,7 @@ import random
 import functools
 from proto import cmd_pb2
 
+TIMEOFFSET = 0
 poker = [516, 616, 13, 14, 15, 16, 17, 18, 19, 110, 111, 112, 113, 114, 115, 23, 24, 25, 26, 27, 28, 29, 210, 211, 212, 213, 214, 215, 33, 34, 35, 36, 37, 38, 39, 310, 311, 312, 313, 314, 315, 43, 44, 45, 46, 47, 48, 49, 410, 411, 412, 413, 414, 415]
 
 #输出函数运行时间
@@ -17,6 +18,11 @@ def runtime(func):
         end = time.clock()
         print "uesd time:", end - start
     return wrapper
+
+#获取系统时间
+def getSystemTime():
+    #protobuf抽风，太大的数字序列化会报错，和客户端约定减少特定的值
+    return time.time() - TIMEOFFSET
 
 #int转化成char
 def intToChar(num):
@@ -38,7 +44,7 @@ def serialization(proto, playerID = 0, messageID = 0):
     mainProto.messageID = messageID
     mainProto.messageName = proto.__class__.__name__
     mainProto.messageData = proto.SerializeToString()
-    mainProto.serverTime = time.time()
+    mainProto.serverTime = getSystemTime()
     #序列化包装后的协议
     tmpStr = mainProto.SerializeToString()
     tmpLen = len(tmpStr)

@@ -8,7 +8,7 @@ message MainProto{
 	required int32 messageID = 2;
 	optional string messageName = 3;
 	optional string messageData = 4;
-	optional int64 serverTime = 5;
+	optional double serverTime = 5;
 }
 
 
@@ -56,9 +56,14 @@ message MessageUpdateStateReq{
 	
 }
 message MessageUpdateStateRsp{
-	optional int32 playerID = 1; 	//可以操作的玩家ID
-	optional int32 stateType = 2;   //操作类型，1，抢地主，2出牌
-	optional int32 endTime = 3;		//结束时间
+	optional int32 playerIdx = 1; 	//可以操作的玩家位置, (0.自己, 1.下家, 2.上家)
+	optional int32 stateType = 2;   //操作类型，0没开始 1抢地主，2出牌
+	repeated MessageDataPoker midPoker = 3;	//牌桌上的牌
+	repeated MessageDataPoker landlordPoker = 4; //地主牌
+	repeated MessageDataPoker selfPoker = 5;	//自己的牌
+	optional int32 upPokerNum = 6;				//上家牌数
+	optional int32 downPokerNum = 7;			//下家家牌数
+	optional int32 laveTime = 8;		//剩余时间
 }
 
 
@@ -70,8 +75,12 @@ message MessageGradLandlordRsp{
 	
 }
 
-
-
+//出牌
+message MessageOutPokerReq{
+	repeated MessageDataPoker poker = 1;
+}
+message MessageOutPokerRsp{
+}
 
 //////////////////////////////////////
 message MessageDataPoker{
