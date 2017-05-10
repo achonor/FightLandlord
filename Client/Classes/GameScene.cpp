@@ -96,7 +96,7 @@ void GameLayer::setSrceenVisible(bool state) {
 
 void GameLayer::pushPanel(Node *panel, bool isTop) {
 	if (MAX_PANEL_NUM <= this->curPanelNumber) {
-		throw std::exception("ERROR: panel is full");
+        std::cout<<"ERROR: panel is full" <<endl;
 		return;
 	}
 	if (this->curPanelNumber > 0) {
@@ -113,7 +113,8 @@ void GameLayer::pushPanel(Node *panel, bool isTop) {
 
 void GameLayer::popPanel() {
 	if (this->curPanelNumber <= 0) {
-		throw std::exception("ERROR: don't have panel");
+        std::exception();
+        std::cout<< "ERROR: don't have panel" <<endl;
 		return;
 	}
 	this->panelList[--this->curPanelNumber]->removeFromParent();

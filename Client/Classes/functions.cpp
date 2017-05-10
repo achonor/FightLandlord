@@ -125,4 +125,14 @@ double My_calcPostionDis(Vec2 &pos1, Vec2 &pos2) {
 	return sqrt(pow(pos1.x - pos2.x, 2) + pow(pos1.y - pos2.y, 2));
 }
 
+//poker排序
+bool My_pokerCmd(MessageDataPoker &a, MessageDataPoker &b) {
+	if (a.number() != b.number()) {
+		return b.number() < a.number();
+	} else if (a.color() != b.color()) {
+		return a.color() < b.color();
+	}
+	return false;
+}
+
 //

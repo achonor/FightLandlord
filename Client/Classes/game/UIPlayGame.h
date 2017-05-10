@@ -4,8 +4,10 @@
 #include "cocos2d.h"
 #include "UIPanel.h"
 #include "UIPoker.h"
+#include "ui/UIButton.h"
 
 USING_NS_CC;
+using namespace ui;
 
 //最多有多少牌
 const int MAXPOKERNUM = 20;
@@ -32,8 +34,22 @@ protected:
 	int checkTouchInPoker(Vec2 &pos);
 	//开始游戏（发牌完成，可以选择牌）
 	void startGame();
+	//刷新自己手里的牌
+	void refreshSelfPoker(vector<MessageDataPoker> &pokerList, bool state = true);
 	//刷新状态
 	void refreshState(MessageUpdateStateRsp* proto);
+	//创建UI
+	void createUI();
+	//显示抢地主UI
+	void setGradUIEnabled(bool state);
+	//显示出牌UI
+	void setOutUIEnabled(bool state);
+	//设置时钟倒计时(pos：0，自己，2.下家，3.下家）
+	void setCountDown(int pos, int counts, function<void()> callback = NULL);
+	//叫地主按钮，不叫按钮回调函数(state 是否叫地主）
+	void gradButtonCallback(bool state);
+	//出牌按钮，不出按钮回调函数(state 是否出牌）
+	void outButtonCallback(bool state);
 
 public:
 	//请求开始游戏
@@ -70,5 +86,22 @@ protected:
 	bool lastPokerState[MAXPOKERNUM + 1];
 	//游戏是否开始
 	bool gameing;
+	//是都在触摸中
+	bool touching;
+
+	//时钟Sprite
+	Sprite* bellSprite;
+	//叫地主Button
+	ui::Button* gradButton;
+	//不叫Button
+	ui::Button* notGradButton;
+	//出牌Button
+	ui::Button* outButton;
+	//不出Button
+	ui::Button* notOutButton;
+	//放地主牌的Node
+	Node* landlordPokerNode;
+	//牌桌上牌的Node
+	Node* deskPokerNode;
 };
 

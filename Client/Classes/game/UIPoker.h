@@ -20,6 +20,9 @@ public:
 
 	static UIPoker* create(MessageDataPoker* poker = NULL);
 
+	//获取牌的值
+	MessageDataPoker getPoker();
+
 protected:
 	//牌的值
 	MessageDataPoker poker;

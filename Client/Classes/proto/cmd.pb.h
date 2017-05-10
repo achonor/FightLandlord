@@ -42,12 +42,24 @@ extern MessageDealReqDefaultTypeInternal _MessageDealReq_default_instance_;
 class MessageDealRsp;
 class MessageDealRspDefaultTypeInternal;
 extern MessageDealRspDefaultTypeInternal _MessageDealRsp_default_instance_;
+class MessageGradLandlordReq;
+class MessageGradLandlordReqDefaultTypeInternal;
+extern MessageGradLandlordReqDefaultTypeInternal _MessageGradLandlordReq_default_instance_;
+class MessageGradLandlordRsp;
+class MessageGradLandlordRspDefaultTypeInternal;
+extern MessageGradLandlordRspDefaultTypeInternal _MessageGradLandlordRsp_default_instance_;
 class MessageLoginReq;
 class MessageLoginReqDefaultTypeInternal;
 extern MessageLoginReqDefaultTypeInternal _MessageLoginReq_default_instance_;
 class MessageLoginRsp;
 class MessageLoginRspDefaultTypeInternal;
 extern MessageLoginRspDefaultTypeInternal _MessageLoginRsp_default_instance_;
+class MessageOutPokerReq;
+class MessageOutPokerReqDefaultTypeInternal;
+extern MessageOutPokerReqDefaultTypeInternal _MessageOutPokerReq_default_instance_;
+class MessageOutPokerRsp;
+class MessageOutPokerRspDefaultTypeInternal;
+extern MessageOutPokerRspDefaultTypeInternal _MessageOutPokerRsp_default_instance_;
 class MessagePeopleReq;
 class MessagePeopleReqDefaultTypeInternal;
 extern MessagePeopleReqDefaultTypeInternal _MessagePeopleReq_default_instance_;
@@ -199,12 +211,12 @@ class MainProto : public ::google::protobuf::Message /* @@protoc_insertion_point
   ::google::protobuf::int32 messageid() const;
   void set_messageid(::google::protobuf::int32 value);
 
-  // optional int64 serverTime = 5;
+  // optional double serverTime = 5;
   bool has_servertime() const;
   void clear_servertime();
   static const int kServerTimeFieldNumber = 5;
-  ::google::protobuf::int64 servertime() const;
-  void set_servertime(::google::protobuf::int64 value);
+  double servertime() const;
+  void set_servertime(double value);
 
   // @@protoc_insertion_point(class_scope:MainProto)
  private:
@@ -229,7 +241,7 @@ class MainProto : public ::google::protobuf::Message /* @@protoc_insertion_point
   ::google::protobuf::internal::ArenaStringPtr messagedata_;
   ::google::protobuf::int32 playerid_;
   ::google::protobuf::int32 messageid_;
-  ::google::protobuf::int64 servertime_;
+  double servertime_;
   friend struct protobuf_cmd_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
@@ -1153,12 +1165,48 @@ class MessageUpdateStateRsp : public ::google::protobuf::Message /* @@protoc_ins
 
   // accessors -------------------------------------------------------
 
-  // optional int32 playerID = 1;
-  bool has_playerid() const;
-  void clear_playerid();
-  static const int kPlayerIDFieldNumber = 1;
-  ::google::protobuf::int32 playerid() const;
-  void set_playerid(::google::protobuf::int32 value);
+  // repeated .MessageDataPoker midPoker = 4;
+  int midpoker_size() const;
+  void clear_midpoker();
+  static const int kMidPokerFieldNumber = 4;
+  const ::MessageDataPoker& midpoker(int index) const;
+  ::MessageDataPoker* mutable_midpoker(int index);
+  ::MessageDataPoker* add_midpoker();
+  ::google::protobuf::RepeatedPtrField< ::MessageDataPoker >*
+      mutable_midpoker();
+  const ::google::protobuf::RepeatedPtrField< ::MessageDataPoker >&
+      midpoker() const;
+
+  // repeated .MessageDataPoker landlordPoker = 5;
+  int landlordpoker_size() const;
+  void clear_landlordpoker();
+  static const int kLandlordPokerFieldNumber = 5;
+  const ::MessageDataPoker& landlordpoker(int index) const;
+  ::MessageDataPoker* mutable_landlordpoker(int index);
+  ::MessageDataPoker* add_landlordpoker();
+  ::google::protobuf::RepeatedPtrField< ::MessageDataPoker >*
+      mutable_landlordpoker();
+  const ::google::protobuf::RepeatedPtrField< ::MessageDataPoker >&
+      landlordpoker() const;
+
+  // repeated .MessageDataPoker selfPoker = 6;
+  int selfpoker_size() const;
+  void clear_selfpoker();
+  static const int kSelfPokerFieldNumber = 6;
+  const ::MessageDataPoker& selfpoker(int index) const;
+  ::MessageDataPoker* mutable_selfpoker(int index);
+  ::MessageDataPoker* add_selfpoker();
+  ::google::protobuf::RepeatedPtrField< ::MessageDataPoker >*
+      mutable_selfpoker();
+  const ::google::protobuf::RepeatedPtrField< ::MessageDataPoker >&
+      selfpoker() const;
+
+  // optional int32 playerIdx = 1;
+  bool has_playeridx() const;
+  void clear_playeridx();
+  static const int kPlayerIdxFieldNumber = 1;
+  ::google::protobuf::int32 playeridx() const;
+  void set_playeridx(::google::protobuf::int32 value);
 
   // optional int32 stateType = 2;
   bool has_statetype() const;
@@ -1167,17 +1215,17 @@ class MessageUpdateStateRsp : public ::google::protobuf::Message /* @@protoc_ins
   ::google::protobuf::int32 statetype() const;
   void set_statetype(::google::protobuf::int32 value);
 
-  // optional int32 endTime = 3;
+  // optional double endTime = 3;
   bool has_endtime() const;
   void clear_endtime();
   static const int kEndTimeFieldNumber = 3;
-  ::google::protobuf::int32 endtime() const;
-  void set_endtime(::google::protobuf::int32 value);
+  double endtime() const;
+  void set_endtime(double value);
 
   // @@protoc_insertion_point(class_scope:MessageUpdateStateRsp)
  private:
-  void set_has_playerid();
-  void clear_has_playerid();
+  void set_has_playeridx();
+  void clear_has_playeridx();
   void set_has_statetype();
   void clear_has_statetype();
   void set_has_endtime();
@@ -1186,9 +1234,363 @@ class MessageUpdateStateRsp : public ::google::protobuf::Message /* @@protoc_ins
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
   mutable int _cached_size_;
-  ::google::protobuf::int32 playerid_;
+  ::google::protobuf::RepeatedPtrField< ::MessageDataPoker > midpoker_;
+  ::google::protobuf::RepeatedPtrField< ::MessageDataPoker > landlordpoker_;
+  ::google::protobuf::RepeatedPtrField< ::MessageDataPoker > selfpoker_;
+  ::google::protobuf::int32 playeridx_;
   ::google::protobuf::int32 statetype_;
-  ::google::protobuf::int32 endtime_;
+  double endtime_;
+  friend struct protobuf_cmd_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class MessageGradLandlordReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:MessageGradLandlordReq) */ {
+ public:
+  MessageGradLandlordReq();
+  virtual ~MessageGradLandlordReq();
+
+  MessageGradLandlordReq(const MessageGradLandlordReq& from);
+
+  inline MessageGradLandlordReq& operator=(const MessageGradLandlordReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MessageGradLandlordReq& default_instance();
+
+  static inline const MessageGradLandlordReq* internal_default_instance() {
+    return reinterpret_cast<const MessageGradLandlordReq*>(
+               &_MessageGradLandlordReq_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    11;
+
+  void Swap(MessageGradLandlordReq* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MessageGradLandlordReq* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  MessageGradLandlordReq* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const MessageGradLandlordReq& from);
+  void MergeFrom(const MessageGradLandlordReq& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(MessageGradLandlordReq* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional bool isGrad = 1;
+  bool has_isgrad() const;
+  void clear_isgrad();
+  static const int kIsGradFieldNumber = 1;
+  bool isgrad() const;
+  void set_isgrad(bool value);
+
+  // @@protoc_insertion_point(class_scope:MessageGradLandlordReq)
+ private:
+  void set_has_isgrad();
+  void clear_has_isgrad();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable int _cached_size_;
+  bool isgrad_;
+  friend struct protobuf_cmd_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class MessageGradLandlordRsp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:MessageGradLandlordRsp) */ {
+ public:
+  MessageGradLandlordRsp();
+  virtual ~MessageGradLandlordRsp();
+
+  MessageGradLandlordRsp(const MessageGradLandlordRsp& from);
+
+  inline MessageGradLandlordRsp& operator=(const MessageGradLandlordRsp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MessageGradLandlordRsp& default_instance();
+
+  static inline const MessageGradLandlordRsp* internal_default_instance() {
+    return reinterpret_cast<const MessageGradLandlordRsp*>(
+               &_MessageGradLandlordRsp_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    12;
+
+  void Swap(MessageGradLandlordRsp* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MessageGradLandlordRsp* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  MessageGradLandlordRsp* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const MessageGradLandlordRsp& from);
+  void MergeFrom(const MessageGradLandlordRsp& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(MessageGradLandlordRsp* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:MessageGradLandlordRsp)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable int _cached_size_;
+  friend struct protobuf_cmd_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class MessageOutPokerReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:MessageOutPokerReq) */ {
+ public:
+  MessageOutPokerReq();
+  virtual ~MessageOutPokerReq();
+
+  MessageOutPokerReq(const MessageOutPokerReq& from);
+
+  inline MessageOutPokerReq& operator=(const MessageOutPokerReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MessageOutPokerReq& default_instance();
+
+  static inline const MessageOutPokerReq* internal_default_instance() {
+    return reinterpret_cast<const MessageOutPokerReq*>(
+               &_MessageOutPokerReq_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    13;
+
+  void Swap(MessageOutPokerReq* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MessageOutPokerReq* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  MessageOutPokerReq* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const MessageOutPokerReq& from);
+  void MergeFrom(const MessageOutPokerReq& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(MessageOutPokerReq* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .MessageDataPoker poker = 1;
+  int poker_size() const;
+  void clear_poker();
+  static const int kPokerFieldNumber = 1;
+  const ::MessageDataPoker& poker(int index) const;
+  ::MessageDataPoker* mutable_poker(int index);
+  ::MessageDataPoker* add_poker();
+  ::google::protobuf::RepeatedPtrField< ::MessageDataPoker >*
+      mutable_poker();
+  const ::google::protobuf::RepeatedPtrField< ::MessageDataPoker >&
+      poker() const;
+
+  // @@protoc_insertion_point(class_scope:MessageOutPokerReq)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable int _cached_size_;
+  ::google::protobuf::RepeatedPtrField< ::MessageDataPoker > poker_;
+  friend struct protobuf_cmd_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class MessageOutPokerRsp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:MessageOutPokerRsp) */ {
+ public:
+  MessageOutPokerRsp();
+  virtual ~MessageOutPokerRsp();
+
+  MessageOutPokerRsp(const MessageOutPokerRsp& from);
+
+  inline MessageOutPokerRsp& operator=(const MessageOutPokerRsp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MessageOutPokerRsp& default_instance();
+
+  static inline const MessageOutPokerRsp* internal_default_instance() {
+    return reinterpret_cast<const MessageOutPokerRsp*>(
+               &_MessageOutPokerRsp_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    14;
+
+  void Swap(MessageOutPokerRsp* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MessageOutPokerRsp* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  MessageOutPokerRsp* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const MessageOutPokerRsp& from);
+  void MergeFrom(const MessageOutPokerRsp& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(MessageOutPokerRsp* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:MessageOutPokerRsp)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable int _cached_size_;
   friend struct protobuf_cmd_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
@@ -1221,7 +1623,7 @@ class MessageDataPoker : public ::google::protobuf::Message /* @@protoc_insertio
                &_MessageDataPoker_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    11;
+    15;
 
   void Swap(MessageDataPoker* other);
 
@@ -1475,7 +1877,7 @@ inline void MainProto::set_allocated_messagedata(::std::string* messagedata) {
   // @@protoc_insertion_point(field_set_allocated:MainProto.messageData)
 }
 
-// optional int64 serverTime = 5;
+// optional double serverTime = 5;
 inline bool MainProto::has_servertime() const {
   return (_has_bits_[0] & 0x00000010u) != 0;
 }
@@ -1486,14 +1888,14 @@ inline void MainProto::clear_has_servertime() {
   _has_bits_[0] &= ~0x00000010u;
 }
 inline void MainProto::clear_servertime() {
-  servertime_ = GOOGLE_LONGLONG(0);
+  servertime_ = 0;
   clear_has_servertime();
 }
-inline ::google::protobuf::int64 MainProto::servertime() const {
+inline double MainProto::servertime() const {
   // @@protoc_insertion_point(field_get:MainProto.serverTime)
   return servertime_;
 }
-inline void MainProto::set_servertime(::google::protobuf::int64 value) {
+inline void MainProto::set_servertime(double value) {
   set_has_servertime();
   servertime_ = value;
   // @@protoc_insertion_point(field_set:MainProto.serverTime)
@@ -1839,28 +2241,28 @@ MessageDealRsp::pokerlist() const {
 
 // MessageUpdateStateRsp
 
-// optional int32 playerID = 1;
-inline bool MessageUpdateStateRsp::has_playerid() const {
+// optional int32 playerIdx = 1;
+inline bool MessageUpdateStateRsp::has_playeridx() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
-inline void MessageUpdateStateRsp::set_has_playerid() {
+inline void MessageUpdateStateRsp::set_has_playeridx() {
   _has_bits_[0] |= 0x00000001u;
 }
-inline void MessageUpdateStateRsp::clear_has_playerid() {
+inline void MessageUpdateStateRsp::clear_has_playeridx() {
   _has_bits_[0] &= ~0x00000001u;
 }
-inline void MessageUpdateStateRsp::clear_playerid() {
-  playerid_ = 0;
-  clear_has_playerid();
+inline void MessageUpdateStateRsp::clear_playeridx() {
+  playeridx_ = 0;
+  clear_has_playeridx();
 }
-inline ::google::protobuf::int32 MessageUpdateStateRsp::playerid() const {
-  // @@protoc_insertion_point(field_get:MessageUpdateStateRsp.playerID)
-  return playerid_;
+inline ::google::protobuf::int32 MessageUpdateStateRsp::playeridx() const {
+  // @@protoc_insertion_point(field_get:MessageUpdateStateRsp.playerIdx)
+  return playeridx_;
 }
-inline void MessageUpdateStateRsp::set_playerid(::google::protobuf::int32 value) {
-  set_has_playerid();
-  playerid_ = value;
-  // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.playerID)
+inline void MessageUpdateStateRsp::set_playeridx(::google::protobuf::int32 value) {
+  set_has_playeridx();
+  playeridx_ = value;
+  // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.playerIdx)
 }
 
 // optional int32 stateType = 2;
@@ -1887,7 +2289,7 @@ inline void MessageUpdateStateRsp::set_statetype(::google::protobuf::int32 value
   // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.stateType)
 }
 
-// optional int32 endTime = 3;
+// optional double endTime = 3;
 inline bool MessageUpdateStateRsp::has_endtime() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -1901,15 +2303,175 @@ inline void MessageUpdateStateRsp::clear_endtime() {
   endtime_ = 0;
   clear_has_endtime();
 }
-inline ::google::protobuf::int32 MessageUpdateStateRsp::endtime() const {
+inline double MessageUpdateStateRsp::endtime() const {
   // @@protoc_insertion_point(field_get:MessageUpdateStateRsp.endTime)
   return endtime_;
 }
-inline void MessageUpdateStateRsp::set_endtime(::google::protobuf::int32 value) {
+inline void MessageUpdateStateRsp::set_endtime(double value) {
   set_has_endtime();
   endtime_ = value;
   // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.endTime)
 }
+
+// repeated .MessageDataPoker midPoker = 4;
+inline int MessageUpdateStateRsp::midpoker_size() const {
+  return midpoker_.size();
+}
+inline void MessageUpdateStateRsp::clear_midpoker() {
+  midpoker_.Clear();
+}
+inline const ::MessageDataPoker& MessageUpdateStateRsp::midpoker(int index) const {
+  // @@protoc_insertion_point(field_get:MessageUpdateStateRsp.midPoker)
+  return midpoker_.Get(index);
+}
+inline ::MessageDataPoker* MessageUpdateStateRsp::mutable_midpoker(int index) {
+  // @@protoc_insertion_point(field_mutable:MessageUpdateStateRsp.midPoker)
+  return midpoker_.Mutable(index);
+}
+inline ::MessageDataPoker* MessageUpdateStateRsp::add_midpoker() {
+  // @@protoc_insertion_point(field_add:MessageUpdateStateRsp.midPoker)
+  return midpoker_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::MessageDataPoker >*
+MessageUpdateStateRsp::mutable_midpoker() {
+  // @@protoc_insertion_point(field_mutable_list:MessageUpdateStateRsp.midPoker)
+  return &midpoker_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::MessageDataPoker >&
+MessageUpdateStateRsp::midpoker() const {
+  // @@protoc_insertion_point(field_list:MessageUpdateStateRsp.midPoker)
+  return midpoker_;
+}
+
+// repeated .MessageDataPoker landlordPoker = 5;
+inline int MessageUpdateStateRsp::landlordpoker_size() const {
+  return landlordpoker_.size();
+}
+inline void MessageUpdateStateRsp::clear_landlordpoker() {
+  landlordpoker_.Clear();
+}
+inline const ::MessageDataPoker& MessageUpdateStateRsp::landlordpoker(int index) const {
+  // @@protoc_insertion_point(field_get:MessageUpdateStateRsp.landlordPoker)
+  return landlordpoker_.Get(index);
+}
+inline ::MessageDataPoker* MessageUpdateStateRsp::mutable_landlordpoker(int index) {
+  // @@protoc_insertion_point(field_mutable:MessageUpdateStateRsp.landlordPoker)
+  return landlordpoker_.Mutable(index);
+}
+inline ::MessageDataPoker* MessageUpdateStateRsp::add_landlordpoker() {
+  // @@protoc_insertion_point(field_add:MessageUpdateStateRsp.landlordPoker)
+  return landlordpoker_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::MessageDataPoker >*
+MessageUpdateStateRsp::mutable_landlordpoker() {
+  // @@protoc_insertion_point(field_mutable_list:MessageUpdateStateRsp.landlordPoker)
+  return &landlordpoker_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::MessageDataPoker >&
+MessageUpdateStateRsp::landlordpoker() const {
+  // @@protoc_insertion_point(field_list:MessageUpdateStateRsp.landlordPoker)
+  return landlordpoker_;
+}
+
+// repeated .MessageDataPoker selfPoker = 6;
+inline int MessageUpdateStateRsp::selfpoker_size() const {
+  return selfpoker_.size();
+}
+inline void MessageUpdateStateRsp::clear_selfpoker() {
+  selfpoker_.Clear();
+}
+inline const ::MessageDataPoker& MessageUpdateStateRsp::selfpoker(int index) const {
+  // @@protoc_insertion_point(field_get:MessageUpdateStateRsp.selfPoker)
+  return selfpoker_.Get(index);
+}
+inline ::MessageDataPoker* MessageUpdateStateRsp::mutable_selfpoker(int index) {
+  // @@protoc_insertion_point(field_mutable:MessageUpdateStateRsp.selfPoker)
+  return selfpoker_.Mutable(index);
+}
+inline ::MessageDataPoker* MessageUpdateStateRsp::add_selfpoker() {
+  // @@protoc_insertion_point(field_add:MessageUpdateStateRsp.selfPoker)
+  return selfpoker_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::MessageDataPoker >*
+MessageUpdateStateRsp::mutable_selfpoker() {
+  // @@protoc_insertion_point(field_mutable_list:MessageUpdateStateRsp.selfPoker)
+  return &selfpoker_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::MessageDataPoker >&
+MessageUpdateStateRsp::selfpoker() const {
+  // @@protoc_insertion_point(field_list:MessageUpdateStateRsp.selfPoker)
+  return selfpoker_;
+}
+
+// -------------------------------------------------------------------
+
+// MessageGradLandlordReq
+
+// optional bool isGrad = 1;
+inline bool MessageGradLandlordReq::has_isgrad() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void MessageGradLandlordReq::set_has_isgrad() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void MessageGradLandlordReq::clear_has_isgrad() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void MessageGradLandlordReq::clear_isgrad() {
+  isgrad_ = false;
+  clear_has_isgrad();
+}
+inline bool MessageGradLandlordReq::isgrad() const {
+  // @@protoc_insertion_point(field_get:MessageGradLandlordReq.isGrad)
+  return isgrad_;
+}
+inline void MessageGradLandlordReq::set_isgrad(bool value) {
+  set_has_isgrad();
+  isgrad_ = value;
+  // @@protoc_insertion_point(field_set:MessageGradLandlordReq.isGrad)
+}
+
+// -------------------------------------------------------------------
+
+// MessageGradLandlordRsp
+
+// -------------------------------------------------------------------
+
+// MessageOutPokerReq
+
+// repeated .MessageDataPoker poker = 1;
+inline int MessageOutPokerReq::poker_size() const {
+  return poker_.size();
+}
+inline void MessageOutPokerReq::clear_poker() {
+  poker_.Clear();
+}
+inline const ::MessageDataPoker& MessageOutPokerReq::poker(int index) const {
+  // @@protoc_insertion_point(field_get:MessageOutPokerReq.poker)
+  return poker_.Get(index);
+}
+inline ::MessageDataPoker* MessageOutPokerReq::mutable_poker(int index) {
+  // @@protoc_insertion_point(field_mutable:MessageOutPokerReq.poker)
+  return poker_.Mutable(index);
+}
+inline ::MessageDataPoker* MessageOutPokerReq::add_poker() {
+  // @@protoc_insertion_point(field_add:MessageOutPokerReq.poker)
+  return poker_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::MessageDataPoker >*
+MessageOutPokerReq::mutable_poker() {
+  // @@protoc_insertion_point(field_mutable_list:MessageOutPokerReq.poker)
+  return &poker_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::MessageDataPoker >&
+MessageOutPokerReq::poker() const {
+  // @@protoc_insertion_point(field_list:MessageOutPokerReq.poker)
+  return poker_;
+}
+
+// -------------------------------------------------------------------
+
+// MessageOutPokerRsp
 
 // -------------------------------------------------------------------
 
@@ -1964,6 +2526,14 @@ inline void MessageDataPoker::set_number(::google::protobuf::int32 value) {
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

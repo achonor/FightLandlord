@@ -20,7 +20,7 @@ const int LENGTH_HEAD = 4;
 const int DATA_MAX_LENGTH = 4096;
 
 //服务器时间和客户端时间的差
-int ServerTImeOffect = 0;
+double ServerTImeOffect = 0.0;
 
 //请求的唯一编号
 int RequestIdx = 1;
@@ -142,12 +142,12 @@ void Client::request(google::protobuf::Message* proto, function<void(google::pro
 
 
 //设置服务器时间
-void Client::setServerTime(int tm) {
-	int localTime = time(NULL);
+void Client::setServerTime(double tm) {
+	double localTime = time(NULL);
 	ServerTImeOffect = tm - localTime;
 }
 //获取服务器时间
-int Client::getServerTime() {
+double Client::getServerTime() {
 	int localTime = time(NULL);
 	return localTime + ServerTImeOffect;
 }

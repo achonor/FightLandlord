@@ -24,13 +24,13 @@ protected:
 	//收到数据后的处理
 	void receiveData(const string *data);
 	//设置服务器时间
-	void setServerTime(int tm);
+	void setServerTime(double tm);
 
 public:
 	//请求
 	void request(google::protobuf::Message* proto, function<void(google::protobuf::Message*)> callback);
 	//获取服务器时间
-	int getServerTime();
+	double getServerTime();
 
 
 public:

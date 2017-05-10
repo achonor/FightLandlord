@@ -9,6 +9,7 @@
 #include "json/rapidjson.h"
 #include "json/document.h"
 
+#include "proto/cmd.pb.h"
 #include "google/protobuf/message.h"
 
 //解析json文件
@@ -34,5 +35,8 @@ cocos2d::Node* My_getSpriteNumber(std::string path, int number);
 
 //计算两点间距离
 double My_calcPostionDis(cocos2d::Vec2 &pos1, cocos2d::Vec2 &pos2);
+
+//poker排序
+bool My_pokerCmd(MessageDataPoker &a, MessageDataPoker &b);
 
 #endif

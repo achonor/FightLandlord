@@ -59,3 +59,8 @@ bool UIPoker::isSelectEnabled() {
 	}
 	return this->selectSp->isVisible();
 }
+
+//获取牌的值
+MessageDataPoker UIPoker::getPoker() {
+	return this->poker;
+}

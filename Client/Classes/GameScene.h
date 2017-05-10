@@ -12,8 +12,8 @@ const int MAX_PANEL_NUM = 20;
 class GameLayer : public cocos2d::Layer
 {
 public:
-	GameLayer::GameLayer();
-	GameLayer::~GameLayer();
+	GameLayer();
+	~GameLayer();
 
     virtual bool init();
     
