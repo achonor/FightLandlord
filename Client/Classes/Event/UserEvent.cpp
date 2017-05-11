@@ -12,9 +12,7 @@ UserEvent::UserEvent(const string &name, const std::function<void(EventCustom*)>
 		->addEventListenerWithFixedPriority(this->listener, 1);
 }
 
-UserEvent::~UserEvent()
-{	//移除事件
-	this->removeEventListener();
+UserEvent::~UserEvent(){
 }
 
 UserEvent* UserEvent::addEventListener(const string &name, const std::function<void(EventCustom*)> callback) {
@@ -25,7 +23,6 @@ UserEvent* UserEvent::addEventListener(const string &name, const std::function<v
 void UserEvent::removeEventListener() {
 	Director::getInstance()->getEventDispatcher()->
 		removeEventListener(this->listener);
-	delete this;
 }
 
 void UserEvent::dispatchEvent(const string &name, void *data) {

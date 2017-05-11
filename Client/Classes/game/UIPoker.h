@@ -12,13 +12,13 @@ class UIPoker :
 public:
 	UIPoker();
 	virtual ~UIPoker();
-	virtual bool initWithPoker(MessageDataPoker* poker);
+	virtual bool initWithPoker(MessageDataPoker* tPoker);
 	//显示隐藏选中效果
 	void setSelectEnabled(bool state);
 	//获取状态
 	bool isSelectEnabled();
 
-	static UIPoker* create(MessageDataPoker* poker = NULL);
+	static UIPoker* create(MessageDataPoker* tPoker = NULL);
 
 	//获取牌的值
 	MessageDataPoker getPoker();

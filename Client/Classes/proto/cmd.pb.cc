@@ -46,6 +46,10 @@ class MessageOutPokerReqDefaultTypeInternal : public ::google::protobuf::interna
 } _MessageOutPokerReq_default_instance_;
 class MessageOutPokerRspDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<MessageOutPokerRsp> {
 } _MessageOutPokerRsp_default_instance_;
+class MessageGameResultReqDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<MessageGameResultReq> {
+} _MessageGameResultReq_default_instance_;
+class MessageGameResultRspDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<MessageGameResultRsp> {
+} _MessageGameResultRsp_default_instance_;
 class MessageDataPokerDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<MessageDataPoker> {
 } _MessageDataPoker_default_instance_;
 
@@ -54,7 +58,7 @@ namespace protobuf_cmd_2eproto {
 
 namespace {
 
-::google::protobuf::Metadata file_level_metadata[16];
+::google::protobuf::Metadata file_level_metadata[18];
 
 }  // namespace
 
@@ -69,6 +73,8 @@ PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::AuxillaryParseTableField
 };
 PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTable const
     TableStruct::schema[] = {
+  { NULL, NULL, 0, -1, -1, false },
+  { NULL, NULL, 0, -1, -1, false },
   { NULL, NULL, 0, -1, -1, false },
   { NULL, NULL, 0, -1, -1, false },
   { NULL, NULL, 0, -1, -1, false },
@@ -179,6 +185,9 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageUpdateStateRsp, uppokernum_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageUpdateStateRsp, downpokernum_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageUpdateStateRsp, lavetime_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageUpdateStateRsp, lastisgrad_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageUpdateStateRsp, lastisout_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageUpdateStateRsp, landlordidx_),
   0,
   1,
   ~0u,
@@ -187,6 +196,9 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   2,
   3,
   4,
+  5,
+  6,
+  7,
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageGradLandlordReq, _has_bits_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageGradLandlordReq, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -211,6 +223,18 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageGameResultReq, _has_bits_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageGameResultReq, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageGameResultRsp, _has_bits_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageGameResultRsp, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageGameResultRsp, iswinning_),
+  0,
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageDataPoker, _has_bits_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageDataPoker, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -233,12 +257,14 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] = {
   { 57, 62, sizeof(MessageDealReq)},
   { 62, 70, sizeof(MessageDealRsp)},
   { 73, 78, sizeof(MessageUpdateStateReq)},
-  { 78, 91, sizeof(MessageUpdateStateRsp)},
-  { 99, 105, sizeof(MessageGradLandlordReq)},
-  { 106, 111, sizeof(MessageGradLandlordRsp)},
-  { 111, 117, sizeof(MessageOutPokerReq)},
-  { 118, 123, sizeof(MessageOutPokerRsp)},
-  { 123, 130, sizeof(MessageDataPoker)},
+  { 78, 94, sizeof(MessageUpdateStateRsp)},
+  { 105, 111, sizeof(MessageGradLandlordReq)},
+  { 112, 117, sizeof(MessageGradLandlordRsp)},
+  { 117, 123, sizeof(MessageOutPokerReq)},
+  { 124, 129, sizeof(MessageOutPokerRsp)},
+  { 129, 134, sizeof(MessageGameResultReq)},
+  { 134, 140, sizeof(MessageGameResultRsp)},
+  { 141, 148, sizeof(MessageDataPoker)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -257,6 +283,8 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&_MessageGradLandlordRsp_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_MessageOutPokerReq_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_MessageOutPokerRsp_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_MessageGameResultReq_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_MessageGameResultRsp_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_MessageDataPoker_default_instance_),
 };
 
@@ -278,7 +306,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 16);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 18);
 }
 
 }  // namespace
@@ -314,8 +342,12 @@ void TableStruct::Shutdown() {
   delete file_level_metadata[13].reflection;
   _MessageOutPokerRsp_default_instance_.Shutdown();
   delete file_level_metadata[14].reflection;
-  _MessageDataPoker_default_instance_.Shutdown();
+  _MessageGameResultReq_default_instance_.Shutdown();
   delete file_level_metadata[15].reflection;
+  _MessageGameResultRsp_default_instance_.Shutdown();
+  delete file_level_metadata[16].reflection;
+  _MessageDataPoker_default_instance_.Shutdown();
+  delete file_level_metadata[17].reflection;
 }
 
 void TableStruct::InitDefaultsImpl() {
@@ -337,6 +369,8 @@ void TableStruct::InitDefaultsImpl() {
   _MessageGradLandlordRsp_default_instance_.DefaultConstruct();
   _MessageOutPokerReq_default_instance_.DefaultConstruct();
   _MessageOutPokerRsp_default_instance_.DefaultConstruct();
+  _MessageGameResultReq_default_instance_.DefaultConstruct();
+  _MessageGameResultRsp_default_instance_.DefaultConstruct();
   _MessageDataPoker_default_instance_.DefaultConstruct();
 }
 
@@ -358,21 +392,24 @@ void AddDescriptorsImpl() {
       "\025\n\023MessageStartGameRsp\"\020\n\016MessageDealReq"
       "\"V\n\016MessageDealRsp\022\r\n\005upNum\030\001 \001(\005\022\017\n\007dow"
       "nNum\030\002 \001(\005\022$\n\tpokerList\030\003 \003(\0132\021.MessageD"
-      "ataPoker\"\027\n\025MessageUpdateStateReq\"\356\001\n\025Me"
+      "ataPoker\"\027\n\025MessageUpdateStateReq\"\252\002\n\025Me"
       "ssageUpdateStateRsp\022\021\n\tplayerIdx\030\001 \001(\005\022\021"
       "\n\tstateType\030\002 \001(\005\022#\n\010midPoker\030\003 \003(\0132\021.Me"
       "ssageDataPoker\022(\n\rlandlordPoker\030\004 \003(\0132\021."
       "MessageDataPoker\022$\n\tselfPoker\030\005 \003(\0132\021.Me"
       "ssageDataPoker\022\022\n\nupPokerNum\030\006 \001(\005\022\024\n\014do"
-      "wnPokerNum\030\007 \001(\005\022\020\n\010laveTime\030\010 \001(\005\"(\n\026Me"
-      "ssageGradLandlordReq\022\016\n\006isGrad\030\001 \001(\010\"\030\n\026"
-      "MessageGradLandlordRsp\"6\n\022MessageOutPoke"
-      "rReq\022 \n\005poker\030\001 \003(\0132\021.MessageDataPoker\"\024"
-      "\n\022MessageOutPokerRsp\"1\n\020MessageDataPoker"
-      "\022\r\n\005color\030\001 \001(\005\022\016\n\006number\030\002 \001(\005"
+      "wnPokerNum\030\007 \001(\005\022\020\n\010laveTime\030\010 \001(\r\022\022\n\nla"
+      "stIsGrad\030\t \001(\005\022\021\n\tlastIsOut\030\n \001(\005\022\023\n\013lan"
+      "dlordIdx\030\013 \001(\005\"(\n\026MessageGradLandlordReq"
+      "\022\016\n\006isGrad\030\001 \001(\010\"\030\n\026MessageGradLandlordR"
+      "sp\"6\n\022MessageOutPokerReq\022 \n\005poker\030\001 \003(\0132"
+      "\021.MessageDataPoker\"\024\n\022MessageOutPokerRsp"
+      "\"\026\n\024MessageGameResultReq\")\n\024MessageGameR"
+      "esultRsp\022\021\n\tisWinning\030\001 \001(\010\"1\n\020MessageDa"
+      "taPoker\022\r\n\005color\030\001 \001(\005\022\016\n\006number\030\002 \001(\005"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 911);
+      descriptor, 1038);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "cmd.proto", &protobuf_RegisterTypes);
   ::google::protobuf::internal::OnShutdown(&TableStruct::Shutdown);
@@ -3569,6 +3606,9 @@ const int MessageUpdateStateRsp::kSelfPokerFieldNumber;
 const int MessageUpdateStateRsp::kUpPokerNumFieldNumber;
 const int MessageUpdateStateRsp::kDownPokerNumFieldNumber;
 const int MessageUpdateStateRsp::kLaveTimeFieldNumber;
+const int MessageUpdateStateRsp::kLastIsGradFieldNumber;
+const int MessageUpdateStateRsp::kLastIsOutFieldNumber;
+const int MessageUpdateStateRsp::kLandlordIdxFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 MessageUpdateStateRsp::MessageUpdateStateRsp()
@@ -3589,15 +3629,15 @@ MessageUpdateStateRsp::MessageUpdateStateRsp(const MessageUpdateStateRsp& from)
       selfpoker_(from.selfpoker_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::memcpy(&playeridx_, &from.playeridx_,
-    reinterpret_cast<char*>(&lavetime_) -
-    reinterpret_cast<char*>(&playeridx_) + sizeof(lavetime_));
+    reinterpret_cast<char*>(&landlordidx_) -
+    reinterpret_cast<char*>(&playeridx_) + sizeof(landlordidx_));
   // @@protoc_insertion_point(copy_constructor:MessageUpdateStateRsp)
 }
 
 void MessageUpdateStateRsp::SharedCtor() {
   _cached_size_ = 0;
-  ::memset(&playeridx_, 0, reinterpret_cast<char*>(&lavetime_) -
-    reinterpret_cast<char*>(&playeridx_) + sizeof(lavetime_));
+  ::memset(&playeridx_, 0, reinterpret_cast<char*>(&landlordidx_) -
+    reinterpret_cast<char*>(&playeridx_) + sizeof(landlordidx_));
 }
 
 MessageUpdateStateRsp::~MessageUpdateStateRsp() {
@@ -3636,9 +3676,9 @@ void MessageUpdateStateRsp::Clear() {
   midpoker_.Clear();
   landlordpoker_.Clear();
   selfpoker_.Clear();
-  if (_has_bits_[0 / 32] & 31u) {
-    ::memset(&playeridx_, 0, reinterpret_cast<char*>(&lavetime_) -
-      reinterpret_cast<char*>(&playeridx_) + sizeof(lavetime_));
+  if (_has_bits_[0 / 32] & 255u) {
+    ::memset(&playeridx_, 0, reinterpret_cast<char*>(&landlordidx_) -
+      reinterpret_cast<char*>(&playeridx_) + sizeof(landlordidx_));
   }
   _has_bits_.Clear();
   _internal_metadata_.Clear();
@@ -3746,14 +3786,56 @@ bool MessageUpdateStateRsp::MergePartialFromCodedStream(
         break;
       }
 
-      // optional int32 laveTime = 8;
+      // optional uint32 laveTime = 8;
       case 8: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(64u)) {
           set_has_lavetime();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
                  input, &lavetime_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // optional int32 lastIsGrad = 9;
+      case 9: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(72u)) {
+          set_has_lastisgrad();
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &lastisgrad_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // optional int32 lastIsOut = 10;
+      case 10: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(80u)) {
+          set_has_lastisout();
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &lastisout_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // optional int32 landlordIdx = 11;
+      case 11: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(88u)) {
+          set_has_landlordidx();
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &landlordidx_)));
         } else {
           goto handle_unusual;
         }
@@ -3827,9 +3909,24 @@ void MessageUpdateStateRsp::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(7, this->downpokernum(), output);
   }
 
-  // optional int32 laveTime = 8;
+  // optional uint32 laveTime = 8;
   if (cached_has_bits & 0x00000010u) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(8, this->lavetime(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(8, this->lavetime(), output);
+  }
+
+  // optional int32 lastIsGrad = 9;
+  if (cached_has_bits & 0x00000020u) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(9, this->lastisgrad(), output);
+  }
+
+  // optional int32 lastIsOut = 10;
+  if (cached_has_bits & 0x00000040u) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(10, this->lastisout(), output);
+  }
+
+  // optional int32 landlordIdx = 11;
+  if (cached_has_bits & 0x00000080u) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(11, this->landlordidx(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -3887,9 +3984,24 @@ void MessageUpdateStateRsp::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(7, this->downpokernum(), target);
   }
 
-  // optional int32 laveTime = 8;
+  // optional uint32 laveTime = 8;
   if (cached_has_bits & 0x00000010u) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(8, this->lavetime(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(8, this->lavetime(), target);
+  }
+
+  // optional int32 lastIsGrad = 9;
+  if (cached_has_bits & 0x00000020u) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(9, this->lastisgrad(), target);
+  }
+
+  // optional int32 lastIsOut = 10;
+  if (cached_has_bits & 0x00000040u) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(10, this->lastisout(), target);
+  }
+
+  // optional int32 landlordIdx = 11;
+  if (cached_has_bits & 0x00000080u) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(11, this->landlordidx(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -3942,7 +4054,7 @@ size_t MessageUpdateStateRsp::ByteSizeLong() const {
     }
   }
 
-  if (_has_bits_[0 / 32] & 31u) {
+  if (_has_bits_[0 / 32] & 255u) {
     // optional int32 playerIdx = 1;
     if (has_playeridx()) {
       total_size += 1 +
@@ -3971,11 +4083,32 @@ size_t MessageUpdateStateRsp::ByteSizeLong() const {
           this->downpokernum());
     }
 
-    // optional int32 laveTime = 8;
+    // optional uint32 laveTime = 8;
     if (has_lavetime()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
+        ::google::protobuf::internal::WireFormatLite::UInt32Size(
           this->lavetime());
+    }
+
+    // optional int32 lastIsGrad = 9;
+    if (has_lastisgrad()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->lastisgrad());
+    }
+
+    // optional int32 lastIsOut = 10;
+    if (has_lastisout()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->lastisout());
+    }
+
+    // optional int32 landlordIdx = 11;
+    if (has_landlordidx()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->landlordidx());
     }
 
   }
@@ -4012,7 +4145,7 @@ void MessageUpdateStateRsp::MergeFrom(const MessageUpdateStateRsp& from) {
   landlordpoker_.MergeFrom(from.landlordpoker_);
   selfpoker_.MergeFrom(from.selfpoker_);
   cached_has_bits = from._has_bits_[0];
-  if (cached_has_bits & 31u) {
+  if (cached_has_bits & 255u) {
     if (cached_has_bits & 0x00000001u) {
       playeridx_ = from.playeridx_;
     }
@@ -4027,6 +4160,15 @@ void MessageUpdateStateRsp::MergeFrom(const MessageUpdateStateRsp& from) {
     }
     if (cached_has_bits & 0x00000010u) {
       lavetime_ = from.lavetime_;
+    }
+    if (cached_has_bits & 0x00000020u) {
+      lastisgrad_ = from.lastisgrad_;
+    }
+    if (cached_has_bits & 0x00000040u) {
+      lastisout_ = from.lastisout_;
+    }
+    if (cached_has_bits & 0x00000080u) {
+      landlordidx_ = from.landlordidx_;
     }
     _has_bits_[0] |= cached_has_bits;
   }
@@ -4063,6 +4205,9 @@ void MessageUpdateStateRsp::InternalSwap(MessageUpdateStateRsp* other) {
   std::swap(uppokernum_, other->uppokernum_);
   std::swap(downpokernum_, other->downpokernum_);
   std::swap(lavetime_, other->lavetime_);
+  std::swap(lastisgrad_, other->lastisgrad_);
+  std::swap(lastisout_, other->lastisout_);
+  std::swap(landlordidx_, other->landlordidx_);
   std::swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
@@ -4262,7 +4407,7 @@ void MessageUpdateStateRsp::set_downpokernum(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.downPokerNum)
 }
 
-// optional int32 laveTime = 8;
+// optional uint32 laveTime = 8;
 bool MessageUpdateStateRsp::has_lavetime() const {
   return (_has_bits_[0] & 0x00000010u) != 0;
 }
@@ -4273,17 +4418,89 @@ void MessageUpdateStateRsp::clear_has_lavetime() {
   _has_bits_[0] &= ~0x00000010u;
 }
 void MessageUpdateStateRsp::clear_lavetime() {
-  lavetime_ = 0;
+  lavetime_ = 0u;
   clear_has_lavetime();
 }
-::google::protobuf::int32 MessageUpdateStateRsp::lavetime() const {
+::google::protobuf::uint32 MessageUpdateStateRsp::lavetime() const {
   // @@protoc_insertion_point(field_get:MessageUpdateStateRsp.laveTime)
   return lavetime_;
 }
-void MessageUpdateStateRsp::set_lavetime(::google::protobuf::int32 value) {
+void MessageUpdateStateRsp::set_lavetime(::google::protobuf::uint32 value) {
   set_has_lavetime();
   lavetime_ = value;
   // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.laveTime)
+}
+
+// optional int32 lastIsGrad = 9;
+bool MessageUpdateStateRsp::has_lastisgrad() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+void MessageUpdateStateRsp::set_has_lastisgrad() {
+  _has_bits_[0] |= 0x00000020u;
+}
+void MessageUpdateStateRsp::clear_has_lastisgrad() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+void MessageUpdateStateRsp::clear_lastisgrad() {
+  lastisgrad_ = 0;
+  clear_has_lastisgrad();
+}
+::google::protobuf::int32 MessageUpdateStateRsp::lastisgrad() const {
+  // @@protoc_insertion_point(field_get:MessageUpdateStateRsp.lastIsGrad)
+  return lastisgrad_;
+}
+void MessageUpdateStateRsp::set_lastisgrad(::google::protobuf::int32 value) {
+  set_has_lastisgrad();
+  lastisgrad_ = value;
+  // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.lastIsGrad)
+}
+
+// optional int32 lastIsOut = 10;
+bool MessageUpdateStateRsp::has_lastisout() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+void MessageUpdateStateRsp::set_has_lastisout() {
+  _has_bits_[0] |= 0x00000040u;
+}
+void MessageUpdateStateRsp::clear_has_lastisout() {
+  _has_bits_[0] &= ~0x00000040u;
+}
+void MessageUpdateStateRsp::clear_lastisout() {
+  lastisout_ = 0;
+  clear_has_lastisout();
+}
+::google::protobuf::int32 MessageUpdateStateRsp::lastisout() const {
+  // @@protoc_insertion_point(field_get:MessageUpdateStateRsp.lastIsOut)
+  return lastisout_;
+}
+void MessageUpdateStateRsp::set_lastisout(::google::protobuf::int32 value) {
+  set_has_lastisout();
+  lastisout_ = value;
+  // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.lastIsOut)
+}
+
+// optional int32 landlordIdx = 11;
+bool MessageUpdateStateRsp::has_landlordidx() const {
+  return (_has_bits_[0] & 0x00000080u) != 0;
+}
+void MessageUpdateStateRsp::set_has_landlordidx() {
+  _has_bits_[0] |= 0x00000080u;
+}
+void MessageUpdateStateRsp::clear_has_landlordidx() {
+  _has_bits_[0] &= ~0x00000080u;
+}
+void MessageUpdateStateRsp::clear_landlordidx() {
+  landlordidx_ = 0;
+  clear_has_landlordidx();
+}
+::google::protobuf::int32 MessageUpdateStateRsp::landlordidx() const {
+  // @@protoc_insertion_point(field_get:MessageUpdateStateRsp.landlordIdx)
+  return landlordidx_;
+}
+void MessageUpdateStateRsp::set_landlordidx(::google::protobuf::int32 value) {
+  set_has_landlordidx();
+  landlordidx_ = value;
+  // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.landlordIdx)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -5209,6 +5426,464 @@ void MessageOutPokerRsp::InternalSwap(MessageOutPokerRsp* other) {
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // MessageOutPokerRsp
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+MessageGameResultReq::MessageGameResultReq()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_cmd_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:MessageGameResultReq)
+}
+MessageGameResultReq::MessageGameResultReq(const MessageGameResultReq& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _has_bits_(from._has_bits_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:MessageGameResultReq)
+}
+
+void MessageGameResultReq::SharedCtor() {
+  _cached_size_ = 0;
+}
+
+MessageGameResultReq::~MessageGameResultReq() {
+  // @@protoc_insertion_point(destructor:MessageGameResultReq)
+  SharedDtor();
+}
+
+void MessageGameResultReq::SharedDtor() {
+}
+
+void MessageGameResultReq::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* MessageGameResultReq::descriptor() {
+  protobuf_cmd_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_cmd_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const MessageGameResultReq& MessageGameResultReq::default_instance() {
+  protobuf_cmd_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+MessageGameResultReq* MessageGameResultReq::New(::google::protobuf::Arena* arena) const {
+  MessageGameResultReq* n = new MessageGameResultReq;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void MessageGameResultReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:MessageGameResultReq)
+  _has_bits_.Clear();
+  _internal_metadata_.Clear();
+}
+
+bool MessageGameResultReq::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:MessageGameResultReq)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+  handle_unusual:
+    if (tag == 0 ||
+        ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+        ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+      goto success;
+    }
+    DO_(::google::protobuf::internal::WireFormat::SkipField(
+          input, tag, mutable_unknown_fields()));
+  }
+success:
+  // @@protoc_insertion_point(parse_success:MessageGameResultReq)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:MessageGameResultReq)
+  return false;
+#undef DO_
+}
+
+void MessageGameResultReq::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:MessageGameResultReq)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:MessageGameResultReq)
+}
+
+::google::protobuf::uint8* MessageGameResultReq::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:MessageGameResultReq)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:MessageGameResultReq)
+  return target;
+}
+
+size_t MessageGameResultReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:MessageGameResultReq)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void MessageGameResultReq::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:MessageGameResultReq)
+  GOOGLE_DCHECK_NE(&from, this);
+  const MessageGameResultReq* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const MessageGameResultReq>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:MessageGameResultReq)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:MessageGameResultReq)
+    MergeFrom(*source);
+  }
+}
+
+void MessageGameResultReq::MergeFrom(const MessageGameResultReq& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:MessageGameResultReq)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+}
+
+void MessageGameResultReq::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:MessageGameResultReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void MessageGameResultReq::CopyFrom(const MessageGameResultReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:MessageGameResultReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MessageGameResultReq::IsInitialized() const {
+  return true;
+}
+
+void MessageGameResultReq::Swap(MessageGameResultReq* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void MessageGameResultReq::InternalSwap(MessageGameResultReq* other) {
+  std::swap(_has_bits_[0], other->_has_bits_[0]);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata MessageGameResultReq::GetMetadata() const {
+  protobuf_cmd_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_cmd_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// MessageGameResultReq
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int MessageGameResultRsp::kIsWinningFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+MessageGameResultRsp::MessageGameResultRsp()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_cmd_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:MessageGameResultRsp)
+}
+MessageGameResultRsp::MessageGameResultRsp(const MessageGameResultRsp& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _has_bits_(from._has_bits_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  iswinning_ = from.iswinning_;
+  // @@protoc_insertion_point(copy_constructor:MessageGameResultRsp)
+}
+
+void MessageGameResultRsp::SharedCtor() {
+  _cached_size_ = 0;
+  iswinning_ = false;
+}
+
+MessageGameResultRsp::~MessageGameResultRsp() {
+  // @@protoc_insertion_point(destructor:MessageGameResultRsp)
+  SharedDtor();
+}
+
+void MessageGameResultRsp::SharedDtor() {
+}
+
+void MessageGameResultRsp::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* MessageGameResultRsp::descriptor() {
+  protobuf_cmd_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_cmd_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const MessageGameResultRsp& MessageGameResultRsp::default_instance() {
+  protobuf_cmd_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+MessageGameResultRsp* MessageGameResultRsp::New(::google::protobuf::Arena* arena) const {
+  MessageGameResultRsp* n = new MessageGameResultRsp;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void MessageGameResultRsp::Clear() {
+// @@protoc_insertion_point(message_clear_start:MessageGameResultRsp)
+  iswinning_ = false;
+  _has_bits_.Clear();
+  _internal_metadata_.Clear();
+}
+
+bool MessageGameResultRsp::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:MessageGameResultRsp)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional bool isWinning = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u)) {
+          set_has_iswinning();
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &iswinning_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:MessageGameResultRsp)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:MessageGameResultRsp)
+  return false;
+#undef DO_
+}
+
+void MessageGameResultRsp::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:MessageGameResultRsp)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
+  // optional bool isWinning = 1;
+  if (cached_has_bits & 0x00000001u) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(1, this->iswinning(), output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:MessageGameResultRsp)
+}
+
+::google::protobuf::uint8* MessageGameResultRsp::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:MessageGameResultRsp)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
+  // optional bool isWinning = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(1, this->iswinning(), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:MessageGameResultRsp)
+  return target;
+}
+
+size_t MessageGameResultRsp::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:MessageGameResultRsp)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  // optional bool isWinning = 1;
+  if (has_iswinning()) {
+    total_size += 1 + 1;
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void MessageGameResultRsp::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:MessageGameResultRsp)
+  GOOGLE_DCHECK_NE(&from, this);
+  const MessageGameResultRsp* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const MessageGameResultRsp>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:MessageGameResultRsp)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:MessageGameResultRsp)
+    MergeFrom(*source);
+  }
+}
+
+void MessageGameResultRsp::MergeFrom(const MessageGameResultRsp& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:MessageGameResultRsp)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_iswinning()) {
+    set_iswinning(from.iswinning());
+  }
+}
+
+void MessageGameResultRsp::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:MessageGameResultRsp)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void MessageGameResultRsp::CopyFrom(const MessageGameResultRsp& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:MessageGameResultRsp)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MessageGameResultRsp::IsInitialized() const {
+  return true;
+}
+
+void MessageGameResultRsp::Swap(MessageGameResultRsp* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void MessageGameResultRsp::InternalSwap(MessageGameResultRsp* other) {
+  std::swap(iswinning_, other->iswinning_);
+  std::swap(_has_bits_[0], other->_has_bits_[0]);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata MessageGameResultRsp::GetMetadata() const {
+  protobuf_cmd_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_cmd_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// MessageGameResultRsp
+
+// optional bool isWinning = 1;
+bool MessageGameResultRsp::has_iswinning() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+void MessageGameResultRsp::set_has_iswinning() {
+  _has_bits_[0] |= 0x00000001u;
+}
+void MessageGameResultRsp::clear_has_iswinning() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+void MessageGameResultRsp::clear_iswinning() {
+  iswinning_ = false;
+  clear_has_iswinning();
+}
+bool MessageGameResultRsp::iswinning() const {
+  // @@protoc_insertion_point(field_get:MessageGameResultRsp.isWinning)
+  return iswinning_;
+}
+void MessageGameResultRsp::set_iswinning(bool value) {
+  set_has_iswinning();
+  iswinning_ = value;
+  // @@protoc_insertion_point(field_set:MessageGameResultRsp.isWinning)
+}
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 

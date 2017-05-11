@@ -42,6 +42,12 @@ extern MessageDealReqDefaultTypeInternal _MessageDealReq_default_instance_;
 class MessageDealRsp;
 class MessageDealRspDefaultTypeInternal;
 extern MessageDealRspDefaultTypeInternal _MessageDealRsp_default_instance_;
+class MessageGameResultReq;
+class MessageGameResultReqDefaultTypeInternal;
+extern MessageGameResultReqDefaultTypeInternal _MessageGameResultReq_default_instance_;
+class MessageGameResultRsp;
+class MessageGameResultRspDefaultTypeInternal;
+extern MessageGameResultRspDefaultTypeInternal _MessageGameResultRsp_default_instance_;
 class MessageGradLandlordReq;
 class MessageGradLandlordReqDefaultTypeInternal;
 extern MessageGradLandlordReqDefaultTypeInternal _MessageGradLandlordReq_default_instance_;
@@ -1229,12 +1235,33 @@ class MessageUpdateStateRsp : public ::google::protobuf::Message /* @@protoc_ins
   ::google::protobuf::int32 downpokernum() const;
   void set_downpokernum(::google::protobuf::int32 value);
 
-  // optional int32 laveTime = 8;
+  // optional uint32 laveTime = 8;
   bool has_lavetime() const;
   void clear_lavetime();
   static const int kLaveTimeFieldNumber = 8;
-  ::google::protobuf::int32 lavetime() const;
-  void set_lavetime(::google::protobuf::int32 value);
+  ::google::protobuf::uint32 lavetime() const;
+  void set_lavetime(::google::protobuf::uint32 value);
+
+  // optional int32 lastIsGrad = 9;
+  bool has_lastisgrad() const;
+  void clear_lastisgrad();
+  static const int kLastIsGradFieldNumber = 9;
+  ::google::protobuf::int32 lastisgrad() const;
+  void set_lastisgrad(::google::protobuf::int32 value);
+
+  // optional int32 lastIsOut = 10;
+  bool has_lastisout() const;
+  void clear_lastisout();
+  static const int kLastIsOutFieldNumber = 10;
+  ::google::protobuf::int32 lastisout() const;
+  void set_lastisout(::google::protobuf::int32 value);
+
+  // optional int32 landlordIdx = 11;
+  bool has_landlordidx() const;
+  void clear_landlordidx();
+  static const int kLandlordIdxFieldNumber = 11;
+  ::google::protobuf::int32 landlordidx() const;
+  void set_landlordidx(::google::protobuf::int32 value);
 
   // @@protoc_insertion_point(class_scope:MessageUpdateStateRsp)
  private:
@@ -1248,6 +1275,12 @@ class MessageUpdateStateRsp : public ::google::protobuf::Message /* @@protoc_ins
   void clear_has_downpokernum();
   void set_has_lavetime();
   void clear_has_lavetime();
+  void set_has_lastisgrad();
+  void clear_has_lastisgrad();
+  void set_has_lastisout();
+  void clear_has_lastisout();
+  void set_has_landlordidx();
+  void clear_has_landlordidx();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
@@ -1259,7 +1292,10 @@ class MessageUpdateStateRsp : public ::google::protobuf::Message /* @@protoc_ins
   ::google::protobuf::int32 statetype_;
   ::google::protobuf::int32 uppokernum_;
   ::google::protobuf::int32 downpokernum_;
-  ::google::protobuf::int32 lavetime_;
+  ::google::protobuf::uint32 lavetime_;
+  ::google::protobuf::int32 lastisgrad_;
+  ::google::protobuf::int32 lastisout_;
+  ::google::protobuf::int32 landlordidx_;
   friend struct protobuf_cmd_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
@@ -1615,6 +1651,180 @@ class MessageOutPokerRsp : public ::google::protobuf::Message /* @@protoc_insert
 };
 // -------------------------------------------------------------------
 
+class MessageGameResultReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:MessageGameResultReq) */ {
+ public:
+  MessageGameResultReq();
+  virtual ~MessageGameResultReq();
+
+  MessageGameResultReq(const MessageGameResultReq& from);
+
+  inline MessageGameResultReq& operator=(const MessageGameResultReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MessageGameResultReq& default_instance();
+
+  static inline const MessageGameResultReq* internal_default_instance() {
+    return reinterpret_cast<const MessageGameResultReq*>(
+               &_MessageGameResultReq_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    15;
+
+  void Swap(MessageGameResultReq* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MessageGameResultReq* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  MessageGameResultReq* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const MessageGameResultReq& from);
+  void MergeFrom(const MessageGameResultReq& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(MessageGameResultReq* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:MessageGameResultReq)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable int _cached_size_;
+  friend struct protobuf_cmd_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class MessageGameResultRsp : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:MessageGameResultRsp) */ {
+ public:
+  MessageGameResultRsp();
+  virtual ~MessageGameResultRsp();
+
+  MessageGameResultRsp(const MessageGameResultRsp& from);
+
+  inline MessageGameResultRsp& operator=(const MessageGameResultRsp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MessageGameResultRsp& default_instance();
+
+  static inline const MessageGameResultRsp* internal_default_instance() {
+    return reinterpret_cast<const MessageGameResultRsp*>(
+               &_MessageGameResultRsp_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    16;
+
+  void Swap(MessageGameResultRsp* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MessageGameResultRsp* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  MessageGameResultRsp* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const MessageGameResultRsp& from);
+  void MergeFrom(const MessageGameResultRsp& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(MessageGameResultRsp* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional bool isWinning = 1;
+  bool has_iswinning() const;
+  void clear_iswinning();
+  static const int kIsWinningFieldNumber = 1;
+  bool iswinning() const;
+  void set_iswinning(bool value);
+
+  // @@protoc_insertion_point(class_scope:MessageGameResultRsp)
+ private:
+  void set_has_iswinning();
+  void clear_has_iswinning();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable int _cached_size_;
+  bool iswinning_;
+  friend struct protobuf_cmd_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class MessageDataPoker : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:MessageDataPoker) */ {
  public:
   MessageDataPoker();
@@ -1643,7 +1853,7 @@ class MessageDataPoker : public ::google::protobuf::Message /* @@protoc_insertio
                &_MessageDataPoker_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    15;
+    17;
 
   void Swap(MessageDataPoker* other);
 
@@ -2447,7 +2657,7 @@ inline void MessageUpdateStateRsp::set_downpokernum(::google::protobuf::int32 va
   // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.downPokerNum)
 }
 
-// optional int32 laveTime = 8;
+// optional uint32 laveTime = 8;
 inline bool MessageUpdateStateRsp::has_lavetime() const {
   return (_has_bits_[0] & 0x00000010u) != 0;
 }
@@ -2458,17 +2668,89 @@ inline void MessageUpdateStateRsp::clear_has_lavetime() {
   _has_bits_[0] &= ~0x00000010u;
 }
 inline void MessageUpdateStateRsp::clear_lavetime() {
-  lavetime_ = 0;
+  lavetime_ = 0u;
   clear_has_lavetime();
 }
-inline ::google::protobuf::int32 MessageUpdateStateRsp::lavetime() const {
+inline ::google::protobuf::uint32 MessageUpdateStateRsp::lavetime() const {
   // @@protoc_insertion_point(field_get:MessageUpdateStateRsp.laveTime)
   return lavetime_;
 }
-inline void MessageUpdateStateRsp::set_lavetime(::google::protobuf::int32 value) {
+inline void MessageUpdateStateRsp::set_lavetime(::google::protobuf::uint32 value) {
   set_has_lavetime();
   lavetime_ = value;
   // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.laveTime)
+}
+
+// optional int32 lastIsGrad = 9;
+inline bool MessageUpdateStateRsp::has_lastisgrad() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void MessageUpdateStateRsp::set_has_lastisgrad() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void MessageUpdateStateRsp::clear_has_lastisgrad() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline void MessageUpdateStateRsp::clear_lastisgrad() {
+  lastisgrad_ = 0;
+  clear_has_lastisgrad();
+}
+inline ::google::protobuf::int32 MessageUpdateStateRsp::lastisgrad() const {
+  // @@protoc_insertion_point(field_get:MessageUpdateStateRsp.lastIsGrad)
+  return lastisgrad_;
+}
+inline void MessageUpdateStateRsp::set_lastisgrad(::google::protobuf::int32 value) {
+  set_has_lastisgrad();
+  lastisgrad_ = value;
+  // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.lastIsGrad)
+}
+
+// optional int32 lastIsOut = 10;
+inline bool MessageUpdateStateRsp::has_lastisout() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+inline void MessageUpdateStateRsp::set_has_lastisout() {
+  _has_bits_[0] |= 0x00000040u;
+}
+inline void MessageUpdateStateRsp::clear_has_lastisout() {
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline void MessageUpdateStateRsp::clear_lastisout() {
+  lastisout_ = 0;
+  clear_has_lastisout();
+}
+inline ::google::protobuf::int32 MessageUpdateStateRsp::lastisout() const {
+  // @@protoc_insertion_point(field_get:MessageUpdateStateRsp.lastIsOut)
+  return lastisout_;
+}
+inline void MessageUpdateStateRsp::set_lastisout(::google::protobuf::int32 value) {
+  set_has_lastisout();
+  lastisout_ = value;
+  // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.lastIsOut)
+}
+
+// optional int32 landlordIdx = 11;
+inline bool MessageUpdateStateRsp::has_landlordidx() const {
+  return (_has_bits_[0] & 0x00000080u) != 0;
+}
+inline void MessageUpdateStateRsp::set_has_landlordidx() {
+  _has_bits_[0] |= 0x00000080u;
+}
+inline void MessageUpdateStateRsp::clear_has_landlordidx() {
+  _has_bits_[0] &= ~0x00000080u;
+}
+inline void MessageUpdateStateRsp::clear_landlordidx() {
+  landlordidx_ = 0;
+  clear_has_landlordidx();
+}
+inline ::google::protobuf::int32 MessageUpdateStateRsp::landlordidx() const {
+  // @@protoc_insertion_point(field_get:MessageUpdateStateRsp.landlordIdx)
+  return landlordidx_;
+}
+inline void MessageUpdateStateRsp::set_landlordidx(::google::protobuf::int32 value) {
+  set_has_landlordidx();
+  landlordidx_ = value;
+  // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.landlordIdx)
 }
 
 // -------------------------------------------------------------------
@@ -2543,6 +2825,38 @@ MessageOutPokerReq::poker() const {
 
 // -------------------------------------------------------------------
 
+// MessageGameResultReq
+
+// -------------------------------------------------------------------
+
+// MessageGameResultRsp
+
+// optional bool isWinning = 1;
+inline bool MessageGameResultRsp::has_iswinning() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void MessageGameResultRsp::set_has_iswinning() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void MessageGameResultRsp::clear_has_iswinning() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void MessageGameResultRsp::clear_iswinning() {
+  iswinning_ = false;
+  clear_has_iswinning();
+}
+inline bool MessageGameResultRsp::iswinning() const {
+  // @@protoc_insertion_point(field_get:MessageGameResultRsp.isWinning)
+  return iswinning_;
+}
+inline void MessageGameResultRsp::set_iswinning(bool value) {
+  set_has_iswinning();
+  iswinning_ = value;
+  // @@protoc_insertion_point(field_set:MessageGameResultRsp.isWinning)
+}
+
+// -------------------------------------------------------------------
+
 // MessageDataPoker
 
 // optional int32 color = 1;
@@ -2594,6 +2908,10 @@ inline void MessageDataPoker::set_number(::google::protobuf::int32 value) {
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

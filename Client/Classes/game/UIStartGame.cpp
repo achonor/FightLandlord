@@ -53,15 +53,17 @@ bool UIStartGame::init() {
 }
 
 void UIStartGame::onEnter() {
-	this->startGame();
+	UIPanel::onEnter();
+	//this->startGame();
 }
 
 void UIStartGame::startGame() {
 	cout << "startGame...." << endl;
-	static UIPlayGame* uiPlayGame = NULL;
-	if (NULL != uiPlayGame) {
-		uiPlayGame->removeFromParent();
-	}
+	UIPlayGame* uiPlayGame = NULL;
+	//if (NULL != uiPlayGame) {
+	//	uiPlayGame->removeFromParent();
+	//	uiPlayGame = NULL;
+	//}
 	uiPlayGame = UIPlayGame::create();
 	My_gameScene->pushPanel(uiPlayGame);
 }

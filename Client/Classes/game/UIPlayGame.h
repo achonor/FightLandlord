@@ -20,7 +20,8 @@ public:
 	CREATE_FUNC(UIPlayGame);
 protected:
 	virtual bool init();
-	void onEnter();
+	virtual void onEnter();
+	virtual void onExit();
 
 	//显示发牌动画
 	void showDealAction();
@@ -34,6 +35,8 @@ protected:
 	int checkTouchInPoker(Vec2 &pos);
 	//开始游戏（发牌完成，可以选择牌）
 	void startGame();
+	//游戏结束
+	void gameOver(MessageGameResultRsp* rProto);
 	//刷新自己手里的牌
 	void refreshSelfPoker(vector<MessageDataPoker> &pokerList, bool state = true);
 	//刷新状态
@@ -80,6 +83,8 @@ protected:
 	UserEvent* recvPokerlistener;
 	//接收游戏状态事件
 	UserEvent* recvStateListener;
+	//接受游戏结束的时间
+	UserEvent* recvResultListener;
 	//放自己牌的Node
 	Node* pokerNode;
 	//选中的牌
@@ -105,5 +110,15 @@ protected:
 	Node* landlordPokerNode;
 	//牌桌上牌的Node
 	Node* deskPokerNode;
+	//不出Sprite
+	Sprite* notOutSprite;
+	//不抢Sprite
+	Sprite* notGradSprite;
+	//抢地主Sprite
+	Sprite* gradSprite;
+	
+	//地主帽Sprite
+	Sprite* landlordSprite;
+
 };
 

@@ -2,7 +2,9 @@
 
 #include <iostream>
 
-UIPanel::UIPanel(){
+UIPanel::UIPanel():
+	touchListener(NULL)
+{
 }
 
 
@@ -14,19 +16,39 @@ bool UIPanel::init() {
 	if (!CCLayerColor::initWithColor(ccc4(0, 0, 0, 120))){
 		return false;
 	}
-	//创建监听器
-	auto listener = EventListenerTouchOneByOne::create();
-	listener->onTouchBegan = CC_CALLBACK_2(UIPanel::touchBegan, this);
-	listener->onTouchMoved = CC_CALLBACK_2(UIPanel::touchMoved, this);
-	listener->onTouchEnded = CC_CALLBACK_2(UIPanel::touchEnded, this);
-	listener->onTouchCancelled = CC_CALLBACK_2(UIPanel::touchCancelled, this);
-	//监听器状态设置为吞并触摸消息
-	listener->setSwallowTouches(true);
-	//将监听器与当前节点建立关系并注册到事件分配器
-	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
+	this->addTouchListener();
 	return true;
 }
 
+//添加监听事件
+void UIPanel::addTouchListener() {
+
+	this->removeTouchListener();
+	//创建监听器
+	this->touchListener = EventListenerTouchOneByOne::create();
+	this->touchListener->onTouchBegan = CC_CALLBACK_2(UIPanel::touchBegan, this);
+	this->touchListener->onTouchMoved = CC_CALLBACK_2(UIPanel::touchMoved, this);
+	this->touchListener->onTouchEnded = CC_CALLBACK_2(UIPanel::touchEnded, this);
+	this->touchListener->onTouchCancelled = CC_CALLBACK_2(UIPanel::touchCancelled, this);
+	//监听器状态设置为吞并触摸消息
+	this->touchListener->setSwallowTouches(true);
+	//将监听器与当前节点建立关系并注册到事件分配器
+	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(this->touchListener, this);
+}
+
+//移除触摸事件
+void UIPanel::removeTouchListener() {
+	if (NULL != this->touchListener) {
+		Director::getInstance()->getEventDispatcher()->removeEventListener(this->touchListener);
+		this->touchListener = NULL;
+	}
+}
+
+
+void UIPanel::onExit() {
+	CCLayerColor::onExit();
+	this->removeTouchListener();
+}
 
 
 bool UIPanel::touchBegan(Touch *touch, Event* event) {

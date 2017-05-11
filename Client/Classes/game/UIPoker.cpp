@@ -13,10 +13,10 @@ UIPoker::~UIPoker() {
 }
 
 
-UIPoker* UIPoker::create(MessageDataPoker* poker)
+UIPoker* UIPoker::create(MessageDataPoker* tPoker)
 { 
 	UIPoker *pRet = new(std::nothrow) UIPoker();
-	if (pRet && pRet->initWithPoker(poker)) {
+	if (pRet && pRet->initWithPoker(tPoker)) {
 		pRet->autorelease();
 		return pRet;
 	} else {
@@ -26,15 +26,17 @@ UIPoker* UIPoker::create(MessageDataPoker* poker)
 	}
 }
 
-bool UIPoker::initWithPoker(MessageDataPoker* poker) {
+bool UIPoker::initWithPoker(MessageDataPoker* tPoker) {
+	this->poker.Clear();
 	std::string path = "poker_card/pokerpoker_back_1.png";
-	if (NULL != poker) {
-		path = "poker_card/poker_" + std::to_string(poker->color()) + "_" + std::to_string(poker->number()) + ".png";
+	if (NULL != tPoker) {
+		path = "poker_card/poker_" + std::to_string(tPoker->color()) + "_" + std::to_string(tPoker->number()) + ".png";
+		this->poker.set_color(tPoker->color());
+		this->poker.set_number(tPoker->number());
 	}
 	if (!Sprite::initWithFile(path)) {
 		return false;
 	}
-
 	//创建选中效果
 	this->selectSp = Sprite::create("poker_card/poker_select.png");
 	Size tmpSize = this->selectSp->getContentSize();

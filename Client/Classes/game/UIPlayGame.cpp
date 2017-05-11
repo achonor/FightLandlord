@@ -57,7 +57,12 @@ const float DOWNPLAYERPOKERSCALE = 0.4;
 //时钟的位置
 const Vec2 BELLPOS[3] = {Vec2(480, 200), Vec2(740, 280), Vec2(220, 280)};
 //时钟的比例
-const float BELLSCALE[3] = { 0.8, 0.6, 0.6 };
+const float BELLSCALE[3] = { 0.7, 0.6, 0.6 };
+
+//地主冒的位置
+const Vec2 LANDLORDSPRITEPOS[3] = { Vec2(160, 50), Vec2(860, 250), Vec2(100, 250) };
+//地主冒缩放比例
+const float LANDLORDSPRITESCALE[3] = { 0.7, 0.6, 0.6 };
 
 
 //不叫按钮和不要按钮的位置
@@ -66,14 +71,14 @@ const Vec2 NOTGRADPOS = Vec2(300, 200);
 const Vec2 GRADPOS = Vec2(660, 200);
 
 //地主牌Node位置
-const Vec2 LANDLORDPOKERNODEPOS = Vec2(480, 320);
+const Vec2 LANDLORDPOKERNODEPOS = Vec2(480, 500);
 //地主牌缩放比例
-const float LANDLORDPOKERNODESCALE = 0.35;
+const float LANDLORDPOKERNODESCALE = 0.4;
 //地主牌之间距离
 const float LANDLORDPOKERDIS = 50;
 
 //牌桌方牌Node的位置
-const Vec2 DESKPOKERNODEPOS = Vec2(480, 240);
+const Vec2 DESKPOKERNODEPOS = Vec2(480, 300);
 //牌桌上牌的缩放比例
 const float DESKPOKERNODESCALE = 0.5;
 //牌桌上牌之间的距离
@@ -94,7 +99,12 @@ UIPlayGame::UIPlayGame() :
 	outButton(NULL),
 	notOutButton(NULL),
 	landlordPokerNode(NULL),
-	deskPokerNode(NULL)
+	deskPokerNode(NULL),
+	notOutSprite(NULL),
+	notGradSprite(NULL),
+	gradSprite(NULL),
+	landlordSprite(NULL),
+	recvResultListener(NULL)
 {
 	lastMovePos = Vec2(0, 0);
 	memset(this->lastPokerState, false, sizeof(this->lastPokerState));
@@ -106,6 +116,12 @@ bool UIPlayGame::init() {
 		return false;
 	}
 	this->createUI();
+	
+	//游戏结束监听
+	this->recvResultListener = UserEvent::addEventListener("MessageGameResultRsp", [&](EventCustom* event) {
+		MessageGameResultRsp* rProto = (MessageGameResultRsp*)event->getUserData();
+		this->gameOver(rProto);
+	});
 
 	//发牌事件
 	this->recvPokerlistener = UserEvent::addEventListener("MessageDealRsp", [&](EventCustom* event) {
@@ -151,6 +167,13 @@ void UIPlayGame::createUI() {
 	backSprite->setAnchorPoint(Vec2(0.5, 0.5));
 	this->addChild(backSprite);
 
+	//地主冒
+	this->landlordSprite = Sprite::create("landlord.png");
+	this->landlordSprite->setVisible(false);
+	this->landlordSprite->setPosition(LANDLORDSPRITEPOS[0]);
+	this->landlordSprite->setScale(LANDLORDSPRITESCALE[0]);
+	this->addChild(this->landlordSprite);
+
 	//放自己牌的Node
 	this->pokerNode = Node::create();
 	this->pokerNode->setPosition(Vec2(My_visibleSize.width * 0.5 + 60, 170 * 0.5 * SELFPOKERSCALE + 10));
@@ -166,6 +189,21 @@ void UIPlayGame::createUI() {
 	this->deskPokerNode->setPosition(DESKPOKERNODEPOS);
 	this->deskPokerNode->setScale(DESKPOKERNODESCALE);
 	this->addChild(this->deskPokerNode);
+	//不出Sprite
+	this->notOutSprite = Sprite::create("not_out.png");
+	this->notOutSprite->setPosition(BELLPOS[0]); //倒计时钟放一个位置
+	this->notOutSprite->setVisible(false);
+	this->addChild(this->notOutSprite);
+	//不抢Sprite
+	this->notGradSprite = Sprite::create("not_grad.png");
+	this->notGradSprite->setPosition(BELLPOS[0]); //倒计时钟放一个位置
+	this->notGradSprite->setVisible(false);
+	this->addChild(this->notGradSprite);
+	//抢地主Sprite
+	this->gradSprite = Sprite::create("grad.png");
+	this->gradSprite->setPosition(BELLPOS[0]); //倒计时钟放一个位置
+	this->gradSprite->setVisible(false);
+	this->addChild(this->gradSprite);
 
 	//上家牌
 	auto backSp_up = UIPoker::create();
@@ -263,6 +301,10 @@ void UIPlayGame::setCountDown(int pos, int counts, function<void()> callback) {
 	_callback = callback;
 	static int lastTime = 0;
 	lastTime = counts;
+	//隐藏上一个时钟
+	this->bellSprite->setVisible(false);
+	//取消上一个倒计时
+	this->unschedule("CountDown");
 	if (lastTime <= 0) {
 		if (NULL != _callback) {
 			_callback();
@@ -273,7 +315,6 @@ void UIPlayGame::setCountDown(int pos, int counts, function<void()> callback) {
 	this->bellSprite->setPosition(BELLPOS[pos]);
 	//时钟比例
 	this->bellSprite->setScale(BELLSCALE[pos]);
-	this->unschedule("CountDown");
 	this->schedule([&](float t) {
 		this->bellSprite->setVisible(true);
 		this->bellSprite->removeAllChildren();
@@ -314,7 +355,8 @@ void UIPlayGame::outButtonCallback(bool state) {
 		for (int i = 0; i < this->selPoker.size(); i++) {
 			auto tmpPoker = this->selPoker[i];
 			auto addPoker= proto.add_poker();
-			(*addPoker) = tmpPoker->getPoker();
+			addPoker->set_color(tmpPoker->getPoker().color());
+			addPoker->set_number(tmpPoker->getPoker().number());
 		}
 	}
 	My_client->request(&proto, [](google::protobuf::Message* rProto) {
@@ -351,6 +393,8 @@ void UIPlayGame::onEnter() {
 	UIPanel::onEnter();
 }
 
+
+
 //显示发牌动画
 void UIPlayGame::showDealAction() {
 	//铺着的牌,中间
@@ -358,6 +402,10 @@ void UIPlayGame::showDealAction() {
 	backSp_mid->setPosition(Vec2(My_visibleSize.width * 0.5, My_visibleSize.height * 0.5));
 	backSp_mid->setScale(BACKPOKERSCALE);
 	this->addChild(backSp_mid, 1, MIDPOKERTAG);
+	//隐藏UI
+	this->setGradUIEnabled(false);
+	this->setOutUIEnabled(false);
+	this->setCountDown(0, 0);
 
 	static int pokerNum = 0;
 	pokerNum = this->poker.size();
@@ -380,17 +428,17 @@ void UIPlayGame::showDealAction() {
 				tmpSelfPokerSp->setVisible(true);
 				tmpSelfPokerSp->setTag(-1);
 			}
-			if (1 < pokerNum) {
-				return;
-			}
-			//动画执行完，开始游戏
-			this->startGame();
 		}), NULL));
-
 		pokerNum = pokerNum - 1;
 		//上家，下家牌的数字
 		this->setPlayerPokerNumber(pokerSum - pokerNum, pokerSum - pokerNum);
 
+		if (0 < pokerNum) {
+			return;
+		}
+		//动画执行完，开始游戏
+		cout << "startGame: " << pokerNum << endl;
+		this->startGame();
 	}, 0.1, pokerNum - 1, 0.0, "DEALSCHEDULERKEY");
 
 }
@@ -441,6 +489,10 @@ void UIPlayGame::refreshState(MessageUpdateStateRsp *proto) {
 	this->gameing = true;
 	this->setGradUIEnabled(false);
 	this->setOutUIEnabled(false);
+	this->notOutSprite->setVisible(false);
+	this->notGradSprite->setVisible(false);
+	this->gradSprite->setVisible(false);
+	this->landlordSprite->setVisible(false);
 
 	//显示玩家手牌
 	this->setPlayerPokerNumber(proto->uppokernum(), proto->downpokernum());
@@ -493,15 +545,45 @@ void UIPlayGame::refreshState(MessageUpdateStateRsp *proto) {
 		}
 	}
 
+
 	if (1 == proto->statetype()) {
 		//抢地主
 		this->setGradUIEnabled(0 == proto->playeridx());
-
+		//显示上一个操作者的操作
+		//位置(当前操作者的上家）
+		auto tmpIdx = (proto->playeridx() + 3 - 1) % 3;
+		if (0 == proto->lastisgrad()) {
+			//没有上一个操作者
+		} else if (1 == proto->lastisgrad()) {
+			//上一个操作者抢地主了
+			this->gradSprite->setVisible(true);
+			this->gradSprite->setPosition(BELLPOS[tmpIdx]);
+		} else if (2 == proto->lastisgrad()) {
+			//上一个操作者没抢
+			this->notGradSprite->setVisible(true);
+			this->notGradSprite->setPosition(BELLPOS[tmpIdx]);
+		}
 
 	} else if (2 == proto->statetype()) {
 		//出牌
 		//操作人人是自己就显示
 		this->setOutUIEnabled(0 == proto->playeridx());
+		//位置(当前操作者的上家）
+		auto tmpIdx = (proto->playeridx() + 3 - 1) % 3;
+		if (0 == proto->lastisout()) {
+			//没有上一个操作者
+		} else if (1 == proto->lastisout()) {
+			//上一个操作者出牌
+
+		} else if(2 == proto->lastisout()){
+			//上一个操作者没有出牌
+			this->notOutSprite->setVisible(true);
+			this->notOutSprite->setPosition(BELLPOS[tmpIdx]);
+		}
+		//地主冒的位置
+		this->landlordSprite->setVisible(true);
+		this->landlordSprite->setScale(LANDLORDSPRITESCALE[proto->landlordidx()]);
+		this->landlordSprite->setPosition(LANDLORDSPRITEPOS[proto->landlordidx()]);
 	}
 	//刷新自己的手牌
 	int pokerSize = proto->selfpoker_size();
@@ -637,6 +719,49 @@ void UIPlayGame::touchEnded(Touch *touch, Event* event) {
 }
 
 
+//游戏结束
+void UIPlayGame::gameOver(MessageGameResultRsp* rProto) {
+	this->gameing = false;
+	//隐藏所有UI
+	this->setGradUIEnabled(false);
+	this->setOutUIEnabled(false);
+	this->notOutSprite->setVisible(false);
+	this->notGradSprite->setVisible(false);
+	this->gradSprite->setVisible(false);
+	this->landlordSprite->setVisible(false);
+
+	Sprite* resultSp = NULL;
+	if (true == rProto->iswinning()) {
+		resultSp = Sprite::create("winning.png");
+	} else {
+		resultSp = Sprite::create("failure.png");
+	}
+	resultSp->setPosition(My_visibleSize.width * 0.5, My_visibleSize.height * 0.5);
+	this->addChild(resultSp, 100);
+
+	this->scheduleOnce([](float t) {
+		//退出界面
+		My_gameScene->popPanel();
+	}, 1.5, "gameOver");
+
+}
+void UIPlayGame::onExit() {
+	UIPanel::onExit();
+	if (NULL != this->recvPokerlistener) {
+		this->recvPokerlistener->removeEventListener();
+		this->recvPokerlistener = NULL;
+	}
+	if (NULL != this->recvStateListener) {
+		this->recvStateListener->removeEventListener();
+		this->recvStateListener = NULL;
+
+	}
+	if (NULL != this->recvResultListener) {
+		this->recvResultListener->removeEventListener();
+		this->recvResultListener = NULL;
+
+	}
+}
 
 UIPlayGame::~UIPlayGame() {
 	//if(NULL != this->recvPokerlistener){
