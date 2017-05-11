@@ -116,8 +116,9 @@ class Server(object):
     @readProto
     def requestOutPoker(self, cPlayer, proto):
         rProto = cmd_pb2.MessageOutPokerRsp()
-
+        cPlayer.desk.handleOutPoker(cPlayer.playerID, proto)
         return rProto
+
     #将玩家加入队列
     def addWaitQueue(self, playerID):
         self.__waitQueue.append(playerID)

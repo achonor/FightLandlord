@@ -43,8 +43,13 @@ def serialization(proto, playerID = 0, messageID = 0):
     mainProto.playerID  = playerID
     mainProto.messageID = messageID
     mainProto.messageName = proto.__class__.__name__
-    mainProto.messageData = proto.SerializeToString()
     mainProto.serverTime = getSystemTime()
+    try:
+        mainProto.messageData = u''
+        mainProto.messageData = proto.SerializeToString()
+    except Exception,e:
+        print e
+        print mainProto
     #序列化包装后的协议
     tmpStr = mainProto.SerializeToString()
     tmpLen = len(tmpStr)

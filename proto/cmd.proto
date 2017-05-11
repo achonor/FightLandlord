@@ -63,7 +63,10 @@ message MessageUpdateStateRsp{
 	repeated MessageDataPoker selfPoker = 5;	//自己的牌
 	optional int32 upPokerNum = 6;				//上家牌数
 	optional int32 downPokerNum = 7;			//下家家牌数
-	optional int32 laveTime = 8;		//剩余时间
+	optional uint32 laveTime = 8;		//剩余时间
+	optional int32 lastIsGrad = 9; //上一个操作者是否抢地主(0.没有上一个操作者，1.抢了， 2.没抢)
+	optional int32 lastIsOut = 10; //上一个操作者是否出牌(0.没有上一个操作者，1.出了，没出)
+	optional int32 landlordIdx = 11; //地主的位置(0.自己, 1.下家, 2.上家)
 }
 
 
@@ -80,6 +83,14 @@ message MessageOutPokerReq{
 	repeated MessageDataPoker poker = 1;
 }
 message MessageOutPokerRsp{
+}
+
+//同步结果
+message MessageGameResultReq{
+	
+}
+message MessageGameResultRsp{
+	optional bool isWinning = 1;
 }
 
 //////////////////////////////////////

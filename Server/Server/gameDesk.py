@@ -33,6 +33,10 @@ class desk:
         self.operatorEndTme = 0
         #上一次出的牌
         self.lastOutPoker = []
+        #上一个操作者是否抢地主(0.没有上家，1.抢了， 2.没抢)
+        self.lastIsGrad = 0
+        #上一个操作者是否出牌（0.没有上家，1.出了，没出)
+        self.lastIsOut = 0
         #等待触发的Deferred
         self.waitDeferred = None
         #初始化角色
@@ -42,10 +46,30 @@ class desk:
             self.playerList.append(tmpPlayer)
 
 
+    def initData(self):
+        # 地主的索引
+        self.landlordIdx = -1
+        # 正在操作的玩家
+        self.operatorIdx = -1
+        # 当前进行的状态(0, 未开始, 1.抢地主, 2.打牌)
+        self.gameState = 0
+        # 当前操作的剩结束
+        self.operatorEndTme = 0
+        # 上一次出的牌
+        self.lastOutPoker = []
+        # 上一个操作者是否抢地主(0.没有上家，1.抢了， 2.没抢)
+        self.lastIsGrad = 0
+        # 上一个操作者是否出牌（0.没有上家，1.出了，没出)
+        self.lastIsOut = 0
+        # 等待触发的Deferred
+        self.waitDeferred = None
+
     #游戏开始
     @inlineCallbacks
     def startGame(self):
         while(True):
+            #初始化数据
+            self.initData()
             # 随机生成牌
             self.randomDeal()
             # 3秒后开始游戏
@@ -61,13 +85,15 @@ class desk:
                 break
     #给三个玩家发牌
     def randomDeal(self):
-        #发牌
+        self.landlordPoker = []
         tmpList = functions.randPoker()
         for i in range(0, 4, 1):
+            # 默认给地主牌赋值
             tmpPokerList = self.landlordPoker
             if(i <= 2):
-                self.playerList[i].poker = []
-                tmpPokerList = self.playerList[i].poker
+                #小于三就给玩家牌赋值
+                self.getPlayerByIdx(i).poker = []
+                tmpPokerList = self.getPlayerByIdx(i).poker
             for tmp in tmpList[i]:
                 colorNumber = functions.tearPoker(tmp)
                 tmpProto = cmd_pb2.MessageDataPoker()
@@ -81,11 +107,11 @@ class desk:
     def sendPoker(self, cPlayer, messageID = -1):
         proto = cmd_pb2.MessageDealRsp()
         #上家的索引
-        upIdx = (self.playerList.index(cPlayer) - 1 + 3) % 3
-        proto.upNum = len(self.playerList[upIdx].poker)
+        upIdx = (self.getPlayerIdx(cPlayer) - 1 + 3) % 3
+        proto.upNum = len(self.getPlayerByIdx(upIdx).poker)
         #下家的索引
-        downIdx = (self.playerList.index(cPlayer) + 1) % 3
-        proto.downNum = len(self.playerList[downIdx].poker)
+        downIdx = (self.getPlayerIdx(cPlayer) + 1) % 3
+        proto.downNum = len(self.getPlayerByIdx(downIdx).poker)
 
         for tmpPoker in cPlayer.poker:
             tmpProto = proto.pokerList.add()
@@ -95,15 +121,23 @@ class desk:
     #获取玩家当前状态
     def getPlayerState(self, cPlayer):
         rProto = cmd_pb2.MessageUpdateStateRsp()
+        #上一个操作者是否抢地主
+        rProto.lastIsGrad = self.lastIsGrad
+        #上一个操作者是否出牌
+        rProto.lastIsOut = self.lastIsOut
+        if(-1 != self.landlordIdx):
+            #有地主，同步地主相对自己的位置
+            tmpIdx = self.getPlayerIdx(cPlayer)
+            rProto.landlordIdx  = self.getPlayerPos(tmpIdx, self.landlordIdx)
         #玩家自己的牌
         for tmpPoker in cPlayer.poker:
             tmpProto = rProto.selfPoker.add()
             tmpProto.color = tmpPoker.color
             tmpProto.number = tmpPoker.number
         #其它两个玩家的手牌数量
-        tmpSelfIdx = self.playerList.index(cPlayer)
-        rProto.upPokerNum = len(self.playerList[(tmpSelfIdx + 3 - 1) % 3].poker)
-        rProto.downPokerNum = len(self.playerList[(tmpSelfIdx + 1) % 3].poker)
+        tmpSelfIdx = self.getPlayerIdx(cPlayer)
+        rProto.upPokerNum = len(self.getPlayerByIdx((tmpSelfIdx + 3 - 1) % 3).poker)
+        rProto.downPokerNum = len(self.getPlayerByIdx((tmpSelfIdx + 1) % 3).poker)
         if(0 == self.gameState):
             #游戏还没开始
             rProto.stateType = 0
@@ -133,19 +167,32 @@ class desk:
         for i in range(0, 3):
             stateProto = cmd_pb2.MessageUpdateStateRsp()
             tmpPos = self.getPlayerPos(i, self.operatorIdx)
+            #地主相对当前玩家的位置
+            tmpLandlordPos = 0
+            #玩家自己的牌
             tmpSelfPoker = []
+            #地主牌
             tmpLandlordPoker = []
             if(2 == self.gameState):
+                tmpLandlordPos = self.getPlayerPos(i, self.landlordIdx)
                 tmpLandlordPoker = self.landlordPoker
                 if(i == lastOperatorPlayerIdx):
-                    tmpSelfPoker = self.playerList[i].poker
-            stateProto = self.setMessageUpdateStateRsp(stateProto, tmpPos, outTime, tmpLandlordPoker, tmpSelfPoker)
-            GGData.My_Factory.returnData(self.playerList[i], -1, stateProto)
+                    tmpSelfPoker = self.getPlayerByIdx(i).poker
+            stateProto = self.setMessageUpdateStateRsp(stateProto, tmpPos, outTime, tmpLandlordPoker, tmpLandlordPos, tmpSelfPoker)
+            GGData.My_Factory.returnData(self.getPlayerByIdx(i), -1, stateProto)
 
-    def setMessageUpdateStateRsp(self, proto, operatorPos, waitTime, landlordPoker, selfPoker = []):
+    def setMessageUpdateStateRsp(self, proto, operatorPos, waitTime, landlordPoker, landlordPos, selfPoker):
         proto.playerIdx = operatorPos
+        #当前游戏状态
         proto.stateType = self.gameState
+        #等待玩家响应的时间
         proto.laveTime = waitTime #functions.getSystemTime() + waitTime
+        # 上一个操作者是否抢地主
+        proto.lastIsGrad = self.lastIsGrad
+        ##上一个操作者是否出牌
+        proto.lastIsOut = self.lastIsOut
+        #同步地主相对自己的位置
+        proto.landlordIdx  = landlordPos
         #保存结束时间
         self.operatorEndTme = proto.laveTime + functions.getSystemTime()
         for tmpPoker in self.lastOutPoker:
@@ -164,7 +211,12 @@ class desk:
     #返回b相对a的位置(0.自身 1.下家 2.上家）
     def getPlayerPos(self, a, b):
         return (b + 3 - a) % 3
-
+    #获取玩家
+    def getPlayerByIdx(self, idx):
+        return self.playerList[idx]
+    #获取玩家索引
+    def getPlayerIdx(self, cPlayer):
+        return self.playerList.index(cPlayer)
     #游戏循环
     @inlineCallbacks
     def gameLoop(self):
@@ -182,26 +234,55 @@ class desk:
             #通知三个玩家
             self.updataAllPlayerState(GRADLANDLORDTIME, -1)
             d = Deferred()
-            self.registerEvent(self.operatorIdx, d, GRADLANDLORDTIME)
+            self.registerEvent(self.operatorIdx, d, GRADLANDLORDTIME, False)
             ret = yield d
+            self.lastIsGrad = ret
             if(True == ret):
+                self.lastIsGrad = 1
                 lastGradIdx = self.operatorIdx
+            else:
+                self.lastIsGrad = 2
         if(-1 == lastGradIdx):
             #没人抢地主，重新开始
             defer.returnValue(False)
+        #过了抢地主的状态
+        self.lastIsGrad = 0
         #设置地主
         self.landlordIdx = lastGradIdx
-        self.playerList[self.landlordIdx].poker.extend(self.landlordPoker)
+        self.getPlayerByIdx(self.landlordIdx).poker.extend(self.landlordPoker)
         #标记开始打牌
         self.gameState = 2
         #地主开始操作
         self.operatorIdx = lastGradIdx
-        #同步状态
-        self.updataAllPlayerState(GRADLANDLORDTIME, lastGradIdx)
-
+        #上一个操作者
+        lastOperatorIdx = self.operatorIdx
+        #出牌循环
+        while(True):
+            # 同步状态
+            self.updataAllPlayerState(OUTPOKERTIME, lastOperatorIdx)
+            #等待出牌
+            d = Deferred()
+            self.registerEvent(self.operatorIdx, d, OUTPOKERTIME, [])
+            ret = yield d
+            if(0 < len(ret)):
+                #出牌了
+                self.lastIsOut = 1
+                self.lastOutPoker = ret
+                pokerList = self.getPlayerByIdx(self.operatorIdx).poker
+                for tmpPoker in ret:
+                    #从手牌移除
+                    pokerList.remove(tmpPoker)
+                if(len(pokerList) <= 0):
+                    #出完了
+                    self.gameOver(self.operatorIdx)
+                    break
+            else:
+                self.lastIsOut = 2 #没出
+            lastOperatorIdx, self.operatorIdx = self.operatorIdx, (self.operatorIdx + 1) % 3  # 修改操作者
+        defer.returnValue(True)
 
     #注册等待事件(等待
-    def registerEvent(self, playerIdx, defe, outTime):
+    def registerEvent(self, playerIdx, defe, outTime, outTimeValue):
         def tmpFunc(value):
             if(self.waitDeferred == defe):
                 defe.callback(value)
@@ -210,18 +291,37 @@ class desk:
         self.operatorIdx = playerIdx
         #超时自动触发
         from twisted.internet import reactor
-        reactor.callLater(outTime, tmpFunc, None)
+        reactor.callLater(outTime, tmpFunc, outTimeValue)
     #处理抢地主
     def handleGradLandlord(self, playerID , proto):
-        if(playerID != self.playerList[self.operatorIdx].playerID):
+        if(playerID != self.getPlayerByIdx(self.operatorIdx).playerID):
             #等待的不是该玩家的请求
             return
         tmpDeferred, self.waitDeferred = self.waitDeferred , None
         tmpDeferred.callback(proto.isGrad)
 
+    #处理出牌事件
+    def handleOutPoker(self, playerID, proto):
+        if (playerID != self.getPlayerByIdx(self.operatorIdx).playerID):
+            # 等待的不是该玩家的请求
+            return
+        tmpDeferred, self.waitDeferred = self.waitDeferred, None
+        tmpDeferred.callback(proto.poker)
     #游戏结束
-    def gameOver(self):
+    def gameOver(self, winningIdx):
+        #是否是地主获胜
+        isLandlord = (winningIdx == self.landlordIdx)
         #恢复玩家状态
-        for cPlayer in self.playerList:
+        for tmpIdx in range(0, 3):
+            cPlayer = self.playerList[tmpIdx]
             cPlayer.desk = None
             cPlayer.poker = []
+            rProto = cmd_pb2.MessageGameResultRsp()
+            if(True == isLandlord):
+                #如果是地主获胜,那么就只有地主获胜
+                rProto.isWinning  = (tmpIdx == self.landlordIdx)
+            else:
+                #农民获胜，那么只有地主输
+                rProto.isWinning = (tmpIdx != self.landlordIdx)
+            #同步结果
+            GGData.My_Factory.returnData(cPlayer, -1, rProto)
