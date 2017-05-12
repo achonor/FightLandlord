@@ -37,6 +37,8 @@ class desk:
         self.lastIsGrad = 0
         #上一个操作者是否出牌（0.没有上家，1.出了，没出)
         self.lastIsOut = 0
+        #上一个出牌的玩家索引
+        self.lastOutPokerIdx = -1
         #等待触发的Deferred
         self.waitDeferred = None
         #初始化角色
@@ -61,6 +63,8 @@ class desk:
         self.lastIsGrad = 0
         # 上一个操作者是否出牌（0.没有上家，1.出了，没出)
         self.lastIsOut = 0
+        #上一个出牌的玩家索引
+        self.lastOutPokerIdx = -1
         # 等待触发的Deferred
         self.waitDeferred = None
 
@@ -258,6 +262,9 @@ class desk:
         lastOperatorIdx = self.operatorIdx
         #出牌循环
         while(True):
+            if(self.lastOutPokerIdx == self.operatorIdx):
+                #没人要的起
+                self.lastOutPoker = []
             # 同步状态
             self.updataAllPlayerState(OUTPOKERTIME, lastOperatorIdx)
             #等待出牌
@@ -268,6 +275,7 @@ class desk:
                 #出牌了
                 self.lastIsOut = 1
                 self.lastOutPoker = ret
+                self.lastOutPokerIdx = self.operatorIdx
                 pokerList = self.getPlayerByIdx(self.operatorIdx).poker
                 for tmpPoker in ret:
                     #从手牌移除
