@@ -11,8 +11,6 @@ game::game()
 
 
 void game::init() {
-	//添加搜索路径
-	CCFileUtils::getInstance()->addSearchPath("../../config");
 
 	//初始化GGData
 	My_InitGGData();

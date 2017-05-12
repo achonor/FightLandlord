@@ -30,7 +30,10 @@ bool UIPoker::initWithPoker(MessageDataPoker* tPoker) {
 	this->poker.Clear();
 	std::string path = "poker_card/pokerpoker_back_1.png";
 	if (NULL != tPoker) {
-		path = "poker_card/poker_" + std::to_string(tPoker->color()) + "_" + std::to_string(tPoker->number()) + ".png";
+		std::stringstream ss;
+		ss << "poker_card/poker_" << tPoker->color() << "_" << tPoker->number() << ".png";
+		ss >> path;
+		//path = "poker_card/poker_" + std::to_string(tPoker->color()) + "_" + std::to_string(tPoker->number()) + ".png";
 		this->poker.set_color(tPoker->color());
 		this->poker.set_number(tPoker->number());
 	}

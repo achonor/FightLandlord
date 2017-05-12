@@ -23,7 +23,7 @@ void My_InitGGData() {
 	GGNode = Node::create();
 	GGNode->retain();
 	//游戏配置文件
-	My_config = My_getJsonData("config.json");
+	My_config = My_getJsonData("config/config.json");
 	//游戏客户端
 	My_client = Client::create();
 }
