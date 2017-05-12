@@ -294,6 +294,12 @@ void UIPlayGame::setGradUIEnabled(bool state) {
 void UIPlayGame::setOutUIEnabled(bool state) {
 	this->outButton->setVisible(state);
 	this->notOutButton->setVisible(state);
+
+	if (true == state) {
+		this->notOutButton->setEnabled(0 != this->deskPoker.size());
+		//更新按钮状态
+		this->updateOutButtonState();
+	}
 }
 //设置时钟倒计时(pos：0，自己，2.下家，3.下家）
 void UIPlayGame::setCountDown(int pos, int counts, function<void()> callback) {
@@ -359,8 +365,8 @@ void UIPlayGame::outButtonCallback(bool state) {
 			addPoker->set_number(tmpPoker->getPoker().number());
 		}
 	}
-	My_client->request(&proto, [](google::protobuf::Message* rProto) {
-
+	My_client->request(&proto, [&](google::protobuf::Message* rProto) {
+		this->selPoker.clear();
 	});
 }
 
@@ -388,6 +394,28 @@ void UIPlayGame::setPlayerPokerNumber(int up, int down) {
 	}
 }
 
+
+//更新出牌按钮的状态
+void UIPlayGame::updateOutButtonState() {
+	int selSize = this->selPoker.size();
+	int deskSize = this->deskPoker.size();
+	if (0 == selSize) {
+		this->outButton->setEnabled(false);
+		return;
+	}
+	vector<MessageDataPoker > vecSel;
+	vector<MessageDataPoker > vecDesk;
+	int len = selSize < deskSize ? deskSize : selSize;
+	for (int i = 0; i < len; i++) {
+		if (i < selSize) {
+			vecSel.push_back(this->selPoker[i]->getPoker());
+		}
+		if (i < deskSize) {
+			vecDesk.push_back(this->deskPoker[i]->getPoker());
+		}
+	}
+	this->outButton->setEnabled(My_pokerCmp(vecSel, vecDesk));
+}
 
 void UIPlayGame::onEnter() {
 	UIPanel::onEnter();
@@ -494,6 +522,9 @@ void UIPlayGame::refreshState(MessageUpdateStateRsp *proto) {
 	this->gradSprite->setVisible(false);
 	this->landlordSprite->setVisible(false);
 
+	//清空缓存的牌桌上的牌
+	this->deskPoker.clear();
+
 	//显示玩家手牌
 	this->setPlayerPokerNumber(proto->uppokernum(), proto->downpokernum());
 
@@ -542,6 +573,7 @@ void UIPlayGame::refreshState(MessageUpdateStateRsp *proto) {
 			auto tmpPoker = UIPoker::create(&(tmpDeskPokerList[i]));
 			tmpPoker->setPosition(Vec2((i + 0.5 - 0.5 * pokerSum) * DESKPOKERDIS, 0));
 			this->deskPokerNode->addChild(tmpPoker, i);
+			this->deskPoker.push_back(tmpPoker);
 		}
 	}
 
@@ -715,6 +747,8 @@ void UIPlayGame::touchEnded(Touch *touch, Event* event) {
 			selPoker.push_back(this->poker[i]);
 		}
 	}
+	//更新按钮状态
+	this->updateOutButtonState();
 	this->touching = false;
 }
 

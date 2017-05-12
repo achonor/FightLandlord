@@ -2,6 +2,7 @@
 #include "functions.h"
 
 #include <cmath>
+#include "checkPoker.h"
 
 using namespace std;
 USING_NS_CC;
@@ -14,7 +15,7 @@ rapidjson::Document My_getJsonData(const char* fileName) {
 	char tStr[2048];
 	strcpy(tStr, (char *)tmpData.getBytes());
 	tStr[tmpData.getSize()] = '\0';
-
+	cout << tStr << endl;
 	//[2] 创建用于处理json代码的类
 	// 创建rapidjson::Document类：用于操作json代码
 	rapidjson::Document d;
@@ -133,6 +134,21 @@ bool My_pokerCmd(MessageDataPoker &a, MessageDataPoker &b) {
 		return a.color() < b.color();
 	}
 	return false;
+}
+
+std::string My_pokerListToString(vector<MessageDataPoker > &pokerList) {
+	std::string ret;
+	for (int i = 0; i < pokerList.size(); i++) {
+		auto tmpPoker = pokerList[i];
+		ret = ret + PokerToChar[tmpPoker.number()];
+	}
+	return ret;
+}
+
+bool My_pokerCmp(vector<MessageDataPoker > &a, vector<MessageDataPoker > &b) {
+	std::string aStr = My_pokerListToString(a);
+	std::string bStr = My_pokerListToString(b);
+	return checkPoker::pokerCmp(aStr, bStr);
 }
 
 //

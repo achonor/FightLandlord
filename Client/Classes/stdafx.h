@@ -10,7 +10,7 @@
 #include "stdio.h"
 #include "cocos2d.h"
 #include "net/MySocket.h"
-#include "functions.h"
+//#include "functions.h"
 #include "Event/UserEvent.h"
 #include "GameScene.h"
 #include "GGText.h"

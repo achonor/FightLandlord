@@ -55,6 +55,8 @@ protected:
 	void outButtonCallback(bool state);
 	//设置玩家牌的数量(上家和下家）
 	void setPlayerPokerNumber(int up, int down);
+	//更新出牌按钮的状态
+	void updateOutButtonState();
 
 public:
 	//请求开始游戏
@@ -79,6 +81,8 @@ protected:
 	int downNum;
 	//自己的牌
 	vector<UIPoker*> poker;
+	//牌桌桌上的牌
+	vector<UIPoker*> deskPoker;
 	//接收发牌协议事件
 	UserEvent* recvPokerlistener;
 	//接收游戏状态事件

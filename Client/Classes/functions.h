@@ -5,12 +5,15 @@
 #include "cocos2d.h"
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 #include "json/rapidjson.h"
 #include "json/document.h"
 
 #include "proto/cmd.pb.h"
 #include "google/protobuf/message.h"
+
+const char PokerToChar[18] = "0003456789abcdefg";
 
 //解析json文件
 rapidjson::Document My_getJsonData(const char* fileName);
@@ -38,5 +41,12 @@ double My_calcPostionDis(cocos2d::Vec2 &pos1, cocos2d::Vec2 &pos2);
 
 //poker排序
 bool My_pokerCmd(MessageDataPoker &a, MessageDataPoker &b);
+
+//vector<MessageDataPoker >转成字符串
+//3:3， 4:4，5:5，6:6，7:7，8:8，9:9，a:10，b:J， c:Q， d:K， e:A, f:2, g:王
+std::string My_pokerListToString(vector<MessageDataPoker > &pokerList);
+
+//判断牌的大小
+bool My_pokerCmp(vector<MessageDataPoker > &a, vector<MessageDataPoker > &b);
 
 #endif

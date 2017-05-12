@@ -62,6 +62,7 @@ bool Client::initNet(std::string &addr, int port) {
 	clientSocket.setRecvTimeOut(1);
 	clientSocket.setSendTimeOut(1);
 
+
 	//添加监听
 	this->recvDataListener = UserEvent::addEventListener(EVENT_RECEIVE_DATA, [&](EventCustom *event) {
 		auto tmpBuffer = (std::string*)(event->getUserData());

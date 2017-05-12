@@ -67,7 +67,9 @@ void MySocket::setSendTimeOut(int time)
 #ifdef WIN32
 	setsockopt(mySocket, SOL_SOCKET, SO_SNDTIMEO, (char*)&time, sizeof(int));
 #else
-	struct timeval timeout = { time, 0 };
+	int second = time * 0.001;
+	int millisecond = time % 1000;
+	struct timeval timeout = { second, millisecond };
 	setsockopt(mySocket, SOL_SOCKET, SO_SNDTIMEO, (char*)&timeout, sizeof(struct timeval));
 #endif
 }
@@ -77,7 +79,9 @@ void MySocket::setRecvTimeOut(int time)
 #ifdef WIN32
 	setsockopt(mySocket, SOL_SOCKET, SO_RCVTIMEO, (char*)&time, sizeof(int));
 #else
-	struct timeval timeout = { time, 0 };
+	int second = time * 0.001;
+	int millisecond = time % 1000;
+	struct timeval timeout = { second, millisecond };
 	setsockopt(mySocket, SOL_SOCKET, SO_RCVTIMEO, (char*)&timeout, sizeof(struct timeval));
 #endif
 }
