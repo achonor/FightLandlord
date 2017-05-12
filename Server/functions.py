@@ -45,7 +45,6 @@ def serialization(proto, playerID = 0, messageID = 0):
     mainProto.messageName = proto.__class__.__name__
     mainProto.serverTime = getSystemTime()
     try:
-        mainProto.messageData = u''
         mainProto.messageData = proto.SerializeToString()
     except Exception,e:
         print e

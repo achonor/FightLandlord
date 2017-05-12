@@ -18,9 +18,9 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='cmd.proto',
   package='',
-  syntax='proto2',
   serialized_pb=_b('\n\tcmd.proto\"n\n\tMainProto\x12\x10\n\x08playerID\x18\x01 \x02(\x05\x12\x11\n\tmessageID\x18\x02 \x02(\x05\x12\x13\n\x0bmessageName\x18\x03 \x01(\t\x12\x13\n\x0bmessageData\x18\x04 \x01(\t\x12\x12\n\nserverTime\x18\x05 \x01(\x01\"5\n\x10MessagePeopleReq\x12\x10\n\x08peopleID\x18\x01 \x01(\x05\x12\x0f\n\x07isChina\x18\x02 \x01(\x08\"<\n\x10MessagePeopleRsp\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05phone\x18\x02 \x01(\t\x12\x0b\n\x03\x61ge\x18\x03 \x01(\x05\"\x11\n\x0fMessageLoginReq\"#\n\x0fMessageLoginRsp\x12\x10\n\x08playerID\x18\x01 \x01(\x05\"\x15\n\x13MessageStartGameReq\"\x15\n\x13MessageStartGameRsp\"\x10\n\x0eMessageDealReq\"V\n\x0eMessageDealRsp\x12\r\n\x05upNum\x18\x01 \x01(\x05\x12\x0f\n\x07\x64ownNum\x18\x02 \x01(\x05\x12$\n\tpokerList\x18\x03 \x03(\x0b\x32\x11.MessageDataPoker\"\x17\n\x15MessageUpdateStateReq\"\xaa\x02\n\x15MessageUpdateStateRsp\x12\x11\n\tplayerIdx\x18\x01 \x01(\x05\x12\x11\n\tstateType\x18\x02 \x01(\x05\x12#\n\x08midPoker\x18\x03 \x03(\x0b\x32\x11.MessageDataPoker\x12(\n\rlandlordPoker\x18\x04 \x03(\x0b\x32\x11.MessageDataPoker\x12$\n\tselfPoker\x18\x05 \x03(\x0b\x32\x11.MessageDataPoker\x12\x12\n\nupPokerNum\x18\x06 \x01(\x05\x12\x14\n\x0c\x64ownPokerNum\x18\x07 \x01(\x05\x12\x10\n\x08laveTime\x18\x08 \x01(\r\x12\x12\n\nlastIsGrad\x18\t \x01(\x05\x12\x11\n\tlastIsOut\x18\n \x01(\x05\x12\x13\n\x0blandlordIdx\x18\x0b \x01(\x05\"(\n\x16MessageGradLandlordReq\x12\x0e\n\x06isGrad\x18\x01 \x01(\x08\"\x18\n\x16MessageGradLandlordRsp\"6\n\x12MessageOutPokerReq\x12 \n\x05poker\x18\x01 \x03(\x0b\x32\x11.MessageDataPoker\"\x14\n\x12MessageOutPokerRsp\"\x16\n\x14MessageGameResultReq\")\n\x14MessageGameResultRsp\x12\x11\n\tisWinning\x18\x01 \x01(\x08\"1\n\x10MessageDataPoker\x12\r\n\x05\x63olor\x18\x01 \x01(\x05\x12\x0e\n\x06number\x18\x02 \x01(\x05')
 )
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -63,7 +63,7 @@ _MAINPROTO = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='serverTime', full_name='MainProto.serverTime', index=4,
       number=5, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -75,7 +75,6 @@ _MAINPROTO = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -113,7 +112,6 @@ _MESSAGEPEOPLEREQ = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -158,7 +156,6 @@ _MESSAGEPEOPLERSP = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -182,7 +179,6 @@ _MESSAGELOGINREQ = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -213,7 +209,6 @@ _MESSAGELOGINRSP = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -237,7 +232,6 @@ _MESSAGESTARTGAMEREQ = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -261,7 +255,6 @@ _MESSAGESTARTGAMERSP = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -285,7 +278,6 @@ _MESSAGEDEALREQ = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -330,7 +322,6 @@ _MESSAGEDEALRSP = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -354,7 +345,6 @@ _MESSAGEUPDATESTATEREQ = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -455,7 +445,6 @@ _MESSAGEUPDATESTATERSP = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -486,7 +475,6 @@ _MESSAGEGRADLANDLORDREQ = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -510,7 +498,6 @@ _MESSAGEGRADLANDLORDRSP = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -541,7 +528,6 @@ _MESSAGEOUTPOKERREQ = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -565,7 +551,6 @@ _MESSAGEOUTPOKERRSP = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -589,7 +574,6 @@ _MESSAGEGAMERESULTREQ = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -620,7 +604,6 @@ _MESSAGEGAMERESULTRSP = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -658,7 +641,6 @@ _MESSAGEDATAPOKER = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -689,7 +671,6 @@ DESCRIPTOR.message_types_by_name['MessageOutPokerRsp'] = _MESSAGEOUTPOKERRSP
 DESCRIPTOR.message_types_by_name['MessageGameResultReq'] = _MESSAGEGAMERESULTREQ
 DESCRIPTOR.message_types_by_name['MessageGameResultRsp'] = _MESSAGEGAMERESULTRSP
 DESCRIPTOR.message_types_by_name['MessageDataPoker'] = _MESSAGEDATAPOKER
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 MainProto = _reflection.GeneratedProtocolMessageType('MainProto', (_message.Message,), dict(
   DESCRIPTOR = _MAINPROTO,
