@@ -31,7 +31,7 @@ const int ACTIONPOKERTAG = 170;
 const float BACKPOKERSCALE = 0.5;
 
 //自己卡牌显示比例
-const float SELFPOKERSCALE = 0.80;
+const float SELFPOKERSCALE = 0.90;
 
 //发牌定时器的key
 const std::string DEALSCHEDULERKEY = "DEALSCHEDULERKEY";
@@ -176,7 +176,7 @@ void UIPlayGame::createUI() {
 
 	//放自己牌的Node
 	this->pokerNode = Node::create();
-	this->pokerNode->setPosition(Vec2(My_visibleSize.width * 0.5 + 60, 170 * 0.5 * SELFPOKERSCALE + 10));
+	this->pokerNode->setPosition(Vec2(My_visibleSize.width * 0.5 + 80, 170 * 0.5 * SELFPOKERSCALE + 5));
 	this->pokerNode->setScale(SELFPOKERSCALE);
 	this->addChild(this->pokerNode);
 	//放地主牌的Node

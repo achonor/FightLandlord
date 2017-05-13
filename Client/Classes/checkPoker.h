@@ -49,7 +49,7 @@ public:
 	//检测牌的类型
 	static checkResult checkType(std::string &pokerList);
 	//判断牌的大小
-	static bool checkPoker::pokerCmp(std::string &a, std::string &b);
+	static bool pokerCmp(std::string &a, std::string &b);
 };
 
 

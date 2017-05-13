@@ -16,7 +16,11 @@ void game::init() {
 	My_InitGGData();
 	
 	//初始化网络
-    std::string tmpAddr = My_config["loginAddr"].GetString();
+#ifdef WIN32
+    std::string tmpAddr = My_config["outloginAddr"].GetString();
+#else
+	std::string tmpAddr = My_config["outloginAddr"].GetString();
+#endif // DEBUG
     My_client->initNet(tmpAddr, My_config["serverPort"].GetInt());
 }
 	
