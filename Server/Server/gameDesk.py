@@ -170,7 +170,6 @@ class desk:
     def updataAllPlayerState(self, outTime, lastOperatorPlayerIdx):
         for i in range(0, 3):
             stateProto = cmd_pb2.MessageUpdateStateRsp()
-            tmpPos = self.getPlayerPos(i, self.operatorIdx)
             #地主相对当前玩家的位置
             tmpLandlordPos = 0
             #玩家自己的牌
@@ -182,11 +181,12 @@ class desk:
                 tmpLandlordPoker = self.landlordPoker
                 if(i == lastOperatorPlayerIdx):
                     tmpSelfPoker = self.getPlayerByIdx(i).poker
-            stateProto = self.setMessageUpdateStateRsp(stateProto, tmpPos, outTime, tmpLandlordPoker, tmpLandlordPos, tmpSelfPoker)
+            stateProto = self.setMessageUpdateStateRsp(stateProto, i, outTime, tmpLandlordPoker, tmpLandlordPos, tmpSelfPoker)
             GGData.My_Factory.returnData(self.getPlayerByIdx(i), -1, stateProto)
 
-    def setMessageUpdateStateRsp(self, proto, operatorPos, waitTime, landlordPoker, landlordPos, selfPoker):
-        proto.playerIdx = operatorPos
+    def setMessageUpdateStateRsp(self, proto, selfIdx, waitTime, landlordPoker, landlordPos, selfPoker):
+        #地主位置
+        proto.playerIdx = self.getPlayerPos(selfIdx, self.operatorIdx)
         #当前游戏状态
         proto.stateType = self.gameState
         #等待玩家响应的时间
@@ -199,6 +199,12 @@ class desk:
         proto.landlordIdx  = landlordPos
         #保存结束时间
         self.operatorEndTme = proto.laveTime + functions.getSystemTime()
+        #上家的索引
+        upIdx = (selfIdx- 1 + 3) % 3
+        proto.upPokerNum = len(self.getPlayerByIdx(upIdx).poker)
+        #下家的索引
+        downIdx = (selfIdx + 1) % 3
+        proto.downPokerNum = len(self.getPlayerByIdx(downIdx).poker)
         for tmpPoker in self.lastOutPoker:
             tmpProto = proto.midPoker.add()
             tmpProto.color = tmpPoker.color
