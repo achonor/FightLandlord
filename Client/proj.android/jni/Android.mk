@@ -24,6 +24,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/GameScene.cpp \
                    ../../Classes/GGText.cpp \
                    ../../Classes/GGData.cpp \
+                   ../../Classes/audioManage.cpp \
                    ../../Classes/checkPoker.cpp \
                    ../../Classes/functions.cpp \
                    ../../Classes/stdafx.cpp \
