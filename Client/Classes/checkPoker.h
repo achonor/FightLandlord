@@ -14,7 +14,7 @@ const int needNum[5] = { 16, 1, 1, 1, 1 };
 const int mostTake[5] = { 0, 0, 0, 2, 2 };
 
 //牌和代码中字符的对应
-//3:3， 4:4，5:5，6:6，7:7，8:8，9:9，a:10，b:J， c:Q， d:K， e:A, f:2, g:王
+//3:3， 4:4，5:5，6:6，7:7，8:8，9:9，a:10，b:J， c:Q， d:K， e:A, f:2, h:小王， i:大王
 
 enum pokerType {
 	illegal = 0,//非法

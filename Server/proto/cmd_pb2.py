@@ -18,7 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='cmd.proto',
   package='',
-  serialized_pb=_b('\n\tcmd.proto\"n\n\tMainProto\x12\x10\n\x08playerID\x18\x01 \x02(\x05\x12\x11\n\tmessageID\x18\x02 \x02(\x05\x12\x13\n\x0bmessageName\x18\x03 \x01(\t\x12\x13\n\x0bmessageData\x18\x04 \x01(\t\x12\x12\n\nserverTime\x18\x05 \x01(\x01\"5\n\x10MessagePeopleReq\x12\x10\n\x08peopleID\x18\x01 \x01(\x05\x12\x0f\n\x07isChina\x18\x02 \x01(\x08\"<\n\x10MessagePeopleRsp\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05phone\x18\x02 \x01(\t\x12\x0b\n\x03\x61ge\x18\x03 \x01(\x05\"\x11\n\x0fMessageLoginReq\"#\n\x0fMessageLoginRsp\x12\x10\n\x08playerID\x18\x01 \x01(\x05\"\x15\n\x13MessageStartGameReq\"\x15\n\x13MessageStartGameRsp\"\x10\n\x0eMessageDealReq\"V\n\x0eMessageDealRsp\x12\r\n\x05upNum\x18\x01 \x01(\x05\x12\x0f\n\x07\x64ownNum\x18\x02 \x01(\x05\x12$\n\tpokerList\x18\x03 \x03(\x0b\x32\x11.MessageDataPoker\"\x17\n\x15MessageUpdateStateReq\"\xaa\x02\n\x15MessageUpdateStateRsp\x12\x11\n\tplayerIdx\x18\x01 \x01(\x05\x12\x11\n\tstateType\x18\x02 \x01(\x05\x12#\n\x08midPoker\x18\x03 \x03(\x0b\x32\x11.MessageDataPoker\x12(\n\rlandlordPoker\x18\x04 \x03(\x0b\x32\x11.MessageDataPoker\x12$\n\tselfPoker\x18\x05 \x03(\x0b\x32\x11.MessageDataPoker\x12\x12\n\nupPokerNum\x18\x06 \x01(\x05\x12\x14\n\x0c\x64ownPokerNum\x18\x07 \x01(\x05\x12\x10\n\x08laveTime\x18\x08 \x01(\r\x12\x12\n\nlastIsGrad\x18\t \x01(\x05\x12\x11\n\tlastIsOut\x18\n \x01(\x05\x12\x13\n\x0blandlordIdx\x18\x0b \x01(\x05\"(\n\x16MessageGradLandlordReq\x12\x0e\n\x06isGrad\x18\x01 \x01(\x08\"\x18\n\x16MessageGradLandlordRsp\"6\n\x12MessageOutPokerReq\x12 \n\x05poker\x18\x01 \x03(\x0b\x32\x11.MessageDataPoker\"\x14\n\x12MessageOutPokerRsp\"\x16\n\x14MessageGameResultReq\")\n\x14MessageGameResultRsp\x12\x11\n\tisWinning\x18\x01 \x01(\x08\"1\n\x10MessageDataPoker\x12\r\n\x05\x63olor\x18\x01 \x01(\x05\x12\x0e\n\x06number\x18\x02 \x01(\x05')
+  serialized_pb=_b('\n\tcmd.proto\"n\n\tMainProto\x12\x10\n\x08playerID\x18\x01 \x02(\x05\x12\x11\n\tmessageID\x18\x02 \x02(\x05\x12\x13\n\x0bmessageName\x18\x03 \x01(\t\x12\x13\n\x0bmessageData\x18\x04 \x01(\t\x12\x12\n\nserverTime\x18\x05 \x01(\x01\"5\n\x10MessagePeopleReq\x12\x10\n\x08peopleID\x18\x01 \x01(\x05\x12\x0f\n\x07isChina\x18\x02 \x01(\x08\"<\n\x10MessagePeopleRsp\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05phone\x18\x02 \x01(\t\x12\x0b\n\x03\x61ge\x18\x03 \x01(\x05\"\x11\n\x0fMessageLoginReq\"#\n\x0fMessageLoginRsp\x12\x10\n\x08playerID\x18\x01 \x01(\x05\"\x15\n\x13MessageStartGameReq\"\x15\n\x13MessageStartGameRsp\"\x10\n\x0eMessageDealReq\"V\n\x0eMessageDealRsp\x12\r\n\x05upNum\x18\x01 \x01(\x05\x12\x0f\n\x07\x64ownNum\x18\x02 \x01(\x05\x12$\n\tpokerList\x18\x03 \x03(\x0b\x32\x11.MessageDataPoker\"\x17\n\x15MessageUpdateStateReq\"\xc4\x02\n\x15MessageUpdateStateRsp\x12\x11\n\tplayerIdx\x18\x01 \x01(\x05\x12\x11\n\tstateType\x18\x02 \x01(\x05\x12#\n\x08midPoker\x18\x03 \x03(\x0b\x32\x11.MessageDataPoker\x12(\n\rlandlordPoker\x18\x04 \x03(\x0b\x32\x11.MessageDataPoker\x12$\n\tselfPoker\x18\x05 \x03(\x0b\x32\x11.MessageDataPoker\x12\x12\n\nupPokerNum\x18\x06 \x01(\x05\x12\x14\n\x0c\x64ownPokerNum\x18\x07 \x01(\x05\x12\x10\n\x08laveTime\x18\x08 \x01(\r\x12\x12\n\nlastIsGrad\x18\t \x01(\x05\x12\x11\n\tlastIsOut\x18\n \x01(\x05\x12\x13\n\x0blandlordIdx\x18\x0b \x01(\x05\x12\x18\n\x10lastOutPlayerIdx\x18\x0c \x01(\x05\"(\n\x16MessageGradLandlordReq\x12\x0e\n\x06isGrad\x18\x01 \x01(\x08\"\x18\n\x16MessageGradLandlordRsp\"6\n\x12MessageOutPokerReq\x12 \n\x05poker\x18\x01 \x03(\x0b\x32\x11.MessageDataPoker\"\x14\n\x12MessageOutPokerRsp\"\x16\n\x14MessageGameResultReq\")\n\x14MessageGameResultRsp\x12\x11\n\tisWinning\x18\x01 \x01(\x08\"1\n\x10MessageDataPoker\x12\r\n\x05\x63olor\x18\x01 \x01(\x05\x12\x0e\n\x06number\x18\x02 \x01(\x05')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -437,6 +437,13 @@ _MESSAGEUPDATESTATERSP = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='lastOutPlayerIdx', full_name='MessageUpdateStateRsp.lastOutPlayerIdx', index=11,
+      number=12, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -449,7 +456,7 @@ _MESSAGEUPDATESTATERSP = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=476,
-  serialized_end=774,
+  serialized_end=800,
 )
 
 
@@ -478,8 +485,8 @@ _MESSAGEGRADLANDLORDREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=776,
-  serialized_end=816,
+  serialized_start=802,
+  serialized_end=842,
 )
 
 
@@ -501,8 +508,8 @@ _MESSAGEGRADLANDLORDRSP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=818,
-  serialized_end=842,
+  serialized_start=844,
+  serialized_end=868,
 )
 
 
@@ -531,8 +538,8 @@ _MESSAGEOUTPOKERREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=844,
-  serialized_end=898,
+  serialized_start=870,
+  serialized_end=924,
 )
 
 
@@ -554,8 +561,8 @@ _MESSAGEOUTPOKERRSP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=900,
-  serialized_end=920,
+  serialized_start=926,
+  serialized_end=946,
 )
 
 
@@ -577,8 +584,8 @@ _MESSAGEGAMERESULTREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=922,
-  serialized_end=944,
+  serialized_start=948,
+  serialized_end=970,
 )
 
 
@@ -607,8 +614,8 @@ _MESSAGEGAMERESULTRSP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=946,
-  serialized_end=987,
+  serialized_start=972,
+  serialized_end=1013,
 )
 
 
@@ -644,8 +651,8 @@ _MESSAGEDATAPOKER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=989,
-  serialized_end=1038,
+  serialized_start=1015,
+  serialized_end=1064,
 )
 
 _MESSAGEDEALRSP.fields_by_name['pokerList'].message_type = _MESSAGEDATAPOKER

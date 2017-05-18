@@ -109,14 +109,20 @@ class Server(object):
 
     @readProto
     def requestGradLandlord(self, cPlayer, proto):
+        def handle(pProto):
+            cPlayer.desk.handleGradLandlord(cPlayer.playerID, pProto)
         rProto = cmd_pb2.MessageGradLandlordRsp()
-        cPlayer.desk.handleGradLandlord(cPlayer.playerID, proto)
+        from twisted.internet import reactor
+        reactor.callLater(0.001, handle, proto)
         return rProto
 
     @readProto
     def requestOutPoker(self, cPlayer, proto):
+        def handle(pProto):
+            cPlayer.desk.handleOutPoker(cPlayer.playerID, pProto)
         rProto = cmd_pb2.MessageOutPokerRsp()
-        cPlayer.desk.handleOutPoker(cPlayer.playerID, proto)
+        from twisted.internet import reactor
+        reactor.callLater(0.001, handle, proto)
         return rProto
 
     #将玩家加入队列

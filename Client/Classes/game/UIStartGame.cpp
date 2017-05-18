@@ -5,6 +5,7 @@
 #include "UIPlayGame.h"
 #include "controls/UIMessageBox.h"
 #include "UIPoker.h"
+#include "audioManage.h"
 
 #include "GGText.h"
 
@@ -15,7 +16,6 @@ bool UIStartGame::init() {
 	if (!UIPanel::init()) {
 		return false;
 	}
-
 	//读取背景
 	auto backSprite = Sprite::create("start_back.png");
 	backSprite->setPosition(Vec2(My_visibleSize.width * 0.5, My_visibleSize.height * 0.5));
@@ -31,25 +31,21 @@ bool UIStartGame::init() {
 
 	//开始游戏按钮事件
 	startButton->addTouchEventListener([&](Ref* node, ui::Widget::TouchEventType tType) {
-		switch (tType)
-		{
-		case Widget::TouchEventType::BEGAN:
-			break;
-
-		case Widget::TouchEventType::MOVED:
-			break;
-
-		case Widget::TouchEventType::ENDED:
+		if (tType == Widget::TouchEventType::ENDED) {
 			this->startGame();
-			break;
-		case Widget::TouchEventType::CANCELED:
-			break;
-		default:
-			break;
 		}
 	});
 
 	return true;
+}
+
+void UIStartGame::showing() {
+	//播放背景音乐
+	My_audioManage->playMusic("sound/music/MusicEx_Welcome", true);
+}
+void UIStartGame::hideing() {
+	//停止音乐
+	My_audioManage->stopMusic();
 }
 
 void UIStartGame::onEnter() {
@@ -64,6 +60,7 @@ void UIStartGame::startGame() {
 	//	uiPlayGame->removeFromParent();
 	//	uiPlayGame = NULL;
 	//}
+
 	uiPlayGame = UIPlayGame::create();
 	My_gameScene->pushPanel(uiPlayGame);
 }

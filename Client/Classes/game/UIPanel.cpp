@@ -63,3 +63,8 @@ void UIPanel::touchEnded(Touch *touch, Event* event) {
 void UIPanel::touchCancelled(Touch *touch, Event* event) {
 
 }
+
+void UIPanel::showing() {
+}
+void UIPanel::hideing() {
+}

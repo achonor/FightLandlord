@@ -58,7 +58,7 @@ message MessageUpdateStateReq{
 message MessageUpdateStateRsp{
 	optional int32 playerIdx = 1; 	//可以操作的玩家位置, (0.自己, 1.下家, 2.上家)
 	optional int32 stateType = 2;   //操作类型，0没开始 1抢地主，2出牌
-	repeated MessageDataPoker midPoker = 3;	//牌桌上的牌
+	repeated MessageDataPoker midPoker = 3;	//牌桌上的牌，客户端用于比较大小
 	repeated MessageDataPoker landlordPoker = 4; //地主牌
 	repeated MessageDataPoker selfPoker = 5;	//自己的牌
 	optional int32 upPokerNum = 6;				//上家牌数
@@ -67,6 +67,7 @@ message MessageUpdateStateRsp{
 	optional int32 lastIsGrad = 9; //上一个操作者是否抢地主(0.没有上一个操作者，1.抢了， 2.没抢)
 	optional int32 lastIsOut = 10; //上一个操作者是否出牌(0.没有上一个操作者，1.出了，没出)
 	optional int32 landlordIdx = 11; //地主的位置(0.自己, 1.下家, 2.上家)
+	optional int32 lastOutPlayerIdx = 12; //上一个出牌的玩家相对自己的位置(0.自己, 1.下家, 2.上家)
 }
 
 

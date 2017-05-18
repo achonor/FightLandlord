@@ -17,7 +17,7 @@ void game::init() {
 	
 	//初始化网络
 #ifdef WIN32
-    std::string tmpAddr = My_config["outloginAddr"].GetString();
+    std::string tmpAddr = My_config["inloginAddr"].GetString();
 #else
 	std::string tmpAddr = My_config["outloginAddr"].GetString();
 #endif // DEBUG

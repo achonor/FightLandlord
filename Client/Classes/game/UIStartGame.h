@@ -17,6 +17,9 @@ private:
 
 	virtual void onEnter();
 
+	virtual void showing();
+	virtual void hideing();
+
 public:
 	CREATE_FUNC(UIStartGame);
 };

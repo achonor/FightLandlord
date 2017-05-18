@@ -163,13 +163,9 @@ void Client::onReceive() {
 			char chrBuffer[DATA_MAX_LENGTH + 2];
 			int ret = (self->clientSocket).Recv(chrBuffer, len);
 			if (ret <= 0) {
-				//cerr << "error: " << (self->clientSocket).GetError() << endl;
 				return 0;
 			} else{
 				buffer =std::string(chrBuffer, ret);
-				//if (0 < ret) {
-				//	cout << "recvData: " << buffer[ret] << endl;
-				//}
 				return ret;
 			}
 		}

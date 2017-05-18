@@ -49,7 +49,7 @@ checkResult checkPoker::checkType(std::string &pokerList) {
 		return ret;
 	}
 	//判断王炸
-	if (2 == pokerNum && strcmp("gg", pokerList.c_str()) == 0) {
+	if (2 == pokerNum && 'g' < pokerList.c_str()[0] && 'g' < pokerList.c_str()[1]) {
 		ret = checkResult(pokerType::rocket, 'g');
 		return ret;
 	}

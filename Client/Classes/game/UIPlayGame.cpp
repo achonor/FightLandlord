@@ -3,6 +3,7 @@
 #include "UIPlayGame.h"
 #include "Event/UserEvent.h"
 #include "UIPoker.h"
+#include "checkPoker.h"
 
 #include <algorithm>
 
@@ -125,27 +126,22 @@ bool UIPlayGame::init() {
 
 	//发牌事件
 	this->recvPokerlistener = UserEvent::addEventListener("MessageDealRsp", [&](EventCustom* event) {
-		//MessageUpdateStateReq proto;
-		//My_client->request(&proto, [&](google::protobuf::Message* rProto) {
-			//移除匹配中动画
-			auto matchingSp = this->getChildByTag(MATCHINGSPRITETAG);
-			if ((NULL != matchingSp)) {
-				matchingSp->removeFromParent();
-			}
-			//this->refreshState((MessageUpdateStateRsp*)rProto);
+		//移除匹配中动画
+		auto matchingSp = this->getChildByTag(MATCHINGSPRITETAG);
+		if ((NULL != matchingSp)) {
+			matchingSp->removeFromParent();
+		}
 
-
-			MessageDealRsp* rProto = (MessageDealRsp*)event->getUserData();
-			int pokerSize = rProto->pokerlist_size();
-			vector<MessageDataPoker>tmpPokerList;
-			for (int i = 0; i < pokerSize; i++) {
-				MessageDataPoker tmpPoker = rProto->pokerlist(i);
-				tmpPokerList.push_back(tmpPoker);
-			}
-			this->refreshSelfPoker(tmpPokerList, false);
-			//显示发牌动画
-			this->showDealAction();
-		//});
+		MessageDealRsp* rProto = (MessageDealRsp*)event->getUserData();
+		int pokerSize = rProto->pokerlist_size();
+		vector<MessageDataPoker>tmpPokerList;
+		for (int i = 0; i < pokerSize; i++) {
+			MessageDataPoker tmpPoker = rProto->pokerlist(i);
+			tmpPokerList.push_back(tmpPoker);
+		}
+		this->refreshSelfPoker(tmpPokerList, false);
+		//显示发牌动画
+		this->showDealAction();
 	});
 
 	//请求开始游戏
@@ -291,12 +287,12 @@ void UIPlayGame::setGradUIEnabled(bool state) {
 	this->notGradButton->setVisible(state);
 }
 //显示出牌UI
-void UIPlayGame::setOutUIEnabled(bool state) {
+void UIPlayGame::setOutUIEnabled(bool state, bool showNoOut) {
 	this->outButton->setVisible(state);
 	this->notOutButton->setVisible(state);
 
 	if (true == state) {
-		this->notOutButton->setEnabled(0 != this->deskPoker.size());
+		this->notOutButton->setEnabled(showNoOut);
 		//更新按钮状态
 		this->updateOutButtonState();
 	}
@@ -417,6 +413,92 @@ void UIPlayGame::updateOutButtonState() {
 	this->outButton->setEnabled(My_pokerCmp(vecSel, vecDesk));
 }
 
+//播放叫地主音效
+void UIPlayGame::playGradEffect(bool isGrad) {
+	std::string fileName;
+	if (true == isGrad) {
+		fileName = "sound/effect/Man_Order";
+	} else {
+		fileName = "sound/effect/Man_NoOrder";
+	}
+	My_audioManage->playEffect(fileName.c_str());
+}
+//播放出牌音效
+void UIPlayGame::playOutEffect(vector<MessageDataPoker> &pokerList) {
+	if (0 == pokerList.size()) {
+		//没出
+		My_audioManage->playEffect("sound/effect/Man_buyao1");
+		return;
+	}
+	std::string str = My_pokerListToString(pokerList);
+	checkResult result = checkPoker::checkType(str);
+	if (result.pType == pokerType::illegal) {
+		return;
+	}
+	std::string fileName = "sound/effect/" ;
+	if (result.pType == pokerType::rocket) {
+		//王炸
+		fileName += "Man_wangzha";
+	} else if (result.pType == pokerType::bomb) {
+		//炸弹
+		fileName += "Man_zhadan";
+
+	} else if (result.pType == pokerType::single) {
+		if ('h' == result.maxChar) {
+			//小王
+			fileName += "Man_6_16";
+		}else if('i' == result.maxChar){
+			//大王
+			fileName += "Man_5_16";
+		} else if (1 < pokerList.size()) {
+			//顺子
+			fileName += "Man_shunzi";
+		} else {
+			//单牌
+			char tmpStr[15];
+			sprintf(tmpStr, "Man_%d", pokerList[0].number());
+			fileName += tmpStr;
+		}
+	} else if (result.pType == pokerType::couple) {
+		if (2 < pokerList.size()) {
+			//连对
+			fileName += "Man_liandui";
+		} else {
+			//一对
+			char tmpStr[15];
+			sprintf(tmpStr, "Man_dui%d", My_charToPokerValue(result.maxChar));
+			fileName += tmpStr;
+		}
+	} else if (result.pType == pokerType::three) {
+		if (6 < pokerList.size()) {
+			//飞机
+			fileName += "Man_feiji";
+		} else {
+			//三个
+			char tmpStr[15];
+			sprintf(tmpStr, "Man_tuple%d", My_charToPokerValue(result.maxChar));
+			fileName += tmpStr;
+		}
+	} else{
+		//四个
+	}
+	My_audioManage->playEffect(fileName.c_str());
+}
+
+void UIPlayGame::showing() {
+	//随机一个背景音乐
+	char tmpFileName[35];
+	srand(time(NULL));
+	int tmpMusicID = rand() % 2 + 1;
+	sprintf(tmpFileName, "sound/music/MusicEx_Normal%d", tmpMusicID);
+	My_audioManage->playMusic(tmpFileName, true);
+}
+void UIPlayGame::hideing() {
+	//停止音乐音效
+	My_audioManage->stopMusic();
+	My_audioManage->stopAllEffects();
+}
+
 void UIPlayGame::onEnter() {
 	UIPanel::onEnter();
 }
@@ -522,9 +604,6 @@ void UIPlayGame::refreshState(MessageUpdateStateRsp *proto) {
 	this->gradSprite->setVisible(false);
 	this->landlordSprite->setVisible(false);
 
-	//清空缓存的牌桌上的牌
-	this->deskPoker.clear();
-
 	//显示玩家手牌
 	this->setPlayerPokerNumber(proto->uppokernum(), proto->downpokernum());
 
@@ -559,23 +638,7 @@ void UIPlayGame::refreshState(MessageUpdateStateRsp *proto) {
 		}
 
 	}
-	if (0 < proto->midpoker_size()) {
-		//显示牌桌的牌
-		vector<MessageDataPoker> tmpDeskPokerList;
-		for (int i = 0; i < proto->midpoker_size(); i++) {
-			tmpDeskPokerList.push_back(proto->midpoker(i));
-		}
-		//排序
-		sort(tmpDeskPokerList.begin(), tmpDeskPokerList.end(), My_pokerCmd);
-		this->deskPokerNode->removeAllChildren();
-		auto pokerSum = tmpDeskPokerList.size();
-		for (int i = 0; i < pokerSum; i++) {
-			auto tmpPoker = UIPoker::create(&(tmpDeskPokerList[i]));
-			tmpPoker->setPosition(Vec2((i + 0.5 - 0.5 * pokerSum) * DESKPOKERDIS, 0));
-			this->deskPokerNode->addChild(tmpPoker, i);
-			this->deskPoker.push_back(tmpPoker);
-		}
-	}
+	
 
 
 	if (1 == proto->statetype()) {
@@ -595,11 +658,41 @@ void UIPlayGame::refreshState(MessageUpdateStateRsp *proto) {
 			this->notGradSprite->setVisible(true);
 			this->notGradSprite->setPosition(BELLPOS[tmpIdx]);
 		}
+		//播放音效
+		if (1 == proto->lastisgrad() || 2 == proto->lastisgrad()) {
+			this->playGradEffect(1 == proto->lastisgrad());
+		}
 
 	} else if (2 == proto->statetype()) {
 		//出牌
-		//操作人人是自己就显示
-		this->setOutUIEnabled(0 == proto->playeridx());
+		if (0 == proto->lastoutplayeridx() || 0 < proto->midpoker_size()) {
+			//上一个手牌是自己出的或者有新的牌， 清空缓存的牌桌上的牌， 不需要比较大小就能出牌
+			this->deskPoker.clear();
+		}
+		//显示牌桌的牌
+		vector<MessageDataPoker> tmpDeskPokerList;
+		if (0 < proto->midpoker_size()) {
+			for (int i = 0; i < proto->midpoker_size(); i++) {
+				tmpDeskPokerList.push_back(proto->midpoker(i));
+			}
+			//排序
+			sort(tmpDeskPokerList.begin(), tmpDeskPokerList.end(), My_pokerCmd);
+			this->deskPokerNode->removeAllChildren();
+			auto pokerSum = tmpDeskPokerList.size();
+			for (int i = 0; i < pokerSum; i++) {
+				auto tmpPoker = UIPoker::create(&(tmpDeskPokerList[i]));
+				tmpPoker->setPosition(Vec2((i + 0.5 - 0.5 * pokerSum) * DESKPOKERDIS, 0));
+				this->deskPokerNode->addChild(tmpPoker, i);
+				this->deskPoker.push_back(tmpPoker);
+			}
+		}
+		//播放音效
+		if (1 == proto->lastisout() || 2 == proto->lastisout()) {
+			this->playOutEffect(tmpDeskPokerList);
+		}
+
+		//操作人人是自己就显示, 上一个出牌人不是自己‘不要’按钮可点击
+		this->setOutUIEnabled(0 == proto->playeridx(), (1 == proto->lastoutplayeridx() || 2 == proto->lastoutplayeridx()));
 		//位置(当前操作者的上家）
 		auto tmpIdx = (proto->playeridx() + 3 - 1) % 3;
 		if (0 == proto->lastisout()) {
@@ -617,6 +710,7 @@ void UIPlayGame::refreshState(MessageUpdateStateRsp *proto) {
 		this->landlordSprite->setScale(LANDLORDSPRITESCALE[proto->landlordidx()]);
 		this->landlordSprite->setPosition(LANDLORDSPRITEPOS[proto->landlordidx()]);
 	}
+
 	//刷新自己的手牌
 	int pokerSize = proto->selfpoker_size();
 	vector<MessageDataPoker>tmpPokerList;
@@ -698,7 +792,6 @@ bool UIPlayGame::touchBegan(Touch *touch, Event* event) {
 		//游戏还没开始
 		return true;
 	}
-
 	this->lastMovePos = touch->getLocation();
 	//触摸点在那个卡牌
 	this->beganIdx = this->checkTouchInPoker(this->lastMovePos);
@@ -763,20 +856,26 @@ void UIPlayGame::gameOver(MessageGameResultRsp* rProto) {
 	this->notGradSprite->setVisible(false);
 	this->gradSprite->setVisible(false);
 	this->landlordSprite->setVisible(false);
-
+	//音乐文件名
+	std::string fileName;
 	Sprite* resultSp = NULL;
 	if (true == rProto->iswinning()) {
+		fileName = "sound/music/MusicEx_Win";
 		resultSp = Sprite::create("winning.png");
 	} else {
+		fileName = "sound/music/MusicEx_Lose";
 		resultSp = Sprite::create("failure.png");
 	}
 	resultSp->setPosition(My_visibleSize.width * 0.5, My_visibleSize.height * 0.5);
 	this->addChild(resultSp, 100);
 
+	//播放音乐
+	My_audioManage->playMusic(fileName.c_str());
+
 	this->scheduleOnce([](float t) {
 		//退出界面
 		My_gameScene->popPanel();
-	}, 1.5, "gameOver");
+	}, 3.5, "gameOver");
 
 }
 void UIPlayGame::onExit() {

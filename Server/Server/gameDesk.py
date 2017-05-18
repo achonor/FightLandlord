@@ -205,6 +205,8 @@ class desk:
         #下家的索引
         downIdx = (selfIdx + 1) % 3
         proto.downPokerNum = len(self.getPlayerByIdx(downIdx).poker)
+        #上一个出牌玩家
+        proto.lastOutPlayerIdx = self.getPlayerPos(selfIdx, self.lastOutPokerIdx)
         for tmpPoker in self.lastOutPoker:
             tmpProto = proto.midPoker.add()
             tmpProto.color = tmpPoker.color
@@ -266,11 +268,14 @@ class desk:
         self.operatorIdx = lastGradIdx
         #上一个操作者
         lastOperatorIdx = self.operatorIdx
+        #上一个出牌人，（实际上没有）
+        self.lastOutPokerIdx = self.operatorIdx
         #出牌循环
         while(True):
             if(self.lastOutPokerIdx == self.operatorIdx):
                 #没人要的起
-                self.lastOutPoker = []
+                #self.lastOutPoker = []
+                pass
             # 同步状态
             self.updataAllPlayerState(OUTPOKERTIME, lastOperatorIdx)
             #等待出牌
@@ -292,6 +297,7 @@ class desk:
                     break
             else:
                 self.lastIsOut = 2 #没出
+                self.lastOutPoker = []
             lastOperatorIdx, self.operatorIdx = self.operatorIdx, (self.operatorIdx + 1) % 3  # 修改操作者
         defer.returnValue(True)
 

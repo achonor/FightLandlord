@@ -26,6 +26,10 @@ public:
 	//添加触摸事件
 	void addTouchListener();
 	void removeTouchListener();
+	//显示事件
+	virtual void showing();
+	//隐藏事件
+	virtual void hideing();
 };
 
 #endif

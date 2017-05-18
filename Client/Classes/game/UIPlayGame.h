@@ -1,5 +1,6 @@
 #pragma once
-
+#ifndef UIPLAYGAME_H
+#define UIPLAYGAME_H
 #include <vector>
 #include "cocos2d.h"
 #include "UIPanel.h"
@@ -46,7 +47,7 @@ protected:
 	//显示抢地主UI
 	void setGradUIEnabled(bool state);
 	//显示出牌UI
-	void setOutUIEnabled(bool state);
+	void setOutUIEnabled(bool state, bool showNoOut = true);
 	//设置时钟倒计时(pos：0，自己，2.下家，3.下家）
 	void setCountDown(int pos, int counts, function<void()> callback = NULL);
 	//叫地主按钮，不叫按钮回调函数(state 是否叫地主）
@@ -57,7 +58,12 @@ protected:
 	void setPlayerPokerNumber(int up, int down);
 	//更新出牌按钮的状态
 	void updateOutButtonState();
-
+	//播放叫地主音效
+	void playGradEffect(bool isGrad);
+	//播放出牌音效
+	void playOutEffect(vector<MessageDataPoker> &pokerList);
+	virtual void showing();
+	virtual void hideing();
 public:
 	//请求开始游戏
 	void requestStartGame();
@@ -126,3 +132,4 @@ protected:
 
 };
 
+#endif
