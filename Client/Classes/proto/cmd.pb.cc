@@ -237,7 +237,7 @@ void protobuf_AssignDesc_cmd_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(MessageUpdateStateReq));
   MessageUpdateStateRsp_descriptor_ = file->message_type(10);
-  static const int MessageUpdateStateRsp_offsets_[11] = {
+  static const int MessageUpdateStateRsp_offsets_[12] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageUpdateStateRsp, playeridx_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageUpdateStateRsp, statetype_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageUpdateStateRsp, midpoker_),
@@ -249,6 +249,7 @@ void protobuf_AssignDesc_cmd_2eproto() {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageUpdateStateRsp, lastisgrad_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageUpdateStateRsp, lastisout_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageUpdateStateRsp, landlordidx_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageUpdateStateRsp, lastoutplayeridx_),
   };
   MessageUpdateStateRsp_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -473,7 +474,7 @@ void protobuf_AddDesc_cmd_2eproto() {
     "\025\n\023MessageStartGameRsp\"\020\n\016MessageDealReq"
     "\"V\n\016MessageDealRsp\022\r\n\005upNum\030\001 \001(\005\022\017\n\007dow"
     "nNum\030\002 \001(\005\022$\n\tpokerList\030\003 \003(\0132\021.MessageD"
-    "ataPoker\"\027\n\025MessageUpdateStateReq\"\252\002\n\025Me"
+    "ataPoker\"\027\n\025MessageUpdateStateReq\"\304\002\n\025Me"
     "ssageUpdateStateRsp\022\021\n\tplayerIdx\030\001 \001(\005\022\021"
     "\n\tstateType\030\002 \001(\005\022#\n\010midPoker\030\003 \003(\0132\021.Me"
     "ssageDataPoker\022(\n\rlandlordPoker\030\004 \003(\0132\021."
@@ -481,13 +482,14 @@ void protobuf_AddDesc_cmd_2eproto() {
     "ssageDataPoker\022\022\n\nupPokerNum\030\006 \001(\005\022\024\n\014do"
     "wnPokerNum\030\007 \001(\005\022\020\n\010laveTime\030\010 \001(\r\022\022\n\nla"
     "stIsGrad\030\t \001(\005\022\021\n\tlastIsOut\030\n \001(\005\022\023\n\013lan"
-    "dlordIdx\030\013 \001(\005\"(\n\026MessageGradLandlordReq"
-    "\022\016\n\006isGrad\030\001 \001(\010\"\030\n\026MessageGradLandlordR"
-    "sp\"6\n\022MessageOutPokerReq\022 \n\005poker\030\001 \003(\0132"
-    "\021.MessageDataPoker\"\024\n\022MessageOutPokerRsp"
-    "\"\026\n\024MessageGameResultReq\")\n\024MessageGameR"
-    "esultRsp\022\021\n\tisWinning\030\001 \001(\010\"1\n\020MessageDa"
-    "taPoker\022\r\n\005color\030\001 \001(\005\022\016\n\006number\030\002 \001(\005", 1038);
+    "dlordIdx\030\013 \001(\005\022\030\n\020lastOutPlayerIdx\030\014 \001(\005"
+    "\"(\n\026MessageGradLandlordReq\022\016\n\006isGrad\030\001 \001"
+    "(\010\"\030\n\026MessageGradLandlordRsp\"6\n\022MessageO"
+    "utPokerReq\022 \n\005poker\030\001 \003(\0132\021.MessageDataP"
+    "oker\"\024\n\022MessageOutPokerRsp\"\026\n\024MessageGam"
+    "eResultReq\")\n\024MessageGameResultRsp\022\021\n\tis"
+    "Winning\030\001 \001(\010\"1\n\020MessageDataPoker\022\r\n\005col"
+    "or\030\001 \001(\005\022\016\n\006number\030\002 \001(\005", 1064);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "cmd.proto", &protobuf_RegisterTypes);
   MainProto::default_instance_ = new MainProto();
@@ -3003,6 +3005,7 @@ const int MessageUpdateStateRsp::kLaveTimeFieldNumber;
 const int MessageUpdateStateRsp::kLastIsGradFieldNumber;
 const int MessageUpdateStateRsp::kLastIsOutFieldNumber;
 const int MessageUpdateStateRsp::kLandlordIdxFieldNumber;
+const int MessageUpdateStateRsp::kLastOutPlayerIdxFieldNumber;
 #endif  // !_MSC_VER
 
 MessageUpdateStateRsp::MessageUpdateStateRsp()
@@ -3031,6 +3034,7 @@ void MessageUpdateStateRsp::SharedCtor() {
   lastisgrad_ = 0;
   lastisout_ = 0;
   landlordidx_ = 0;
+  lastoutplayeridx_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -3080,7 +3084,7 @@ void MessageUpdateStateRsp::Clear() {
     ZR_(playeridx_, statetype_);
     ZR_(uppokernum_, lavetime_);
   }
-  ZR_(lastisgrad_, landlordidx_);
+  ZR_(lastisgrad_, lastoutplayeridx_);
 
 #undef OFFSET_OF_FIELD_
 #undef ZR_
@@ -3259,6 +3263,21 @@ bool MessageUpdateStateRsp::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
+        if (input->ExpectTag(96)) goto parse_lastOutPlayerIdx;
+        break;
+      }
+
+      // optional int32 lastOutPlayerIdx = 12;
+      case 12: {
+        if (tag == 96) {
+         parse_lastOutPlayerIdx:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &lastoutplayeridx_)));
+          set_has_lastoutplayeridx();
+        } else {
+          goto handle_unusual;
+        }
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -3346,6 +3365,11 @@ void MessageUpdateStateRsp::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(11, this->landlordidx(), output);
   }
 
+  // optional int32 lastOutPlayerIdx = 12;
+  if (has_lastoutplayeridx()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(12, this->lastoutplayeridx(), output);
+  }
+
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -3417,6 +3441,11 @@ void MessageUpdateStateRsp::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(11, this->landlordidx(), target);
   }
 
+  // optional int32 lastOutPlayerIdx = 12;
+  if (has_lastoutplayeridx()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(12, this->lastoutplayeridx(), target);
+  }
+
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -3485,6 +3514,13 @@ int MessageUpdateStateRsp::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->landlordidx());
+    }
+
+    // optional int32 lastOutPlayerIdx = 12;
+    if (has_lastoutplayeridx()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->lastoutplayeridx());
     }
 
   }
@@ -3567,6 +3603,9 @@ void MessageUpdateStateRsp::MergeFrom(const MessageUpdateStateRsp& from) {
     if (from.has_landlordidx()) {
       set_landlordidx(from.landlordidx());
     }
+    if (from.has_lastoutplayeridx()) {
+      set_lastoutplayeridx(from.lastoutplayeridx());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -3601,6 +3640,7 @@ void MessageUpdateStateRsp::Swap(MessageUpdateStateRsp* other) {
     std::swap(lastisgrad_, other->lastisgrad_);
     std::swap(lastisout_, other->lastisout_);
     std::swap(landlordidx_, other->landlordidx_);
+    std::swap(lastoutplayeridx_, other->lastoutplayeridx_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

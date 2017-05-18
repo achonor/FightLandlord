@@ -140,9 +140,20 @@ std::string My_pokerListToString(vector<MessageDataPoker > &pokerList) {
 	std::string ret;
 	for (int i = 0; i < pokerList.size(); i++) {
 		auto tmpPoker = pokerList[i];
-		ret = ret + PokerToChar[tmpPoker.number()];
+		ret = ret + char(PokerToChar[tmpPoker.number()] + (5 == tmpPoker.color()));
 	}
 	return ret;
+}
+
+//字符转化成牌的数值
+int My_charToPokerValue(char chr) {
+	int len = strlen(PokerToChar);
+	for (int i = 3; i < len; i++) {
+		if (PokerToChar[i] == chr) {
+			return i - (i == len - 1);
+		}
+	}
+	return 3;
 }
 
 bool My_pokerCmp(vector<MessageDataPoker > &a, vector<MessageDataPoker > &b) {

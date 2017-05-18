@@ -14,6 +14,8 @@ Client* My_client= NULL;
 
 GameLayer* My_gameScene = NULL;
 
+audioManage* My_audioManage = NULL;
+
 
 string EVENT_RECEIVE_DATA = "EVENT_RECEIVE_DATA";
 
@@ -26,8 +28,12 @@ void My_InitGGData() {
 	My_config = My_getJsonData("config/config.json");
 	//游戏客户端
 	My_client = Client::create();
+	//音频控制器
+	My_audioManage = audioManage::getInstance();
 }
 
 void My_ClearGGData() {
 	GGNode->release();
+	//释放资源
+	//SimpleAudioEngine::end();
 }

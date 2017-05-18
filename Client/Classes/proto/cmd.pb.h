@@ -1050,6 +1050,13 @@ class MessageUpdateStateRsp : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 landlordidx() const;
   inline void set_landlordidx(::google::protobuf::int32 value);
 
+  // optional int32 lastOutPlayerIdx = 12;
+  inline bool has_lastoutplayeridx() const;
+  inline void clear_lastoutplayeridx();
+  static const int kLastOutPlayerIdxFieldNumber = 12;
+  inline ::google::protobuf::int32 lastoutplayeridx() const;
+  inline void set_lastoutplayeridx(::google::protobuf::int32 value);
+
   // @@protoc_insertion_point(class_scope:MessageUpdateStateRsp)
  private:
   inline void set_has_playeridx();
@@ -1068,6 +1075,8 @@ class MessageUpdateStateRsp : public ::google::protobuf::Message {
   inline void clear_has_lastisout();
   inline void set_has_landlordidx();
   inline void clear_has_landlordidx();
+  inline void set_has_lastoutplayeridx();
+  inline void clear_has_lastoutplayeridx();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -1084,6 +1093,7 @@ class MessageUpdateStateRsp : public ::google::protobuf::Message {
   ::google::protobuf::int32 lastisgrad_;
   ::google::protobuf::int32 lastisout_;
   ::google::protobuf::int32 landlordidx_;
+  ::google::protobuf::int32 lastoutplayeridx_;
   friend void  protobuf_AddDesc_cmd_2eproto();
   friend void protobuf_AssignDesc_cmd_2eproto();
   friend void protobuf_ShutdownFile_cmd_2eproto();
@@ -2504,6 +2514,30 @@ inline void MessageUpdateStateRsp::set_landlordidx(::google::protobuf::int32 val
   set_has_landlordidx();
   landlordidx_ = value;
   // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.landlordIdx)
+}
+
+// optional int32 lastOutPlayerIdx = 12;
+inline bool MessageUpdateStateRsp::has_lastoutplayeridx() const {
+  return (_has_bits_[0] & 0x00000800u) != 0;
+}
+inline void MessageUpdateStateRsp::set_has_lastoutplayeridx() {
+  _has_bits_[0] |= 0x00000800u;
+}
+inline void MessageUpdateStateRsp::clear_has_lastoutplayeridx() {
+  _has_bits_[0] &= ~0x00000800u;
+}
+inline void MessageUpdateStateRsp::clear_lastoutplayeridx() {
+  lastoutplayeridx_ = 0;
+  clear_has_lastoutplayeridx();
+}
+inline ::google::protobuf::int32 MessageUpdateStateRsp::lastoutplayeridx() const {
+  // @@protoc_insertion_point(field_get:MessageUpdateStateRsp.lastOutPlayerIdx)
+  return lastoutplayeridx_;
+}
+inline void MessageUpdateStateRsp::set_lastoutplayeridx(::google::protobuf::int32 value) {
+  set_has_lastoutplayeridx();
+  lastoutplayeridx_ = value;
+  // @@protoc_insertion_point(field_set:MessageUpdateStateRsp.lastOutPlayerIdx)
 }
 
 // -------------------------------------------------------------------

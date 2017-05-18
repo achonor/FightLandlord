@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "functions.h"
 #include "net/Client.h"
+#include "audioManage.h"
 
 //初始化GGData
 void My_InitGGData();
@@ -31,5 +32,8 @@ extern GameLayer* My_gameScene;
 
 //接收到数据事件
 extern string EVENT_RECEIVE_DATA;
+
+//音频控制器
+extern audioManage* My_audioManage;
 
 #endif

@@ -13,7 +13,7 @@
 #include "proto/cmd.pb.h"
 #include "google/protobuf/message.h"
 
-const char PokerToChar[18] = "0003456789abcdefg";
+const char PokerToChar[19] = "0003456789abcdefhi";
 
 //解析json文件
 rapidjson::Document My_getJsonData(const char* fileName);
@@ -45,6 +45,9 @@ bool My_pokerCmd(MessageDataPoker &a, MessageDataPoker &b);
 //vector<MessageDataPoker >转成字符串
 //3:3， 4:4，5:5，6:6，7:7，8:8，9:9，a:10，b:J， c:Q， d:K， e:A, f:2, g:王
 std::string My_pokerListToString(vector<MessageDataPoker > &pokerList);
+
+//字符转化成牌的数值
+int My_charToPokerValue(char chr);
 
 //判断牌的大小
 bool My_pokerCmp(vector<MessageDataPoker > &a, vector<MessageDataPoker > &b);

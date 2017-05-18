@@ -18,12 +18,13 @@ public:
     virtual bool init();
     
 	void onEnter();
+	void onExit();
     
     // implement the "static create()" method manually
     CREATE_FUNC(GameLayer);
 
 	//设置当前显示的界面
-	void pushPanel(Node* panel, bool isTop = false);
+	void pushPanel(UIPanel* panel, bool isTop = false);
 	//弹出当前显示的界面
 	void popPanel();
 
@@ -41,7 +42,7 @@ protected:
 	//最上层的Node
 	Node* topNode;
 	int curPanelNumber;
-	Node* panelList[MAX_PANEL_NUM];
+	UIPanel* panelList[MAX_PANEL_NUM];
 };
 
 #endif // __HELLOWORLD_SCENE_H__

@@ -88,13 +88,18 @@ void GameLayer::onEnter() {
 	this->pushPanel(uiStartGame);
 }
 
+void GameLayer::onExit() {
+	Layer::onExit();
+	My_ClearGGData();
+}
+
 //显示或隐藏菊花
 void GameLayer::setSrceenVisible(bool state) {
 	this->screenLayer->setVisible(state);
 }
 
 
-void GameLayer::pushPanel(Node *panel, bool isTop) {
+void GameLayer::pushPanel(UIPanel *panel, bool isTop) {
 	if (MAX_PANEL_NUM <= this->curPanelNumber) {
         std::cout<<"ERROR: panel is full" <<endl;
 		return;
@@ -102,6 +107,7 @@ void GameLayer::pushPanel(Node *panel, bool isTop) {
 	if (this->curPanelNumber > 0) {
 		//隐藏当前界面
 		//this->panelList[this->curPanelNumber - 1]->setVisible(false);
+		panel->hideing();
 	}
 	this->panelList[this->curPanelNumber++] = panel;
 	if (false == isTop) {
@@ -109,6 +115,7 @@ void GameLayer::pushPanel(Node *panel, bool isTop) {
 	} else {
 		this->topNode->addChild(panel);
 	}
+	panel->showing();
 }
 
 void GameLayer::popPanel() {
@@ -117,10 +124,13 @@ void GameLayer::popPanel() {
         std::cout<< "ERROR: don't have panel" <<endl;
 		return;
 	}
-	this->panelList[--this->curPanelNumber]->removeFromParent();
+	UIPanel* panel = this->panelList[--this->curPanelNumber];
+	panel->hideing();
+	panel->removeFromParent();
 	if (this->curPanelNumber > 0) {
 		//显示上一个界面
 		this->panelList[this->curPanelNumber - 1]->setVisible(true);
+		this->panelList[this->curPanelNumber - 1]->showing();
 	}
 }
 
