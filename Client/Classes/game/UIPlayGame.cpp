@@ -497,7 +497,7 @@ void UIPlayGame::hideing() {
 	//Í£Ö¹ÒôÀÖÒôÐ§
 	My_audioManage->stopMusic();
 	My_audioManage->stopAllEffects();
-}
+}]
 
 void UIPlayGame::onEnter() {
 	UIPanel::onEnter();
