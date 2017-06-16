@@ -1,7 +1,7 @@
 {
 	"resWidth":960,
 	"resHeight":540,
-	"inloginAddr":"127.0.0.1",
-	"outloginAddr":"119.23.43.245",
+	"inloginAddr":"39.108.160.225",
+	"outloginAddr":"39.108.160.225",
 	"serverPort":5010
 }
