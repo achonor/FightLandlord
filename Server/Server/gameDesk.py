@@ -14,6 +14,8 @@ from twisted.internet.defer import inlineCallbacks, Deferred
 GRADLANDLORDTIME = 10
 #出牌等待时间
 OUTPOKERTIME= 25
+#超时后出牌等待时间
+OUTTIMEOUTPOKERTIME = 8
 
 
 class desk:
@@ -41,6 +43,8 @@ class desk:
         self.lastOutPokerIdx = -1
         #等待触发的Deferred
         self.waitDeferred = None
+        #玩家出牌等待时间
+        self.outWaitTime = [OUTPOKERTIME, OUTPOKERTIME, OUTPOKERTIME]
         #初始化角色
         for id in playerIDList:
             tmpPlayer = GGData.My_Server.getPlayer(id)
@@ -229,6 +233,9 @@ class desk:
     #获取玩家索引
     def getPlayerIdx(self, cPlayer):
         return self.playerList.index(cPlayer)
+    #获取出牌玩家出牌等待时间
+    def getPlayerOutWaitTimeByIdx(self, idx):
+        return self.outWaitTime[idx]
     #游戏循环
     @inlineCallbacks
     def gameLoop(self):
@@ -272,15 +279,22 @@ class desk:
         self.lastOutPokerIdx = self.operatorIdx
         #出牌循环
         while(True):
-            if(self.lastOutPokerIdx == self.operatorIdx):
-                #没人要的起
-                #self.lastOutPoker = []
-                pass
+            #等待玩家操作的时间上限
+            tmpOutWaitTime = self.getPlayerOutWaitTimeByIdx(self.operatorIdx)
             # 同步状态
-            self.updataAllPlayerState(OUTPOKERTIME, lastOperatorIdx)
+            self.updataAllPlayerState(tmpOutWaitTime, lastOperatorIdx)
+            if (self.lastOutPokerIdx == self.operatorIdx):
+                # 没人要的起
+                # self.lastOutPoker = []
+                self.lastIsOut = 0
             #等待出牌
             d = Deferred()
-            self.registerEvent(self.operatorIdx, d, OUTPOKERTIME, [])
+            tmpTimeOutValue = []
+            if 0 == self.lastIsOut:
+                #没有上家，必须出牌
+                tmpPokerList = self.getPlayerByIdx(self.operatorIdx).poker
+                tmpTimeOutValue = tmpPokerList[0:1]
+            self.registerEvent(self.operatorIdx, d, tmpOutWaitTime, tmpTimeOutValue)
             ret = yield d
             if(0 < len(ret)):
                 #出牌了
@@ -305,6 +319,8 @@ class desk:
     def registerEvent(self, playerIdx, defe, outTime, outTimeValue):
         def tmpFunc(value):
             if(self.waitDeferred == defe):
+                #玩家没有操作，缩短下次等待时间
+                self.outWaitTime[self.operatorIdx] = OUTTIMEOUTPOKERTIME
                 defe.callback(value)
 
         self.waitDeferred = defe
@@ -326,6 +342,8 @@ class desk:
             # 等待的不是该玩家的请求
             return
         tmpDeferred, self.waitDeferred = self.waitDeferred, None
+        #玩家有操作，恢复玩家的等待时间
+        self.outWaitTime[self.operatorIdx] = OUTPOKERTIME
         tmpDeferred.callback(proto.poker)
     #游戏结束
     def gameOver(self, winningIdx):
