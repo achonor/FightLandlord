@@ -2,7 +2,7 @@
 #coding=utf-8
 
 import GGData
-import functions
+import functions, time
 from twisted.python import log
 from twisted.internet.protocol import Protocol, connectionDone
 
@@ -40,6 +40,7 @@ class MyProtocol(Protocol):
             #数据没收完，不处理
             pass
     def connectionMade(self):
+        print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
         print "connection success!!!", self.transport.getPeer()
 
     def connectionLost(self, reason=connectionDone):
