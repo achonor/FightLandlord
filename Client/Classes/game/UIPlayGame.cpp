@@ -739,6 +739,8 @@ void UIPlayGame::resetAllPoker() {
 		this->poker[i]->setPositionY(SELFPOKERY);
 	}
 	this->selPoker.clear();
+	//还原出牌按钮状态
+	this->updateOutButtonState();
 }
 
 //修改一个区间的牌的状态
